@@ -36,7 +36,13 @@ a{
 }
 button{
     border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 0;
 }
+button:focus {
+    outline: none;
+  
 
 .main-container {
     width: 320px;
