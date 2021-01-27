@@ -1,22 +1,14 @@
 'use strict';
 
-let moviesList = document.querySelector('#js-moviesList');
+const searchField = document.querySelector('#js-form');
+const moviesList = document.querySelector('#js-moviesList');
 
 const apiKey = '15ca756df476082b053254128d393ba0';
-let inputValue = 'super';
+let inputValue = '';
 let pageNumber = 1;
 
 let renderedMovies = [];
 
-function fetchFilms() {
-  return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false&query=${inputValue}`,
-  )
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    });
-}
 
 function createMarkup() {
   fetchFilms().then(result => {
@@ -24,13 +16,11 @@ function createMarkup() {
     result.results.forEach(element => {
       moviesList.insertAdjacentHTML(
         'beforeend',
-        createCard(element.backdrop_path, element.title),
+        createCard(element.poster_path, element.title),
       );
     });
   });
 }
-
-createMarkup();
 
 function createCard(imgPath, movieTitle) {
   const movieItem = document.createElement('li');
@@ -46,6 +36,6 @@ function createCard(imgPath, movieTitle) {
   previewImgTitle.textContent = movieTitle;
 
   movieItem.append(previewImg, previewImgTitle);
-  
+
   return movieItem.outerHTML;
 }
