@@ -9,20 +9,20 @@ let pageNumber = 1;
 
 let renderedMovies = [];
 
-
 function createMarkup() {
   fetchFilms().then(result => {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
+      console.dir(element);
       moviesList.insertAdjacentHTML(
         'beforeend',
-        createCard(element.poster_path, element.title),
+        createCard(element.poster_path, element.title, element.release_date),
       );
     });
   });
 }
 
-function createCard(imgPath, movieTitle) {
+function createCard(imgPath, movieTitle, date) {
   const movieItem = document.createElement('li');
   movieItem.classList.add('main__movieItem');
   movieItem.setAttribute('id', 'js-movieItem');
@@ -33,7 +33,12 @@ function createCard(imgPath, movieTitle) {
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
-  previewImgTitle.textContent = movieTitle;
+  const releaseYear = new Date(date).getFullYear();
+  if (!Number.isNaN(releaseYear)) {
+    previewImgTitle.textContent = `${movieTitle} (${releaseYear})`;
+  } else {
+    previewImgTitle.textContent = movieTitle;
+  }
 
   movieItem.append(previewImg, previewImgTitle);
 
