@@ -34,15 +34,17 @@
         margin-top: 0;
     }
 }
-
-.footer-icon {
-    fill: $accent-color;
+.footer-text{
+    display: inline-block;
+    margin-right: 10px;
 }
-
 .footer-btn {
+    display: inline-block;
     background-color: transparent;
     color: inherit;
     text-decoration: underline;
+    padding: 0;
+    margin-left: 10px;
 }
 
 .footer-btn:hover {
