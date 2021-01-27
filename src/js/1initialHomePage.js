@@ -14,6 +14,7 @@ let renderedMovies = [];
 createStartupMarkup();
 
 function createMarkup() {
+  addPreloader();
   fetchFilms().then(result => {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
@@ -27,6 +28,7 @@ function createMarkup() {
         ),
       );
     });
+    removePreloader();
   });
 }
 
