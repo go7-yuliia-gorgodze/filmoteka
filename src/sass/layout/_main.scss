@@ -30,6 +30,7 @@ img{
 
 a{
     text-decoration: none;
+    display: block;
 }
 .list{
     list-style: none;
@@ -48,11 +49,11 @@ button:focus {
     width: 320px;
     padding: 0 20px;
     margin: 0 auto;
-    @include for-size(tablet-landscape-up) {
+    @include tablet {
       width: 768px;
       padding: 0 75px;
     }
-    @include for-size(desktop) {
+    @include desktop {
       width: 1024px;
       padding: 0 71px;
     }
@@ -61,4 +62,6 @@ button:focus {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+ 
 
