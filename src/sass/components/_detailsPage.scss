@@ -1,0 +1,55 @@
+.details-img {
+  width: 280px;
+  height: 416px;
+  border-radius: 5px;
+  background-color: #817070;
+  @include for-size(phone-only) {
+    margin-bottom: 30px;
+  }
+  @include for-size(tablet-landscape-up) {
+    width: 294px;
+    height: 416px;
+  }
+  @include for-size(desktop) {
+    width: 426px;
+    height: 514px;
+  }
+}
+.details-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  @include for-size(phone-only) {
+    margin-bottom: 20px;
+  }
+}
+
+.details-inf {
+  display: flex;
+  &-list {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #8c8c8c;
+  }
+}
+.details-inf-list-secondary {
+  color: $primary-text-color;
+}
+.text-orange {
+  border-radius: 5px;
+  background-color: $accent-color;
+}
+.details-button-list {
+  display: flex;
+}
+.details-button {
+  width: 136px;
+  height: 44px;
+}
+.button-watch {
+  background-color: $accent-color;
+}
