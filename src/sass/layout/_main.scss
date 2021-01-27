@@ -24,8 +24,11 @@ img {
   width: 100%;
 }
 
-a {
-  text-decoration: none;
+
+
+a{
+    text-decoration: none;
+    display: block;
 }
 .list {
   list-style: none;
@@ -41,19 +44,23 @@ button:focus {
 }
 
 .main-container {
-  width: 320px;
-  padding: 0 15px;
-  margin: 0 auto;
-  @include for-size(tablet-landscape-up) {
-    width: 768px;
-    padding: 0 75px;
-  }
-  @include for-size(desktop) {
-    width: 1024px;
-    padding: 0 71px;
-  }
+    width: 320px;
+    padding: 0 20px;
+    margin: 0 auto;
+    @include tablet {
+      width: 768px;
+      padding: 0 75px;
+    }
+    @include desktop {
+      width: 1024px;
+      padding: 0 71px;
+    }
 }
-.section {
-  padding-top: 50px;
-  padding-bottom: 50px;
+.section{
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+
+ 
+
+
