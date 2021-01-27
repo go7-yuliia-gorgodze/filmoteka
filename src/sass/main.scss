@@ -3,8 +3,10 @@
  */
 
 @import './layout/variables';
-@import './layout/main';
 @import './layout/mixin';
+@import './layout/main';
 @import 'normalize.scss';
 @import 'base.scss';
 @import './components/_footer.scss';
+@import './components/header.scss';
+

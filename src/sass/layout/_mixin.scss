@@ -9,10 +9,10 @@
       @media (min-width: 768px) { @content; }
     }
     @else if $size == tablet {
-      @media (max-width: 1315px) { @content; }
+      @media (max-width: 1023px) { @content; }
     }
-     @else if $size == desktop-up {
-      @media (min-width: 1316px) { @content; }
+     @else if $size == desktop {
+      @media (min-width: 1024px) { @content; }
     } 
     
   }
@@ -28,8 +28,10 @@
   @media screen and (max-width: 767px) { @content; }
 }
 @mixin tablet {
-  @media screen and (min-width: 768px) and (max-width:1315px) { @content; }
+  @media screen and (min-width: 768px) and (max-width:1023px) { @content; }
 }
 @mixin desktop {
-  @media (min-width: 1316px) { @content; }
+  @media (min-width: 1024px) { @content; }
 }
+
+
