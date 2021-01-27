@@ -1,0 +1,111 @@
+
+  
+ //-> Background-image styles <-//
+  .header {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header-home-mobile.jpg');
+  
+    @include for-size(tablet) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-home-tablet.jpg');
+    }
+  
+    @include for-size(desktop) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-home-desktop.jpg');
+    }
+  }
+ //   //-> the end of background-image styles <-//
+
+  .header-container {
+  padding-top: 48px;
+  padding-bottom: 43px;
+
+
+  @include for-size(tablet) {
+    padding-top: 41px;
+    padding-bottom: 60px;
+  }
+}
+
+.text-logo {
+  display: none;
+  margin-left: 12px;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.16;
+  color: var(--primary-white-color);
+
+  @include for-size(tablet) {
+    display: inline-block;
+  }
+}
+
+.link-library {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.166;
+  color: var(--primary-white-color);
+  background-color: transparent;
+  border: 0;
+  display: block;
+}
+
+.current {
+  border-bottom: 3px solid var(--accent-color);
+}
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.header-list {
+  display: flex;
+  list-style: none;
+}
+.header-list-item {
+  margin-left: 39px;
+}
+.link-header {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.166;
+
+  color: var(--primary-white-color);
+}
+
+.search-box {
+  margin: 37px auto 0;
+  position: relative;
+  width: 280px;
+  @include for-size(tablet) {
+    width: 336px;
+  }
+}
+.search-input {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid #fff;
+  outline: none;
+  width: 100%;
+  color: var(--primary-white-color);
+}
+
+.icon-search {
+  position: absolute;
+  right: 0;
+}
+.error-message {
+  margin-top: 22px;
+  color: #ff001b;
+  text-align: left;
+  height: 32px;
+  @include for-size(tablet) {
+    text-align: center;
+    height: 16px;
+  }
+}
+
