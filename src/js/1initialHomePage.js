@@ -29,7 +29,14 @@ function createCard(imgPath, movieTitle, date) {
 
   const previewImg = document.createElement('img');
   previewImg.classList.add('main__previewImgItem');
-  previewImg.setAttribute('src', `https://image.tmdb.org/t/p/w500/${imgPath}`);
+  if (imgPath) {
+    previewImg.setAttribute(
+      'src',
+      `https://image.tmdb.org/t/p/w500/${imgPath}`,
+    );
+  } else {
+    previewImg.setAttribute('src', '../images/plug.jpg');
+  }
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
