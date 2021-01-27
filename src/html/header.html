@@ -6,33 +6,79 @@
     <title>Document</title>
   </head>
   <body>
-<!--Header-->
-     <header class="header" style="background-color: black; height: 230px">
-        <div class="header-container main-container">
-        <div class="logo-container" style="display: flex; justify-content: space-between; align-items: baseline">
+    <!--Header-->
+    <header class="header" style="background-color: black; height: 230px">
+      <div class="header-container main-container">
+        <div
+          class="logo-container"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
           <a href="../index.html" class="link-logo link">
             <svg class="icon-logo" width="24" height="24">
               <use href="../images/symbol-defs.svg#icon-film-header"></use>
             </svg>
-            <span class="text-logo"
-              style="margin-left: 12px;font-weight: 500;font-size: 30px;text-decoration: none; color: white">
-              Filmoteka</span></a>
+            <span
+              class="text-logo"
+              style="
+                margin-left: 12px;
+                font-weight: 500;
+                font-size: 30px;
+                text-decoration: none;
+                color: white;
+              "
+            >
+              Filmoteka</span
+            ></a
+          >
           <nav class="navigation">
             <ul class="header-list" style="display: flex; list-style: none">
               <li class="header-list-item">
-                <a href="../index.html" class="link-header current " id="home" style="color: white">HOME</a>
+                <a
+                  href="../index.html"
+                  class="link-header current"
+                  id="home"
+                  style="color: white"
+                  >HOME</a
+                >
               </li>
               <li class="header-list-item link">
-                <button class="link-library" id="my-library"
-                  style="background-color: transparent;display: block; color: white">MY
-                  LIBRARY</button>
+                <button
+                  class="link-library"
+                  id="my-library"
+                  style="
+                    background-color: transparent;
+                    display: block;
+                    color: white;
+                  "
+                >
+                  MY LIBRARY
+                </button>
               </li>
             </ul>
           </nav>
         </div>
-        <form class="search-box" action="" style="text-align: center">
-          <input type="text" id="search" class="search-input" placeholder="Search the film"
-            style="background: transparent; border: none; border-bottom: 0.5px solid #ffffff; outline: none">
+        <form
+          id="js-form"
+          class="search-box"
+          action="submit"
+          style="text-align: center"
+        >
+          <input
+            type="text"
+            id="search"
+            class="search-input"
+            placeholder="Search the film"
+            style="
+              background: transparent;
+              border: none;
+              border-bottom: 0.5px solid #ffffff;
+              outline: none;
+            "
+          />
           <svg class="icon-search" width="12" height="12">
             <use href="../images/symbol-defs.svg#icon-search-header"></use>
           </svg>
