@@ -1,11 +1,25 @@
-
-<section  id="js-detailsPage" class="main-container details-container details-page">
+<section
+  id="js-detailsPage"
+  class="main-container details-container details-page"
+>
   <div class="details-img">
-    <img src="#" alt="film-preview" width="100%" height="100%" />
+    <img
+      id="js-previewImg"
+      src="#"
+      alt="film-preview"
+      width="100%"
+      height="100%"
+    />
   </div>
   <div class="details-information">
+    <button class="button-close">
+        <svg  class="details-close">
+          <use href="../images/symbol-defs.svg#close"></use>
+        </svg>
+      </button>
     <h1 class="details-title">a fistful of lead</h1>
     <div class="details-inf">
+      
       <ul class="details-inf-list">
         <li>Vote / Votes</li>
         <li>Popularity</li>
@@ -13,10 +27,12 @@
         <li>Genre</li>
       </ul>
       <ul class="details-inf-list details-inf-list-secondary">
-        <li><span class="text-orange">7.3 </span> / 1260</li>
-        <li>100.2</li>
-        <li>a fistful of lead</li>
-        <li>Western</li>
+        <li>
+          <span id="js-detailsVote" class="text-orange">7.3 </span> <span>/ 1260</span>
+        </li>
+        <li id="details-popularity">100.2</li>
+        <li id="details-originalTitle">a fistful of lead</li>
+        <li id="details-genre">Western</li>
       </ul>
     </div>
     <h2 class="details-title-secondary">About</h2>
@@ -36,4 +52,3 @@
     </div>
   </div>
 </section>
-
