@@ -1,11 +1,15 @@
 .details-container {
+  padding-top: 20px;
+  padding-bottom: 40px;
   @include for-size(tablet-landscape-up) {
     display: flex;
     padding-bottom: 60px;
+    padding-top: 60px;
   }
 }
 .details-information {
   width: 100%;
+  position: relative;
 }
 .details-img {
   width: 280px;
@@ -47,6 +51,7 @@
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px;
+  
 
   &-list {
     font-style: normal;
@@ -107,4 +112,21 @@
 }
 .details-inf-list > li:last-child {
   margin-bottom: 0;
+}
+.details-close{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  fill: $button-color;
+}
+.button-close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: $accent-color;
+  
+  border-radius: 2px;
 }
