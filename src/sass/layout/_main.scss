@@ -1,53 +1,48 @@
-
-body{
-    margin: 0px;
-    background-color: $primary-white-color;
-    color: $primary-text-color;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.08em;
+body {
+  margin: 0px;
+  background-color: $primary-white-color;
+  color: $primary-text-color;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
 }
-ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-html{
-    box-sizing: border-box;
+html {
+  box-sizing: border-box;
 }
 *,
 *::before,
-*::after{
-    box-sizing: inherit;
-   
+*::after {
+  box-sizing: inherit;
 }
-img{
-    display: block;
-    width: 100%;
-    
+img {
+  display: block;
+  width: 100%;
 }
 
-
-a{
-    text-decoration: none;
-    display: block;
-}
-.list{
+a {
+  text-decoration: none;
+  display: block;
+  .list {
     list-style: none;
-}
-button{
+  }
+  button {
     border: none;
     cursor: pointer;
     display: inline-block;
     padding: 0 0;
-}
-button:focus {
+  }
+  button:focus {
     outline: none;
-}
+  }
 
-.main-container {
+  .main-container {
     width: 320px;
-    padding: 0 20px;
+    padding: 0 15px;
     margin: 0 auto;
     @include tablet {
       width: 768px;
@@ -57,9 +52,9 @@ button:focus {
       width: 1024px;
       padding: 0 71px;
     }
-}
-.section{
+  }
+  .section {
     padding-top: 50px;
     padding-bottom: 50px;
+  }
 }
-

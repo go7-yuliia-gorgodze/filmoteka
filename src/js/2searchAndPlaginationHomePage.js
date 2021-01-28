@@ -16,3 +16,14 @@ function fetchFilms() {
       return data;
     });
 }
+
+function fetchPopularFilms() {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}`,
+  )
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    });
+}
