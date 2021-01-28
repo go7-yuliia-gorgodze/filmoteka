@@ -1,12 +1,22 @@
 movieGallery.addEventListener('click', event => {
-  let id = event.target.dataset.id;
-  activateDetailsPage(id);
+  if (event.target.nodeName === 'IMG') {
+    let id = event.target.dataset.id;
+    activateDetailsPage(id);
+  }
 });
 
-function activateDetailsPage(id) {
-  homePage.classList.add('is-hidden');
-  searchField.classList.remove('is-hidden');
+detailsButtonClose.addEventListener('click', closeModal);
+detailsModal.addEventListener('click', closeModal);
 
+function closeModal(event) {
+  if(event.target.classList.contains("details-container")
+  ||event.target.classList.contains("details-close")
+  ||event.target.nodeName==="use"){
+    detailsModal.classList.add('hidden');
+  }
+}
+
+function activateDetailsPage(id) {
   let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
 
   console.log(selectedMovie);
@@ -15,6 +25,7 @@ function activateDetailsPage(id) {
 }
 
 function openMovieDetails(selectedMovie) {
+  detailsModal.classList.remove('hidden');
   detailsPreviewImg.setAttribute(
     'src',
     `https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`,
