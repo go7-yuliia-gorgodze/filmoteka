@@ -1,15 +1,24 @@
 'use strict';
 
 const movieGallery = document.querySelector('#js-moviesList');
+
 const searchField = document.querySelector('#js-form');
 const moviesList = document.querySelector('#js-moviesList');
 const detailsPage = document.querySelector('#js-detailsPage');
 const homePage = document.querySelector('#js-homePage');
 
+//detailsPage refs
+const detailsPreviewImg = document.querySelector('#js-previewImg');
+const detailsTitle = document.querySelector('.details-title');
+const detailsDescription = document.querySelector('.details-text');
+const detailsPopularuty = document.querySelector('#details-popularity');
+const detailsGenre = document.querySelector('#details-genre');
+const detailsOriginalTitle = document.querySelector('details-originalTitle');
+
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
 let inputValue = '';
 let pageNumber = 1;
-let selectedMovie = '';
+// let selectedMovie = '';
 
 let renderedMovies = [];
 
@@ -31,6 +40,8 @@ function createMarkup() {
       );
     });
     removePreloader();
+    renderedMovies = result.results;
+    return renderedMovies;
   });
 }
 
@@ -49,16 +60,10 @@ function createStartupMarkup() {
         ),
       );
     });
+    renderedMovies = result.results;
+    return renderedMovies;
   });
 }
-
-// function createStartupMarkeup() {
-//   fetchFilms().then(data => {
-//     moviesList.innerHTML = '';
-//     data.results.forEach(element )
-//   })
-
-// }
 
 function createCard(imgPath, movieTitle, movieId, date) {
   const movieItem = document.createElement('li');
@@ -78,6 +83,8 @@ function createCard(imgPath, movieTitle, movieId, date) {
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
+  previewImg.setAttribute('data-id', movieId);
+  previewImg.setAttribute('id', 'js-image');
 
   const releaseYear = new Date(date).getFullYear();
   if (!Number.isNaN(releaseYear)) {
@@ -88,23 +95,5 @@ function createCard(imgPath, movieTitle, movieId, date) {
 
   movieItem.append(previewImg, previewImgTitle);
 
-  console.log(movieItem);
-
-  movieItem.addEventListener('click', event => {
-    console.log(event.target);
-    // openDetailsPage(movieId);
-  });
-
   return movieItem.outerHTML;
-}
-
-function openDetailsPage(id) {
-  searchField.classList.add('is-hidden');
-  searchField.classList.remove('is-hidden');
-
-  selectedMovie = renderedMovies.find(movie => movie.id === id);
-
-  console.log(selectedMovie);
-
-  // openMovieDetails(selectedMovie);
 }
