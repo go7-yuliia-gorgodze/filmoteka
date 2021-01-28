@@ -10,17 +10,19 @@ const homePage = document.querySelector('#js-homePage');
 //detailsPage refs
 const detailsModal = document.querySelector('#js-detailsPage');
 const detailsPreviewImg = document.querySelector('#js-previewImg');
+const detailsVote = document.querySelector('#js-detailsVote');
+const detailsVotes = document.querySelector('#js-detailsVotes');
 const detailsTitle = document.querySelector('.details-title');
 const detailsDescription = document.querySelector('.details-text');
 const detailsPopularuty = document.querySelector('#details-popularity');
 const detailsGenre = document.querySelector('#details-genre');
-const detailsOriginalTitle = document.querySelector('details-originalTitle');
+const detailsOriginalTitle = document.querySelector('#details-originalTitle');
 const detailsButtonClose = document.querySelector('.button-close');
 
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
 let inputValue = '';
 let pageNumber = 1;
-// let selectedMovie = '';
+let genres;
 
 let renderedMovies = [];
 
