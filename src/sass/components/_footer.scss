@@ -1,3 +1,8 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
 .footer-text-wrapper {
     text-align: center;
@@ -5,7 +10,6 @@
     padding: 30px;
     font-size: 14px;
     line-height: 16px;
-
     @include tablet() {
         font-size: 16px;
         line-height: 19px;
@@ -19,19 +23,16 @@
 .footer-copyright,
 .footer-creators {
     margin: 0;
-
     @include tablet() {
         display: inline;
     }
     @include desktop() {
         display: inline;
     }
-
 }
 
 .footer-creators {
     margin-top: 10px;
-
     @include tablet {
         margin-top: 0;
     }
@@ -39,10 +40,12 @@
         margin-top: 0;
     }
 }
-.footer-text{
+
+.footer-text {
     display: inline-block;
     margin-right: 10px;
 }
+
 .footer-btn {
     display: inline-block;
     background-color: transparent;
@@ -55,3 +58,4 @@
 .footer-btn:hover {
     cursor: pointer;
 }
+
