@@ -33,6 +33,7 @@
     border-radius: 5px;
     overflow: hidden;
     height: 445px;
+    cursor: pointer;
 
     @include tablet {
       width: 294px;
@@ -91,6 +92,7 @@
   }
 
   .main__previewImgTitle {
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
