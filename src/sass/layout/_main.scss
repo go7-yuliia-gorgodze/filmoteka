@@ -27,34 +27,34 @@ img {
 a {
   text-decoration: none;
   display: block;
-}
-.list {
-  list-style: none;
-}
-button {
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 0;
-}
-button:focus {
-  outline: none;
-}
+  .list {
+    list-style: none;
+  }
+  button {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 0;
+  }
+  button:focus {
+    outline: none;
+  }
 
-.main-container {
-  width: 320px;
-  padding: 0 15px;
-  margin: 0 auto;
-  @include tablet {
-    width: 768px;
-    padding: 0 75px;
+  .main-container {
+    width: 320px;
+    padding: 0 15px;
+    margin: 0 auto;
+    @include tablet {
+      width: 768px;
+      padding: 0 75px;
+    }
+    @include desktop {
+      width: 1024px;
+      padding: 0 71px;
+    }
   }
-  @include desktop {
-    width: 1024px;
-    padding: 0 71px;
+  .section {
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
-}
-.section {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
