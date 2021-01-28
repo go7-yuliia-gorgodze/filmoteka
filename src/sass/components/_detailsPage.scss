@@ -1,9 +1,9 @@
 .details-container {
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 110px;
   @include for-size(tablet-landscape-up) {
     display: flex;
-    padding-bottom: 60px;
+    padding-bottom: 130px;
     padding-top: 60px;
   }
 }
