@@ -1,5 +1,6 @@
-  //-> Background-image styles <-//
-  .header {
+ 
+   //-> Background-image styles <-//
+   .header {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -16,9 +17,9 @@
         url('../images/header-home-desktop.jpg');
     }
   }
- //   //-> the end of the background-image styles <-//
+ //   //-> the end of background-image styles <-//
 
- .header-container {
+.header-container {
   position: relative;
   padding-top: 46px;
   padding-bottom: 43px;
@@ -63,6 +64,7 @@
 .header-list {
   display: flex;
   list-style: none;
+  
 }
 .header-list-item {
   margin-left: 39px;
