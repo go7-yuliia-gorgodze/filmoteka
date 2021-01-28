@@ -1,6 +1,6 @@
 
-   //-> Background-image styles <-//
-  .header {
+ /*Background-image styles*/
+   .header {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -17,7 +17,7 @@
         url('../images/header-home-desktop.jpg');
     }
   }
- //   //-> the end of background-image styles <-//
+ /*the end of background-image styles*/
 
 .header-container {
   position: relative;
@@ -116,5 +116,3 @@
     height: 16px;
   }
 }
-
-

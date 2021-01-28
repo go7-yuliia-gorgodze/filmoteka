@@ -1,0 +1,26 @@
+.my-film-library {
+    padding-top: 45px;
+    padding-bottom: 65px;
+
+  }
+.my-library {
+    margin-top: 46px;
+    display: flex;
+    justify-content: center;
+}
+  .library-button {
+    color: $primary-white-color;
+    width: 130.19px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.56);
+    outline: 0px;
+    border: 1px solid $primary-white-color;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-right: 18px;
+  }
+  .button-active {
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+  }
