@@ -18,11 +18,12 @@ const detailsOriginalTitle = document.querySelector('details-originalTitle');
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
 let inputValue = '';
 let pageNumber = 1;
-// let selectedMovie = '';
+let genres;
 
 let renderedMovies = [];
 
 createStartupMarkup();
+// detailsPage.classList.add("is-hidden")
 
 function createMarkup() {
   addPreloader();
