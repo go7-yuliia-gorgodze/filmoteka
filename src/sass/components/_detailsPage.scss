@@ -102,3 +102,9 @@
   color: $button-color;
   margin-right: 10px;
 }
+.details-inf-list > li {
+  margin-bottom: 10px;
+}
+.details-inf-list > li:last-child {
+  margin-bottom: 0;
+}
