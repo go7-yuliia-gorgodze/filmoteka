@@ -1,5 +1,5 @@
     <!--Header-->
-    <header class="header" style="background-color: black; height: 230px">
+    <header class="my-library-header" style="background-color: black; height: 230px">
       <div class="header-container main-container">
         <div
           class="logo-container"
@@ -30,16 +30,16 @@
             <ul class="header-list" style="display: flex; list-style: none">
               <li class="header-list-item">
                 <a
-                  href="#"
-                  class="link-header current"
+                  href="./index.html"
+                  class="link-header"
                   id="home"
                   style="color: white"
                   >HOME</a
                 >
               </li>
               <li class="header-list-item link">
-                <a href="./myFilmLibraryPage.html"
-                  class="link-library"
+                <a href="#"
+                  class="link-library current"
                   id="my-library"
                   style="
                     background-color: transparent;
@@ -53,28 +53,19 @@
             </ul>
           </nav>
         </div>
-        <form
-          id="js-form"
-          class="search-box"
-          action="submit"
-          style="text-align: center"
-        >
-          <input
-            type="text"
-            id="search"
-            class="search-input"
-            placeholder="Search the film"
-            style="
-              background: transparent;
-              border: none;
-              border-bottom: 0.5px solid #ffffff;
-              outline: none;
-            "
-          />
-          <svg class="icon-search" width="12" height="12">
-            <use href="../images/symbol-defs.svg#icon-search-header"></use>
-          </svg>
-        </form>
-        <p class="error-message"></p>
       </div>
+      <ul class="my-library">
+        <li>
+          <button class="library-button button-active" id="watched">
+            Watched
+          </button>
+        </li>
+        <li>
+          <button class="library-button queue-button" id="queue">
+            Queue
+          </button>
+        </li>
+      </ul>
+      <ul class="watched-list">
+      </ul>
     </header>
