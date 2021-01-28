@@ -14,6 +14,7 @@ function closeModal(event) {
   ||event.target.classList.contains("details-close")
   ||event.target.nodeName==="use"
   ||event.key === "Escape"){
+    body.classList.remove("blocked-scroll");
     detailsModal.classList.add('hidden');
   }
 }
@@ -27,6 +28,7 @@ function activateDetailsPage(id) {
 }
 
 function openMovieDetails(selectedMovie) {
+  body.classList.add("blocked-scroll");
   detailsModal.classList.remove('hidden');
   if(selectedMovie.poster_path){
   detailsPreviewImg.setAttribute(
