@@ -1,12 +1,13 @@
 /*
  * Все паршалы импортировать в этот файл
  */
-
 @import './layout/variables';
 @import './layout/mixin';
 @import './layout/main';
 @import 'normalize.scss';
-@import 'base.scss';
-@import './components/_footer.scss';
+@import './base.scss';
+@import './components/_preloader.scss';
+@import './components/cards.scss';
 @import './components/header.scss';
-
+@import './components/_footer.scss';
+@import './components/detailsPage';

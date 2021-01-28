@@ -1,3 +1,9 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .footer-text-wrapper {
     text-align: center;
     background-color: $button-color;
@@ -34,10 +40,12 @@
         margin-top: 0;
     }
 }
-.footer-text{
+
+.footer-text {
     display: inline-block;
     margin-right: 10px;
 }
+
 .footer-btn {
     display: inline-block;
     background-color: transparent;
