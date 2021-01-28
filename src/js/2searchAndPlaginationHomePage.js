@@ -2,7 +2,6 @@ searchField.addEventListener('submit', event => {
   event.preventDefault();
 
   inputValue = event.currentTarget.elements[0].value;
-  console.log(inputValue);
   searchField.reset();
   createMarkup();
 });
@@ -23,7 +22,6 @@ function fetchPopularFilms() {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       return data;
     });
 }
