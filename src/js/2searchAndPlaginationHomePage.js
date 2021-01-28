@@ -27,3 +27,14 @@ function fetchPopularFilms() {
       return data;
     });
 }
+
+function fetchGenres() {
+  fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`,
+  )
+    .then(data => data.json())
+    .then(res => {
+      genres = [...res.genres];
+    })
+    .catch(err => console.log(err));
+}
