@@ -22,10 +22,11 @@ function closeModal(event) {
 function activateDetailsPage(id) {
   let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
 
-  console.log(selectedMovie);
-
   openMovieDetails(selectedMovie);
+
 }
+
+fetchGenres();
 
 function openMovieDetails(selectedMovie) {
   body.classList.add("blocked-scroll");
@@ -44,5 +45,16 @@ function openMovieDetails(selectedMovie) {
   detailsTitle.textContent = selectedMovie.title;
   detailsDescription.textContent = selectedMovie.overview;
   detailsPopularuty.innerHTML = selectedMovie.popularity;
-  detailsOriginalTitle.innerHTML = selectedMovie.original_title;
+  detailsOriginalTitle.textContent = selectedMovie.original_title;
+  detailsVote.textContent = selectedMovie.vote_average;
+  console.log(selectedMovie.original_title);
+  detailsVotes.textContent = `/ ${selectedMovie.vote_count}`;
+  detailsGenre.textContent = String(
+    genres
+      .filter(el =>
+        selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
+      )
+      .reduce((acc, item) => acc + `${item.name}, `, ''),
+  ).slice(0, -2);
+
 }
