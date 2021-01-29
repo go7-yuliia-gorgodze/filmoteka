@@ -1,12 +1,8 @@
 const watchedFilms = document.querySelector('.watched-list');
 const watchedButton = document.querySelector('#watched');
 const queueButton = document.querySelector('#queue');
-<<<<<<< HEAD
-console.log(watchedButton);
-=======
 console.log(queueButton);
 
->>>>>>> 7e55d547751782856c9eac54cd4ac44b04b3b3d2
 const createLibraryCardFunc = function (
   imgPath,
   filmTitle,
