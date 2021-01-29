@@ -57,8 +57,6 @@
 
   @include for-size(tablet-landscape-up) {
     padding: 20px 30px;
-    padding-right: 10px;
-    padding-left: 5px;
   }
 
   @include for-size(desktop) {
@@ -178,7 +176,7 @@
 .details-inf-list > li {
   margin-bottom: 5px;
   height: 32px;
-  @include for-size(desktop){
+  @include for-size(desktop) {
     height: 16px;
     margin-bottom: 10px;
   }
