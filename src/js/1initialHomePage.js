@@ -33,7 +33,6 @@ createStartupMarkup();
 
 function createMarkup() {
   addPreloader();
-  dischargePagination();
   fetchFilms().then(result => {
     if (inputValue === '') {
       removePreloader();
