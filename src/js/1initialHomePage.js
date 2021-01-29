@@ -57,7 +57,8 @@ function createMarkup() {
 
     if (result.results.length === 0) {
       removePreloader();
-      headerError.textContent = 'No movies were found. Please specify your request';
+      headerError.textContent =
+        'No movies were found. Please specify your request';
       createStartupMarkup();
     }
 
