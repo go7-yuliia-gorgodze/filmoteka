@@ -72,6 +72,7 @@ function createMarkup() {
 }
 
 function createStartupMarkup() {
+  addPreloader();
   fetchPopularFilms().then(result => {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
@@ -85,6 +86,7 @@ function createStartupMarkup() {
         ),
       );
     });
+    removePreloader();
     renderedMovies = result.results;
     return renderedMovies;
   });
