@@ -431,7 +431,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 h1,
@@ -444,6 +444,21 @@ h6 {
 }
 
 .is-hidden {
+  display: none;
+}
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  -webkit-transform: translate(-90%, -50%);
+          transform: translate(-90%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  cursor: none;
+}
+
+.cursor-n {
   display: none;
 }
 
@@ -616,6 +631,7 @@ h6 {
 }
 
 .main__filmList .main__movieItem {
+  position: relative;
   display: block;
   width: 280px;
   border-radius: 5px;
@@ -728,6 +744,31 @@ h6 {
 
 .main__homePage {
   padding-bottom: 60px;
+}
+
+.main__previewInfoBlock {
+  padding: 10px;
+  background: rgba(255, 245, 215, 0.7);
+  border-radius: 5px;
+  position: absolute;
+  bottom: 85%;
+  right: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.minicard__votes,
+.minicard__date {
+  font-size: small;
+  margin: 1px;
 }
 
 /*Background-image styles*/
@@ -1063,8 +1104,6 @@ h6 {
 @media (min-width: 768px) {
   .details-information {
     padding: 20px 30px;
-    padding-right: 10px;
-    padding-left: 5px;
   }
 }
 
@@ -1364,10 +1403,10 @@ h6 {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  -webkit-transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
-  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
-  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, transform 0.5s;
-  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, transform 0.5s;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, transform 0.5s, -webkit-transform 0.5s;
   opacity: 0;
   visibility: hidden;
   z-index: 1000;

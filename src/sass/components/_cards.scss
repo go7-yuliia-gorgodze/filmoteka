@@ -28,6 +28,7 @@
     margin-right: auto;
   }
   .main__movieItem {
+    position: relative;
     display: block;
     width: 280px;
     border-radius: 5px;
@@ -110,6 +111,37 @@
   transform: scale(1.04);
 }
 
+.main__movieItem:hover .main__previewInfoBlock {
+  transform: translateX(5%);
+}
+
 .main__homePage {
   padding-bottom: 60px;
+}
+
+.main__previewInfoBlock {
+  padding: 10px;
+  background: rgba(255, 245, 215, 0.7);
+  border-radius: 5px;
+  position: absolute;
+  bottom: 85%;
+  right: 20%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transform: translateX(-110%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main__previewInfoBlock:hover,
+.main__previewInfoBlock:focus {
+  transform: translateX(110%);
+}
+
+.minicard__votes,
+.minicard__date {
+  font-size: small;
+  margin: 1px;
 }
