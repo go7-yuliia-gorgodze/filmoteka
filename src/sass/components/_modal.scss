@@ -1,0 +1,89 @@
+.modal {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-flow: column nowrap;
+  z-index: 99;
+  visibility: hidden;
+}
+
+// .visually-hidden {
+//   position: absolute !important;
+//   height: 1px;
+//   width: 1px;
+//   overflow: hidden;
+//   clip: rect(1px, 1px, 1px, 1px);
+// }
+
+*:focus {
+  outline: 3px dashed blue;
+}
+.modal-wrap {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 320px;
+  max-width: 100%;
+  margin: 50px 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  // height: 250px;
+  background: white;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+  transform: scale(0.9);
+  overflow: visible;
+  opacity: 1;
+  //   opacity: 0;
+  @include tablet {
+    width: 700px;
+  }
+  @include desktop {
+    width: 980px;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  right: 10px;
+}
+
+.modal--active {
+  visibility: visible;
+}
+.modal--active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal__opened {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.modal--moved {
+  visibility: visible;
+}
