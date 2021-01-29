@@ -18,9 +18,11 @@ function activeLibraryPage() {
   header.classList.remove('header');
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
+  headerError.innerHTML="";
 }
 
 function activeHomePage() {
+  createStartupMarkup();
   myLibraryLink.classList.remove('current');
   homePageLink.classList.add('current');
   homePage.classList.remove('hidden');
