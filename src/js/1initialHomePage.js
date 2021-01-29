@@ -22,6 +22,8 @@ const detailsButtonClose = document.querySelector('.button-close');
 
 const body = document.querySelector('body');
 
+
+
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
 let inputValue = '';
 let pageNumber = 1;
@@ -30,6 +32,7 @@ let genres;
 let renderedMovies = [];
 
 createStartupMarkup();
+
 
 function createMarkup() {
   addPreloader();
@@ -69,6 +72,7 @@ function createMarkup() {
 }
 
 function createStartupMarkup() {
+  addPreloader();
   fetchPopularFilms().then(result => {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
@@ -82,6 +86,7 @@ function createStartupMarkup() {
         ),
       );
     });
+    removePreloader();
     renderedMovies = result.results;
     return renderedMovies;
   });
@@ -124,3 +129,5 @@ function createCard(imgPath, movieTitle, movieId, date) {
   console.log(movieItem);
   return movieItem.outerHTML;
 }
+
+

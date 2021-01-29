@@ -7,10 +7,10 @@ function addPreloader() {
 }
 
 // preloader on start page
-window.onload = function () {
-  addPreloader();
-  window.setTimeout(function () {
-    addPreloader();
-    removePreloader();
-  }, 500);
-};
+// window.onload = function () {
+//   addPreloader();
+//   window.setTimeout(function () {
+//     addPreloader();
+//     removePreloader();
+//   }, 500);
+// };
