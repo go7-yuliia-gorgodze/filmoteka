@@ -38,6 +38,16 @@ function fetchGenres() {
     .catch(err => console.log(err));
 }
 
+function fetchMovies(movieId) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`,
+  )
+    .then(res => res.json())
+    .then(data => {
+      return data.results[0].key;
+    });
+}
+
 function paginationNavigation(arr) {
   pageNumber = arr[2];
   if (inputValue === '') createStartupMarkup();

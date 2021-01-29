@@ -14,11 +14,12 @@ const detailsPreviewImg = document.querySelector('#js-previewImg');
 const detailsVote = document.querySelector('#js-detailsVote');
 const detailsVotes = document.querySelector('#js-detailsVotes');
 const detailsTitle = document.querySelector('.details-title');
-const detailsDescription = document.querySelector('.details-text');
+const detailsDescription = document.querySelector('#js-detailsText');
 const detailsPopularuty = document.querySelector('#details-popularity');
 const detailsGenre = document.querySelector('#details-genre');
 const detailsOriginalTitle = document.querySelector('#details-originalTitle');
 const detailsButtonClose = document.querySelector('.button-close');
+const movieTrailer = document.querySelector('.movie__trailer');
 
 const body = document.querySelector('body');
 
@@ -51,6 +52,7 @@ function createMarkup() {
           element.title,
           element.id,
           element.release_date,
+          element.vote_average,
         ),
       );
     });
