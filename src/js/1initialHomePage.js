@@ -22,8 +22,6 @@ const detailsButtonClose = document.querySelector('.button-close');
 
 const body = document.querySelector('body');
 
-
-
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
 let inputValue = '';
 let pageNumber = 1;
@@ -32,7 +30,6 @@ let genres;
 let renderedMovies = [];
 
 createStartupMarkup();
-
 
 function createMarkup() {
   addPreloader();
@@ -83,6 +80,7 @@ function createStartupMarkup() {
           element.title,
           element.id,
           element.release_date,
+          element.vote_average,
         ),
       );
     });
@@ -92,7 +90,7 @@ function createStartupMarkup() {
   });
 }
 
-function createCard(imgPath, movieTitle, movieId, date) {
+function createCard(imgPath, movieTitle, movieId, date, avgVote) {
   const movieItem = document.createElement('li');
   movieItem.classList.add('main__movieItem');
   movieItem.setAttribute('id', 'js-movieItem');
@@ -113,16 +111,23 @@ function createCard(imgPath, movieTitle, movieId, date) {
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
 
+  const previewInfoBlock = createShortDescription(avgVote, date);
+
   const releaseYear = new Date(date).getFullYear();
   if (!Number.isNaN(releaseYear)) {
     previewImgTitle.textContent = `${movieTitle} (${releaseYear})`;
   } else {
     previewImgTitle.textContent = movieTitle;
   }
-
-  movieItem.append(previewImg, previewImgTitle);
-
+  movieItem.append(previewImg, previewImgTitle, previewInfoBlock);
   return movieItem.outerHTML;
 }
 
-
+function createShortDescription(vote, releaseDate) {
+  const previewInfoBlock = document.createElement('div');
+  previewInfoBlock.classList.add('main__previewInfoBlock');
+  previewInfoBlock.innerHTML = `
+  <p id="js-minicardVotes" class="minicard__votes">Avarage raiting | <span class="text-orange">${vote}</span></p>
+  <p id="js-minicardDate" class="minicard__date">Release date | ${releaseDate}</p>`;
+  return previewInfoBlock;
+}
