@@ -17,12 +17,12 @@
     display: none;
     text-align: center;
     color: $primary-text-color;
-    @include tablet() {
-      display: block;
-    }
-    @include desktop() {
-      display: block;
-    }
+    // @include tablet() {
+    //   display: block;
+    // }
+    // @include desktop() {
+    //   display: block;
+    // }
   }
   &__button {
     padding-top: 12px;
@@ -32,6 +32,9 @@
     text-align: center;
     border-radius: 5px;
     color: $primary-text-color;
+    &_disabled {
+      pointer-events: none;
+    }
     svg {
       pointer-events: none;
     }
@@ -43,8 +46,7 @@
     &:nth-child(5) {
       background-color: $accent-color;
     }
-    &:hover,
-    &:focus {
+    &:hover {
       cursor: pointer;
       background-color: $accent-color;
     }
