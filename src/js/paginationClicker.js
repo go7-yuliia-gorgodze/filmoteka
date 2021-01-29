@@ -65,6 +65,8 @@
       if (Number(buttonThreeRef.textContent) === 1) {
         buttonLeftRef.classList.add('pagination__button_disabled');
       }
+
+      paginationNavigation(buttonsNumbers);
     });
   }
   function renderNumbers(newButtonsNumbers) {

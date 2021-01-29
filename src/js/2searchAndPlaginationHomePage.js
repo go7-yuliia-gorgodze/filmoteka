@@ -12,6 +12,7 @@ function fetchFilms() {
   )
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       return data;
     });
 }
@@ -35,4 +36,10 @@ function fetchGenres() {
       genres = [...res.genres];
     })
     .catch(err => console.log(err));
+}
+
+function paginationNavigation(arr) {
+  pageNumber = arr[2];
+  if (inputValue === '') createStartupMarkup();
+  else createMarkup();
 }

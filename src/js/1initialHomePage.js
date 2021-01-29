@@ -57,7 +57,8 @@ function createMarkup() {
 
     if (result.results.length === 0) {
       removePreloader();
-      headerError.textContent = 'No movies were found. Please specify your request';
+      headerError.textContent =
+        'No movies were found. Please specify your request';
       createStartupMarkup();
     }
 
@@ -68,6 +69,7 @@ function createMarkup() {
 }
 
 function createStartupMarkup() {
+  addPreloader();
   fetchPopularFilms().then(result => {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
@@ -81,6 +83,7 @@ function createStartupMarkup() {
         ),
       );
     });
+    removePreloader();
     renderedMovies = result.results;
     return renderedMovies;
   });
