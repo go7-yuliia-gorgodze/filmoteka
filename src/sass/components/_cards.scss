@@ -115,7 +115,8 @@
 }
 
 .main__movieItem:hover .main__previewImgItem {
-  filter: blur(2px);
+  filter: grayscale(100%) brightness(50%);
+  // blur(2px);
 }
 
 .main__movieItem:hover .main__previewInfoBlock {
