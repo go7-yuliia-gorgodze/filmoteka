@@ -108,14 +108,19 @@ function createCard(imgPath, movieTitle, movieId, date) {
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
 
+  const previewInfoBlock = document.createElement('div');
+  previewInfoBlock.classList.add('main__previewInfoBlock');
+  previewInfoBlock.innerHTML = '<p id="js-infoBlockVote">test</p>';
+
   const releaseYear = new Date(date).getFullYear();
   if (!Number.isNaN(releaseYear)) {
     previewImgTitle.textContent = `${movieTitle} (${releaseYear})`;
   } else {
     previewImgTitle.textContent = movieTitle;
   }
-
   movieItem.append(previewImg, previewImgTitle);
 
+  movieItem.append(previewImg, previewImgTitle, previewInfoBlock);
+  console.log(movieItem);
   return movieItem.outerHTML;
 }
