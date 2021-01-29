@@ -37,3 +37,9 @@ function fetchGenres() {
     })
     .catch(err => console.log(err));
 }
+
+function paginationNavigation(arr) {
+  pageNumber = arr[2];
+  if (inputValue === '') createStartupMarkup();
+  else createMarkup();
+}
