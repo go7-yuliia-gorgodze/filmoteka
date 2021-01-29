@@ -33,8 +33,8 @@ const createLibraryCardFunc = function (
   return libraryCard;
 };
 
-queueButton.addEventListener('click', drawQueueFilmList);
-watchedButton.addEventListener('click', drawWatchedFilmList);
+// queueButton.addEventListener('click', drawQueueFilmList);
+// watchedButton.addEventListener('click', drawWatchedFilmList);
 
 const drawQueueFilmList = function () {
   queueButton.classList.add('button-active');
