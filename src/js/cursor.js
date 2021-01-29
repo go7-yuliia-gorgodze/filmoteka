@@ -12,7 +12,7 @@ let navLinks = document.querySelectorAll('a');
 let button = document.querySelectorAll('button');
 const body = document.querySelector('body');
 
-console.log(body);
+console.log(button);
 window.addEventListener('mousemove', cursor);
 function cursor(e) {
   mouseCursor.style.top = e.pageY + 'px';
