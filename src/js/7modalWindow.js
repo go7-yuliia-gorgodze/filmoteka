@@ -8,10 +8,10 @@ const header = document.querySelector('header');
 const html = document.documentElement;
 let scrollPosition = window.pageYOffset;
 
-function openModal() {
+function openModalWindow() {
     // show the modal
     modal.classList.add('modal--active');
-    closeModalBtn.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModalWindow);
     // Focus the first element within the modal. Make sure the element is visible and doesnt have focus disabled (tabindex=-1);
     modal.querySelector(FOCUSABLE_SELECTORS).focus();
 
@@ -29,7 +29,7 @@ function openModal() {
     header.setAttribute('aria-hidden', 'true');
 };
 
-function closeModal(e) {
+function closeModalWindow() {
     // hide the modal
     modal.classList.add("modal--moved");
     modal.addEventListener("transitionend", transitionClose);
@@ -61,4 +61,4 @@ function transitionClose() {
        
 };
 
-openModalBtn.addEventListener('click', openModal);
+openModalBtn.addEventListener('click', openModalWindow);
