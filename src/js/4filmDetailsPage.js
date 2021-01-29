@@ -13,7 +13,8 @@ function closeModal(event) {
   if(event.target.classList.contains("details-container")
   ||event.target.classList.contains("details-close")
   ||event.target.nodeName==="use"
-  ||event.key === "Escape"){
+    || event.key === "Escape") {
+    toTopBtn.classList.add('show')
     body.classList.remove("blocked-scroll");
     detailsModal.classList.add('hidden');
   }
@@ -29,6 +30,7 @@ function activateDetailsPage(id) {
 fetchGenres();
 
 function openMovieDetails(selectedMovie) {
+  toTopBtn.classList.remove('show')
   body.classList.add("blocked-scroll");
   detailsModal.classList.remove('hidden');
   if(selectedMovie.poster_path){
