@@ -5,7 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<<<<<<< HEAD
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+=======
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- icon for btn to top -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+>>>>>>> 51c481efd5de5111f5d5ef4625c57d7a193e8e7f
     <title>Placeholder title</title>
     <!-- Сюда будет всталена ссылка на файл стилей -->
 
@@ -13,17 +25,16 @@
     <!-- endinject -->
 </head>
 
-<body>
-    //= ./html/header.html
-    //= ./html/main.html
-    //= ./html/modal.html
-    //= ./html/footer.html
-    //= ./html/preloader.html
-
+  <body>
+    @@include("./html/header.html") 
+    @@include("./html/main.html")
+    @@include(./html/modal.html)
+    @@include("./html/footer.html")
+    @@include("./html/preloader.html")
+    @@include("./html/toTopBtn.html")
+    @@include("./html/cursor.html")
     <!-- Сюда будет всталена ссылка на файл скриптов -->
     <!-- inject:js -->
     <!-- endinject -->
-
-</body>
-
+  </body>
 </html>

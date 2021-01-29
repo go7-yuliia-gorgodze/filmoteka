@@ -6,10 +6,13 @@
 @import './layout/main';
 @import 'normalize.scss';
 @import './base.scss';
-@import './components/_preloader.scss';
-@import './components/cards.scss';
-@import './components/header.scss';
-@import './components/_footer.scss';
+@import './components/cursor';
+@import './components/preloader';
+@import './components/cards';
+@import './components/header';
+@import './components/footer';
 @import './components/detailsPage';
 @import './components/film-library';
 @import './components/_modal';
+@import './components/pagination';
+@import './components/to-top-btn';

@@ -27,13 +27,14 @@ img {
 a {
   text-decoration: none;
   display: block;
+  cursor: none !important;
 }
 .list {
   list-style: none;
 }
 button {
   border: none;
-  cursor: pointer;
+  cursor: none !important;
   display: inline-block;
   padding: 0 0;
 }
@@ -57,4 +58,7 @@ button:focus {
 .section {
   padding-top: 50px;
   padding-bottom: 50px;
+}
+.hidden {
+  display: none;
 }

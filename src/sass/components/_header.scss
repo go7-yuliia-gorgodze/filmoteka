@@ -1,23 +1,42 @@
+/*Background-image styles*/
+.header {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header-home-mobile.jpg');
 
- /*Background-image styles*/
-   .header {
+  @include tablet {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header-home-tablet.jpg');
+  }
+
+  @include desktop {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('../images/header-home-mobile.jpg');
-  
-    @include tablet {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-home-tablet.jpg');
-    }
-  
-    @include desktop {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-home-desktop.jpg');
-    }
+      url('../images/header-home-desktop.jpg');
   }
- /*the end of background-image styles*/
+}
+.my-library-header {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header-library-mobile.jpg');
+
+  @include tablet {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header-library-tablet.jpg');
+  }
+
+  @include desktop {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header-library-desktop.jpg');
+  }
+}
+/*the end of background-image styles*/
 
 .header-container {
   position: relative;
@@ -64,7 +83,6 @@
 .header-list {
   display: flex;
   list-style: none;
-  
 }
 .header-list-item {
   margin-left: 39px;

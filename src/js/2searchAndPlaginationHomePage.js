@@ -2,7 +2,6 @@ searchField.addEventListener('submit', event => {
   event.preventDefault();
 
   inputValue = event.currentTarget.elements[0].value;
-  console.log(inputValue);
   searchField.reset();
   createMarkup();
 });
@@ -13,6 +12,7 @@ function fetchFilms() {
   )
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       return data;
     });
 }
@@ -23,7 +23,23 @@ function fetchPopularFilms() {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       return data;
     });
+}
+
+function fetchGenres() {
+  fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`,
+  )
+    .then(data => data.json())
+    .then(res => {
+      genres = [...res.genres];
+    })
+    .catch(err => console.log(err));
+}
+
+function paginationNavigation(arr) {
+  pageNumber = arr[2];
+  if (inputValue === '') createStartupMarkup();
+  else createMarkup();
 }

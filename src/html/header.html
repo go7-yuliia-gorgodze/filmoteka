@@ -9,7 +9,7 @@
             align-items: baseline;
           "
         >
-          <a href="../index.html" class="link-logo link">
+          <a href="#" class="link-logo link">
             <svg class="icon-logo" width="24" height="24">
               <use href="../images/symbol-defs.svg#icon-film-header"></use>
             </svg>
@@ -30,7 +30,7 @@
             <ul class="header-list" style="display: flex; list-style: none">
               <li class="header-list-item">
                 <a
-                  href="../index.html"
+                  href="#"
                   class="link-header current"
                   id="home"
                   style="color: white"
@@ -38,7 +38,7 @@
                 >
               </li>
               <li class="header-list-item link">
-                <a href="./myFilmLibrary.html"
+                <a href="#"
                   class="link-library"
                   id="my-library"
                   style="
@@ -76,5 +76,22 @@
           </svg>
         </form>
         <p class="error-message"></p>
+        <div class="my-library-header-div hidden">
+          <ul class="my-library">
+            <li>
+              <button class="library-button button-active" id="watched">
+                Watched
+              </button>
+            </li>
+            <li>
+              <button class="library-button queue-button" id="queue">
+                Queue
+              </button>
+            </li>
+          </ul>
+          <ul class="watched-list">
+          </ul>
+        </div>
       </div>
+      
     </header>
