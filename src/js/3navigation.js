@@ -1,13 +1,13 @@
 const myLibraryLink = document.querySelector('.link-library');
 const myLibraryPage = document.querySelector('.my-library-page');
-const myLibraryHeaderDiv = document.querySelector(".my-library-header-div");
+const myLibraryHeaderDiv = document.querySelector('.my-library-header-div');
 const header = document.querySelector('header');
 const homePageLink = document.querySelector('.link-header');
 const homePageLogo = document.querySelector('.link-logo');
 
 myLibraryLink.addEventListener('click', activeLibraryPage);
-homePageLink.addEventListener('click',activeHomePage);
-homePageLogo.addEventListener('click',activeHomePage);
+homePageLink.addEventListener('click', activeHomePage);
+homePageLogo.addEventListener('click', activeHomePage);
 
 function activeLibraryPage() {
   myLibraryLink.classList.add('current');
@@ -18,11 +18,12 @@ function activeLibraryPage() {
   header.classList.remove('header');
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
-  headerError.innerHTML="";
+  headerError.innerHTML = '';
 }
 
 function activeHomePage() {
   createStartupMarkup();
+  dischargePagination();
   myLibraryLink.classList.remove('current');
   homePageLink.classList.add('current');
   homePage.classList.remove('hidden');

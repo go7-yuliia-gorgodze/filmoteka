@@ -58,10 +58,9 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         break;
     }
-    if (Number(buttonThreeRef.textContent) === 2) {
+    if (Number(buttonThreeRef.textContent) > 1) {
       buttonLeftRef.classList.remove('pagination__button_disabled');
-    }
-    if (Number(buttonThreeRef.textContent) === 1) {
+    } else {
       buttonLeftRef.classList.add('pagination__button_disabled');
     }
     paginationNavigation(buttonsNumbers);
@@ -103,4 +102,5 @@ function previousTwoPage(buttonsNumbers) {
 function dischargePagination() {
   buttonsNumbers = [-1, 0, 1, 2, 3];
   renderNumbers(buttonsNumbers);
+  paginationNavigation(buttonsNumbers);
 }
