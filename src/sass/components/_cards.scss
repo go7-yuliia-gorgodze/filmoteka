@@ -34,6 +34,7 @@
     overflow: hidden;
     height: 445px;
     cursor: pointer;
+    transition: transform 250ms linear;
 
     @include tablet {
       width: 294px;
@@ -102,4 +103,9 @@
     text-transform: uppercase;
     color: var(--text-color);
   }
+}
+
+.main__movieItem:hover,
+.main__movieItem:focus {
+  transform: scale(1.04);
 }
