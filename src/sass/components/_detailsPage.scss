@@ -1,10 +1,10 @@
-.blocked-scroll{
+.blocked-scroll {
   overflow: hidden;
 }
 
 .details-container {
   z-index: 2;
-  &.hidden{
+  &.hidden {
     display: none;
   }
   position: fixed;
@@ -18,16 +18,16 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  @include for-size(tablet-landscape-up){
+  @include for-size(tablet-landscape-up) {
     padding-top: 100px;
     padding-bottom: 100px;
   }
-  @include for-size(desktop){
+  @include for-size(desktop) {
     padding-top: 100px;
     padding-bottom: 0px;
   }
 }
-.details-wrapper{
+.details-wrapper {
   width: 280px;
   height: fit-content;
   position: relative;
@@ -53,22 +53,21 @@
   background-color: $primary-white-color;
   padding: 20px 30px;
 
-  @include for-size(tablet-landscape-up){
+  @include for-size(tablet-landscape-up) {
     padding-right: 10px;
     padding-left: 5px;
   }
 
   @include for-size(desktop) {
     height: fit-content;
-}
-
+  }
 }
 .details-img {
   width: 280px;
   height: 416px;
   margin-bottom: 30px;
 
-  #js-previewImg{
+  #js-previewImg {
     object-fit: cover;
   }
 
@@ -153,7 +152,7 @@
   line-height: 16px;
 
   border: 1px solid #000000;
-  @include for-size(tablet-landscape-up){
+  @include for-size(tablet-landscape-up) {
     width: 136px;
   }
 }
@@ -169,7 +168,7 @@
 .details-inf-list > li:last-child {
   margin-bottom: 0;
 }
-.details-close{
+.details-close {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,11 +177,11 @@
   padding: 2px;
   fill: $button-color;
 }
-.button-close{
+.button-close {
   position: absolute;
   right: 5px;
   top: 5px;
   background-color: $accent-color;
-  
+
   border-radius: 2px;
 }
