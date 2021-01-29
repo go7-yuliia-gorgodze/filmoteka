@@ -47,6 +47,7 @@
     }
 
     .main__previewImgItem {
+      transition: filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
       @include tablet {
         object-fit: cover;
         height: 402px;
@@ -111,6 +112,10 @@
 .main__movieItem:focus {
   transform: scale(1.04);
   box-shadow: 0px 0px 18px 0px rgba(135, 76, 37, 1);
+}
+
+.main__movieItem:hover .main__previewImgItem {
+  filter: blur(2px);
 }
 
 .main__movieItem:hover .main__previewInfoBlock {
