@@ -70,6 +70,7 @@ function createMarkup() {
   });
 }
 
+
 function createStartupMarkup() {
   addPreloader();
   fetchPopularFilms().then(result => {
