@@ -99,7 +99,7 @@ function previousTwoPage(buttonsNumbers) {
     return e - 2;
   });
 }
-function dischargePagination() {
+function dischargePaginationAndCreateMarkup() {
   buttonsNumbers = [-1, 0, 1, 2, 3];
   renderNumbers(buttonsNumbers);
   paginationNavigation(buttonsNumbers);
