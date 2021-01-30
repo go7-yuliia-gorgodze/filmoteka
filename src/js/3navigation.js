@@ -10,7 +10,6 @@ homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeLibraryPage() {
-  
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');
@@ -19,12 +18,12 @@ function activeLibraryPage() {
   header.classList.remove('header');
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
-  headerError.innerHTML="";
+  headerError.innerHTML = '';
   drawWatchedFilmList();
 }
 
 function activeHomePage() {
-  createStartupMarkup();
+  inputValue = '';
   dischargePagination();
   myLibraryLink.classList.remove('current');
   homePageLink.classList.add('current');
