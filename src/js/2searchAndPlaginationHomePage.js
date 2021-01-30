@@ -1,10 +1,9 @@
 searchField.addEventListener('submit', event => {
   event.preventDefault();
 
-  dischargePagination();
   inputValue = event.currentTarget.elements[0].value;
   searchField.reset();
-  createMarkup();
+  dischargePaginationAndCreateMarkup();
 });
 
 function fetchFilms() {

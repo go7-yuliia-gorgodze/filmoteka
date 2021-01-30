@@ -24,7 +24,7 @@ function activeLibraryPage() {
 
 function activeHomePage() {
   inputValue = '';
-  dischargePagination();
+  dischargePaginationAndCreateMarkup();
   myLibraryLink.classList.remove('current');
   homePageLink.classList.add('current');
   homePage.classList.remove('hidden');
