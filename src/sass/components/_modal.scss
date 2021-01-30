@@ -11,7 +11,7 @@
   padding: 20px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   flex-flow: column nowrap;
   z-index: 99;
@@ -26,9 +26,9 @@
 //   clip: rect(1px, 1px, 1px, 1px);
 // }
 
-// *:focus {
-//   outline: 3px dashed blue;
-// }
+.modal-wrap button:focus {
+  outline: 2px solid black;
+}
 .modal-wrap {
   flex-shrink: 0;
   flex-grow: 0;
@@ -55,6 +55,10 @@
   transform: scale(0.9);
   overflow: visible;
   opacity: 1;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 10px 6px -6px rgb(236, 236, 236);
+
   //   opacity: 0;
   @include tablet {
     width: 700px;
@@ -86,4 +90,51 @@
 
 .modal--moved {
   visibility: visible;
+}
+
+.modal-our_team_list {
+  padding: 15px;
+  @include tablet {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  @include desktop {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+.modal-our_team_item {
+  width: 100%;
+  @include tablet {
+    width: 50%;
+  }
+  @include desktop {
+    width: 25%;
+  }
+}
+
+.modal-our_tem_card-wrapper {
+  padding: 5px;
+}
+
+.modal_window-thumb {
+  background-color: #999;
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+  margin: 0 auto;
+  @include tablet {
+    height: 120px;
+    width: 120px;
+  }
+  @include desktop {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.modal-card_btn {
+  background-color: transparent;
+  padding: 3px;
 }
