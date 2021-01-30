@@ -19,6 +19,8 @@ function closeModal(event) {
     toTopBtn.classList.add('show');
     body.classList.remove('blocked-scroll');
     detailsModal.classList.add('hidden');
+    // stop player youtube
+    document.querySelector('iframe').src = '';
   }
 }
 
@@ -58,8 +60,7 @@ function openMovieDetails(selectedMovie) {
   fetchMovies(selectedMovie.id).then(res => {
     movieTrailer.innerHTML = `
     <iframe
-      width="auto"
-      height="100%"
+      
       src="https://www.youtube.com/embed/${res}"
       frameborder="0"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -86,17 +87,20 @@ function openMovieDetails(selectedMovie) {
   // console.log(youtubeId);
 }
 
-// add viktor
 const fistTitle = document.getElementById('details-title-first');
 const secondTitle = document.getElementById('details-title-secondary');
 const detailsTextContainer = document.getElementById('js-detailsText');
 
 fistTitle.addEventListener('click', () => {
+  fistTitle.classList.add('is-active');
+  secondTitle.classList.remove('is-active');
   movieTrailer.classList.add('is-hidden');
   detailsTextContainer.classList.remove('is-hidden');
 });
 
 secondTitle.addEventListener('click', () => {
+  fistTitle.classList.remove('is-active');
+  secondTitle.classList.add('is-active');
   detailsTextContainer.classList.add('is-hidden');
   movieTrailer.classList.remove('is-hidden');
 });
