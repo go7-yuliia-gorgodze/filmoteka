@@ -3,10 +3,26 @@
 }
 
 .details-container {
-  z-index: 2;
   &.hidden {
-    display: none;
+    z-index: -1;
+    opacity: 0;
+    animation: hide 400ms;
+
+    transform: scale(0);
+    @keyframes hide {
+      from {
+        z-index: 2;
+        transform: scale(1);
+        opacity: 1;
+      }
+      to {
+        z-index: -1;
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
   }
+
   position: fixed;
   display: flex;
   justify-content: center;
@@ -18,6 +34,25 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
+
+  z-index: 2;
+  opacity: 1;
+  animation: show 400ms;
+  transform: scale(1);
+
+  @keyframes show {
+    from {
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
   @include for-size(tablet-landscape-up) {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -98,6 +133,11 @@
     text-transform: uppercase;
     color: $primary-text-color;
     margin-bottom: 10px;
+    cursor: pointer; //add viktor
+    display: inline;
+  }
+  &-secondary:hover {
+    color: #ff9800; //add viktor
   }
 }
 
@@ -126,6 +166,11 @@
 .details-inf-list-secondary {
   color: $primary-text-color;
 }
+
+.movie-trailer.is-hidden {
+  display: none; //add viktor
+}
+
 .details-text {
   display: inline-block;
   font-family: Roboto;
@@ -135,8 +180,13 @@
   line-height: 20px;
   color: $primary-text-color;
   margin-bottom: 40px;
+
+  &.is-hidden {
+    display: none; //add viktor
+  }
 }
-.text-orange {
+
+.details-text .text-orange {
   display: inline-block;
   text-align: center;
   border-radius: 5px;

@@ -3,7 +3,7 @@ searchField.addEventListener('submit', event => {
 
   inputValue = event.currentTarget.elements[0].value;
   searchField.reset();
-  createMarkup();
+  dischargePaginationAndCreateMarkup();
 });
 
 function fetchFilms() {
@@ -36,6 +36,16 @@ function fetchGenres() {
       genres = [...res.genres];
     })
     .catch(err => console.log(err));
+}
+
+function fetchMovies(movieId) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`,
+  )
+    .then(res => res.json())
+    .then(data => {
+      return data.results[0].key;
+    });
 }
 
 function paginationNavigation(arr) {
