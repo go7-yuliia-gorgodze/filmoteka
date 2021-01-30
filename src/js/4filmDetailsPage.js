@@ -22,7 +22,6 @@ function closeModal(event) {
   }
 }
 
-
 function activateDetailsPage(id, itsLibraryMovie) {
   // let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
   let selectedMovie;
@@ -31,12 +30,14 @@ function activateDetailsPage(id, itsLibraryMovie) {
       ...JSON.parse(localStorage.getItem('filmsQueue')),
       ...JSON.parse(localStorage.getItem('filmsWatched')),
     ];
-    selectedMovie = allLocalStorageMovies.find(movie => movie.id === Number(id));
+    selectedMovie = allLocalStorageMovies.find(
+      movie => movie.id === Number(id),
+    );
   } else {
     selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
   }
 
-  openMovieDetails(selectedMovie); 
+  openMovieDetails(selectedMovie);
 }
 
 fetchGenres();
@@ -82,5 +83,20 @@ function openMovieDetails(selectedMovie) {
       .reduce((acc, item) => acc + `${item.name}, `, ''),
   ).slice(0, -2);
 
-  console.log(youtubeId);
+  // console.log(youtubeId);
 }
+
+// add viktor
+const fistTitle = document.getElementById('details-title-first');
+const secondTitle = document.getElementById('details-title-secondary');
+const detailsTextContainer = document.getElementById('js-detailsText');
+
+fistTitle.addEventListener('click', () => {
+  movieTrailer.classList.add('is-hidden');
+  detailsTextContainer.classList.remove('is-hidden');
+});
+
+secondTitle.addEventListener('click', () => {
+  detailsTextContainer.classList.add('is-hidden');
+  movieTrailer.classList.remove('is-hidden');
+});

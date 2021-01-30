@@ -133,6 +133,11 @@
     text-transform: uppercase;
     color: $primary-text-color;
     margin-bottom: 10px;
+    cursor: pointer; //add viktor
+    display: inline;
+  }
+  &-secondary:hover {
+    color: #ff9800; //add viktor
   }
 }
 
@@ -161,6 +166,11 @@
 .details-inf-list-secondary {
   color: $primary-text-color;
 }
+
+.movie-trailer.is-hidden {
+  display: none; //add viktor
+}
+
 .details-text {
   display: inline-block;
   font-family: Roboto;
@@ -170,8 +180,13 @@
   line-height: 20px;
   color: $primary-text-color;
   margin-bottom: 40px;
+
+  &.is-hidden {
+    display: none; //add viktor
+  }
 }
-.text-orange {
+
+.details-text .text-orange {
   display: inline-block;
   text-align: center;
   border-radius: 5px;
