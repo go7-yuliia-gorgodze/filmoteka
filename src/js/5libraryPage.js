@@ -9,7 +9,7 @@ function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
 
   const libraryCardImage = document.createElement('img');
   if (imgPath === null) {
-    libraryCardImage.setAttribute('src', '/');
+    libraryCardImage.setAttribute('src', '../images/plug.jpg');
     libraryCardImage.setAttribute('alt', 'No image found!');
   } else {
     libraryCardImage.setAttribute(
@@ -30,22 +30,24 @@ function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
   libraryCard.appendChild(movieTitle);
   libraryCard.appendChild(filmRating);
 
-  // libraryCard.addEventListener('click', () => activeDetailsPage(movieId, true));
-
+  libraryCard.addEventListener('click', () => activateDetailsPage(movieId, true));
+  console.log(libraryCard);
   return libraryCard;
 }
 
-queueButton.addEventListener('click', drawQueueFilmList);
 watchedButton.addEventListener('click', drawWatchedFilmList);
+queueButton.addEventListener('click', drawQueueFilmList);
 
 function drawWatchedFilmList() {
   watchedButton.classList.add('button-active');
   queueButton.classList.remove('button-active');
 
+  watchedFilms.innerHTML = '';
   const fragment = document.createDocumentFragment();
   const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+  console.log(moviesWatched);
 
-  if (moviesWatched.length !== 0 && moviesWatched !== null) {
+  if (moviesWatched !== 0 && moviesWatched !== null) {
     moviesWatched.forEach(el =>
       fragment.append(
         createLibraryCardFunc(
@@ -57,19 +59,16 @@ function drawWatchedFilmList() {
       ),
     );
     watchedFilms.setAttribute('data-name', 'watched');
-    watchedFilms.innerHTML = '';
     watchedFilms.append(fragment);
   }
 
-  if (moviesWatched.length === 0 || moviesWatched === null) {
-    const fragment = document.createDocumentFragment();
+  if (moviesWatched === 0 || moviesWatched === null) {
     const emptyStorage = document.createElement('p');
     emptyStorage.classList.add('empty-storage');
     emptyStorage.textContent =
       'You do not have watched movies. Try to add them.';
-    fragment.append(emptyStorage);
-    watchedFilms.innerHTML = '';
-    watchedFilms.append(fragment);
+
+    watchedFilms.append(emptyStorage);
   }
   return;
 }
@@ -78,8 +77,10 @@ function drawQueueFilmList() {
   queueButton.classList.add('button-active');
   watchedButton.classList.remove('button-active');
 
+  watchedFilms.innerHTML = '';
   const fragment = document.createDocumentFragment();
   const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+  console.log(moviesQueue);
 
   if (moviesQueue !== null && moviesQueue.length !== 0) {
     moviesQueue.forEach(el =>
@@ -93,19 +94,17 @@ function drawQueueFilmList() {
       ),
     );
     watchedFilms.setAttribute('data-name', 'queue');
-    watchedFilms.innerHTML = '';
     watchedFilms.append(fragment);
   }
 
   if (moviesQueue === null || moviesQueue.length === 0) {
-    const fragment = document.createDocumentFragment();
     const emptyStorage = document.createElement('p');
     emptyStorage.classList.add('empty-storage');
     emptyStorage.textContent =
       'You do not have to queue movies to watch. Try to add them.';
-    fragment.append(emptyStorage);
-    watchedFilms.innerHTML = '';
-    watchedFilms.append(fragment);
+
+    watchedFilms.append(emptyStorage);
   }
   return;
+  
 }
