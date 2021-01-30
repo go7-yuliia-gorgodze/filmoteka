@@ -10,6 +10,7 @@ homePageLink.addEventListener('click',activeHomePage);
 homePageLogo.addEventListener('click',activeHomePage);
 
 function activeLibraryPage() {
+  
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');
@@ -19,6 +20,8 @@ function activeLibraryPage() {
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML="";
+  drawWatchedFilmList();
+  
 }
 
 function activeHomePage() {

@@ -20,11 +20,20 @@ function closeModal(event) {
   }
 }
 
-function activateDetailsPage(id) {
-  let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
+function activateDetailsPage(id, itsLibraryMovie) {
+  // let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
+  let selectedMovie;
+  if (itsLibraryMovie) {
+    let allLocalStorageMovies = [
+      ...JSON.parse(localStorage.getItem('filmsQueue')),
+      ...JSON.parse(localStorage.getItem('filmsWatched')),
+    ];
+    selectedMovie = allLocalStorageMovies.find(movie => movie.id === Number(id));
+  } else {
+    selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
+  }
 
-  openMovieDetails(selectedMovie);
-
+  openMovieDetails(selectedMovie); 
 }
 
 fetchGenres();

@@ -18,3 +18,15 @@
     background-color: $accent-color;
     border: 1px solid $accent-color;
   }
+  .empty-storage {
+    margin: 0 auto;
+    color: red;
+    text-align: center;
+    @include tablet {
+      margin-top: 15px;
+    }
+    @include desktop {
+      margin-top: 15px;
+    }
+    
+  }
