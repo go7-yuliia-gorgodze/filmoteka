@@ -134,6 +134,22 @@
   }
 }
 
+.modal_window-img {
+  object-fit: scale-down;
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+  margin: 0 auto;
+  @include tablet {
+    height: 120px;
+    width: 120px;
+  }
+  @include desktop {
+    height: 100px;
+    width: 100px;
+  }
+}
+
 .modal-card_btn {
   background-color: transparent;
   padding: 3px;

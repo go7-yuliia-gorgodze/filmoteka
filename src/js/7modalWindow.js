@@ -11,30 +11,30 @@ let modal, closeModalBtn, modalCollaboratorsList;
 
 const collaborators = [
     {
-        src: '',
+        src: '../images/jpg/Margot_Robbie.jpg',
         alt: 'Марго Робби',
         collaboratorName: 'Юля',
         filmName: 'alibi.com'
     },
     {
-        src: '',
+        src: '../images/jpg/Natalie_Portman.jpg',
         alt: 'Natalie Portman',
         collaboratorName: 'Валентина',
         filmName: 'Leon: The Professional'
     },
     {
-        src: '',
+        src: '../images/png/Charlie_Hunnam.png',
         alt: 'Чарли Ханнем',
         collaboratorName: 'MAXCOM',
         filmName: 'Побег из Претории'
     },
     {
-        src: '',
+        src: '../images/jpg/Til_Schweiger.jpg',
         alt: 'Til Schweiger',
         collaboratorName: 'Mikhail',
         filmName: 'Knockin` on Heaven`s Door'
     },    {
-        src: '',
+        src: '../images/jpg/AbdulovA.jpg',
         alt: 'Олександр Абдулов',
         collaboratorName: 'Pankov Dmytro',
         filmName: 'Чародеи'
