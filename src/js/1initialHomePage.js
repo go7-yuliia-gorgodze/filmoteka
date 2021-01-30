@@ -19,7 +19,7 @@ const detailsPopularuty = document.querySelector('#details-popularity');
 const detailsGenre = document.querySelector('#details-genre');
 const detailsOriginalTitle = document.querySelector('#details-originalTitle');
 const detailsButtonClose = document.querySelector('.button-close');
-const movieTrailer = document.querySelector('.movie__trailer');
+const movieTrailer = document.getElementById('js-movieTrailer');
 
 const body = document.querySelector('body');
 
@@ -69,7 +69,6 @@ function createMarkup() {
     return renderedMovies;
   });
 }
-
 
 function createStartupMarkup() {
   addPreloader();
