@@ -8,16 +8,27 @@ const header = document.querySelector('header');
 const html = document.documentElement;
 let scrollPosition = window.pageYOffset;
 
+console.log(html)
+
+// function focusCatcher() {
+//     modal.querySelector(FOCUSABLE_SELECTORS).focus();
+//     const focusableElements = main.querySelectorAll(FOCUSABLE_SELECTORS);
+//     focusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
+// }
+
 function openModalWindow() {
     // show the modal
     modal.classList.add('modal--active');
     closeModalBtn.addEventListener('click', closeModalWindow);
     // Focus the first element within the modal. Make sure the element is visible and doesnt have focus disabled (tabindex=-1);
-    modal.querySelector(FOCUSABLE_SELECTORS).focus();
+    
 
     // Trap the tab focus by disable tabbing on all elements outside of your modal.  Because the modal is a sibling of main, this is easier. Make sure to check if the element is visible, or already has a tabindex so you can restore it when you untrap.    
-    const focusableElements = main.querySelectorAll(FOCUSABLE_SELECTORS);
-    focusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
+    modal.querySelector(FOCUSABLE_SELECTORS).focus();
+    const focusableElementsMain = main.querySelectorAll(FOCUSABLE_SELECTORS);
+    focusableElementsMain.forEach(el => el.setAttribute('tabindex', '-1'));
+    const focusableElementsHeader = header.querySelectorAll(FOCUSABLE_SELECTORS);
+    focusableElementsHeader.forEach(el => el.setAttribute('tabindex', '-1'));
 
     scrollPosition = window.pageYOffset;
     html.style.top = -scrollPosition + "px";
@@ -38,12 +49,8 @@ function closeModalWindow() {
 };
 
 function transitionClose() { 
-    if (modal.classList.contains('modal--active')) { 
-        return;
-    };
-
     modal.classList.remove("modal--moved");
-   // modal.removeEventListener("transitionend", transitionClose);
+    modal.removeEventListener("transitionend", transitionClose);
     const focusableElements = main.querySelectorAll(FOCUSABLE_SELECTORS);
     focusableElements.forEach(el => el.removeAttribute('tabindex'));
 
@@ -54,7 +61,7 @@ function transitionClose() {
     // Untrap screen reader focus
     modal.setAttribute('aria-hidden', 'true');
     main.removeAttribute('aria-hidden');
-    header.removeAttribute('aria-hidden', 'true');
+    header.removeAttribute('aria-hidden');
 
     // restore focus to the triggering element
     openModalBtn.focus();
