@@ -128,16 +128,58 @@
   margin-bottom: 20px;
 
   &-secondary {
+    position: relative;
     font-size: 12px;
     line-height: 16px;
     text-transform: uppercase;
     color: $primary-text-color;
-    margin-bottom: 10px;
-    cursor: pointer; //add viktor
-    display: inline;
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 5px;
+    border: 1px solid #000000;
+    border-radius: 2px;
+    transition: border-color 150ms linear, color 150ms linear,
+      background-color 150ms linear;
   }
   &-secondary:hover {
-    color: #ff9800; //add viktor
+    border-color: $accent-color;
+    color: $primary-white-color;
+    background-color: $accent-color;
+  }
+}
+
+.details-title-secondary + .details-title-secondary {
+  margin-left: 30px;
+}
+
+.details-title-secondary.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 4px;
+  background-color: $accent-color;
+
+  border-radius: 2px;
+
+  animation-name: animationName;
+  animation-duration: 3500ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes animationName {
+  0% {
+    transform: scalex(0);
+  }
+  50% {
+    transform: scalex(1.2);
+  }
+  100% {
+    transform: scalex(0);
   }
 }
 
@@ -167,8 +209,25 @@
   color: $primary-text-color;
 }
 
+.movie-trailer {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  margin-bottom: 40px;
+}
+
+.movie-trailer iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 .movie-trailer.is-hidden {
-  display: none; //add viktor
+  display: none;
 }
 
 .details-text {
@@ -182,7 +241,7 @@
   margin-bottom: 40px;
 
   &.is-hidden {
-    display: none; //add viktor
+    display: none;
   }
 }
 
