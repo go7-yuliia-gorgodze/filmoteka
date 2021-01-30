@@ -1,0 +1,26 @@
+<form class="registration">
+    <input class="mail" type="email">
+    <input class="pass" type="password">
+    <button class ="button_registration" type="button">Регистрация</button>
+</form>
+<form class="logIn">
+    <input class="mail" type="email">
+    <input class="pass" type="password">
+</form>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+<script>
+    //Config
+    var firebaseConfig = {
+            apiKey: "AIzaSyB5qrzdmfAe847rQauzTKPf0UazgyDkRvk",
+            authDomain: "filmoteka-99806.firebaseapp.com",
+            databaseURL: "https://filmoteka-99806-default-rtdb.firebaseio.com",
+            projectId: "filmoteka-99806",
+            storageBucket: "filmoteka-99806.appspot.com",
+            messagingSenderId: "436032791506",
+            appId: "1:436032791506:web:792469e5d115a5925fde0b"
+        };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script src="../js/user.js"></script>
