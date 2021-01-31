@@ -19,6 +19,7 @@ function activeLibraryPage() {
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML = '';
+  localStorage.setItem('activePage', 'activeLibraryPage');
   drawWatchedFilmList();
 }
 
@@ -33,4 +34,11 @@ function activeHomePage() {
   header.classList.add('header');
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
+  localStorage.setItem('activePage', 'activeHomePage');
+}
+
+if (localStorage.getItem('activePage') === 'activeHomePage') {
+  activeHomePage();
+} else {
+  activeLibraryPage();
 }
