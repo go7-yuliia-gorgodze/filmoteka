@@ -121,6 +121,8 @@
 }
 .error-message {
   margin-top: 22px;
+  margin-bottom: 10px;
+  font-size: 13px;
   color: red;
   text-align: left;
   height: 32px;
@@ -130,6 +132,7 @@
     width: 336px;
   }
   .error-message {
+    font-size: 15px;
     text-align: center;
     height: 16px;
   }
