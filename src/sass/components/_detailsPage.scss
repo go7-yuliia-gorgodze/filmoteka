@@ -4,23 +4,9 @@
 
 .details-container {
   &.hidden {
-    z-index: -1;
+    visibility: hidden;
     opacity: 0;
-    animation: hide 400ms;
-
-    transform: scale(0);
-    @keyframes hide {
-      from {
-        z-index: 2;
-        transform: scale(1);
-        opacity: 1;
-      }
-      to {
-        z-index: -1;
-        transform: scale(0);
-        opacity: 0;
-      }
-    }
+    pointer-events: none;
   }
 
   position: fixed;
@@ -35,23 +21,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 
-  z-index: 2;
-  opacity: 1;
-  animation: show 400ms;
-  transform: scale(1);
-
-  @keyframes show {
-    from {
-      transform: scale(0);
-      opacity: 0;
-      z-index: -1;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-      z-index: 2;
-    }
-  }
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @include for-size(tablet-landscape-up) {
     padding-top: 100px;
@@ -62,11 +33,19 @@
     padding-bottom: 0px;
   }
 }
+
+.details-container.hidden .details-wrapper {
+  transform: scale(0.4);
+}
+
 .details-wrapper {
   width: 280px;
   height: fit-content;
   position: relative;
   background-color: #f1f1f1;
+
+  transform: scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @include for-size(tablet-landscape-up) {
     display: flex;
