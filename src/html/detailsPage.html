@@ -33,18 +33,31 @@
         </ul>
       </div>
 
-      <div>
-        <h2 id="details-title-first" class="details-title-secondary is-active">
-          About
-        </h2>
-
-        <h2 id="details-title-secondary" class="details-title-secondary">
-          Trailer
-        </h2>
+      <div class="tabs-container">
+        <ul class="tabs">
+          <li class="active">
+            <a href="">ABOUT</a>
+          </li>
+          <li>
+            <a href="">TRAILER</a>
+          </li>
+        </ul>
+        <div class="tabs-content">
+          <div
+            id="js-detailsText"
+            class="tabs-panel active"
+            data-index="0"
+          ></div>
+          <div
+            id="js-movieTrailer"
+            class="movie-trailer tabs-panel"
+            data-index="1"
+          ></div>
+          <div class="tabs-panel" data-index="2">
+            <p></p>
+          </div>
+        </div>
       </div>
-
-      <div id="js-detailsText" class="details-text"></div>
-      <div id="js-movieTrailer" class="movie-trailer is-hidden"></div>
 
       <div class="details-button-list">
         <button class="details-button button-watch button-add-to-watch">add to Watched</button>

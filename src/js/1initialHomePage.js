@@ -21,6 +21,7 @@ const detailsOriginalTitle = document.querySelector('#details-originalTitle');
 const detailsButtonClose = document.querySelector('.button-close');
 const movieTrailer = document.getElementById('js-movieTrailer');
 
+
 const body = document.querySelector('body');
 
 const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
