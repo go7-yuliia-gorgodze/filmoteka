@@ -78,3 +78,6 @@ function writeUserQueueFilm() {
     .ref('users/' + userId + '/queue/')
     .set([filmId]);
 }
+function isLogIn() {
+  user !== undefined;
+}
