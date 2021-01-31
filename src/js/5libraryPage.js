@@ -31,7 +31,7 @@ function createLibraryCardFunc(imgPath, filmTitle, movieId, voteAverage) {
   libraryCard.appendChild(filmRating);
 
   libraryCard.addEventListener('click', () => activateDetailsPage(movieId, true));
-  console.log(libraryCard);
+  
   return libraryCard;
 }
 
@@ -47,11 +47,11 @@ function drawWatchedFilmList() {
   const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
   console.log(moviesWatched);
 
-  if (moviesWatched !== 0 && moviesWatched !== null) {
+  if (moviesWatched.length !== 0 && moviesWatched !== null) {
     moviesWatched.forEach(el =>
       fragment.append(
         createLibraryCardFunc(
-          el.backdrop_path,
+          el.poster_path,
           el.title,
           el.id,
           el.vote_average,
@@ -62,7 +62,7 @@ function drawWatchedFilmList() {
     watchedFilms.append(fragment);
   }
 
-  if (moviesWatched === 0 || moviesWatched === null) {
+  if (moviesWatched.length === 0 || moviesWatched === null) {
     const emptyStorage = document.createElement('p');
     emptyStorage.classList.add('empty-storage');
     emptyStorage.textContent =
@@ -86,7 +86,7 @@ function drawQueueFilmList() {
     moviesQueue.forEach(el =>
       fragment.append(
         createLibraryCardFunc(
-          el.backdrop_path,
+          el.poster_path,
           el.title,
           el.id,
           el.vote_average,
