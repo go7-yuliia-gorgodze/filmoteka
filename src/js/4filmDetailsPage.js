@@ -45,7 +45,7 @@ function activateDetailsPage(id, itsLibraryMovie) {
 fetchGenres();
 
 function openMovieDetails(selectedMovie) {
-  toTopBtn.classList.remove('show');
+  // toTopBtn.classList.remove('show');
   body.classList.add('blocked-scroll');
   detailsModal.classList.remove('hidden');
   if (selectedMovie.poster_path) {
@@ -84,29 +84,33 @@ function openMovieDetails(selectedMovie) {
       .reduce((acc, item) => acc + `${item.name}, `, ''),
   ).slice(0, -2);
 
-  // console.log(youtubeId);
-  monitorButtonStatusText() 
+  monitorButtonStatusText();
+}
+// TABS for movie details
+const tabLinks = document.querySelectorAll('.tabs a');
+const tabPanels = document.querySelectorAll('.tabs-panel');
+
+for (let el of tabLinks) {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+
+    document.querySelector('.tabs li.active').classList.remove('active');
+    document.querySelector('.tabs-panel.active').classList.remove('active');
+
+    const parentListItem = el.parentElement;
+    parentListItem.classList.add('active');
+    const index = [...parentListItem.parentElement.children].indexOf(
+      parentListItem,
+    );
+
+    const panel = [...tabPanels].filter(
+      el => el.getAttribute('data-index') == index,
+    );
+    panel[0].classList.add('active');
+  });
 }
 
-const fistTitle = document.getElementById('details-title-first');
-const secondTitle = document.getElementById('details-title-secondary');
-const detailsTextContainer = document.getElementById('js-detailsText');
-
-fistTitle.addEventListener('click', () => {
-  fistTitle.classList.add('is-active');
-  secondTitle.classList.remove('is-active');
-  movieTrailer.classList.add('is-hidden');
-  detailsTextContainer.classList.remove('is-hidden');
-});
-
-secondTitle.addEventListener('click', () => {
-  fistTitle.classList.remove('is-active');
-  secondTitle.classList.add('is-active');
-  detailsTextContainer.classList.add('is-hidden');
-  movieTrailer.classList.remove('is-hidden');
-});
-
-
+// buttons and local storage in modal
 const watchedButtonAdd = document.querySelector('.button-add-to-watch');
 const queueButtonAdd = document.querySelector('.button-add-to-queue');
 console.log(watchedButtonAdd);
@@ -143,7 +147,7 @@ watchedButtonAdd.addEventListener('click', toggleToQueue);
 queueButtonAdd.addEventListener('click', toggleToWatched);
 
 function toggleToWatched() {
-  
+  let selectedMovie = [];
   let moviesWatchedLocalStorage = [];
   let localStorageData = localStorage.getItem('filmsWatched');
   if (localStorageData !== null) {
@@ -155,11 +159,13 @@ function toggleToWatched() {
     moviesWatchedLocalStorage.push(selectedMovie);
   }
   localStorage.setItem('filmsWatched', JSON.stringify(moviesWatchedLocalStorage));
+  
   monitorButtonStatusText();
+  return;
 }
 
 function toggleToQueue() {
-
+  let selectedMovie = [];
   let moviesQueueLocalStorage = [];
   let localStorageData = localStorage.getItem('filmsQueue');
   if (localStorageData !== null) {
@@ -172,8 +178,5 @@ function toggleToQueue() {
   }
   localStorage.setItem('filmsQueue', JSON.stringify(moviesQueueLocalStorage));
   monitorButtonStatusText();
+  return;
 }
-
-
-
-
