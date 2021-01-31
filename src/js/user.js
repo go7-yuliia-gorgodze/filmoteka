@@ -5,11 +5,16 @@ const registrationMail = document.querySelector('.registration .mail');
 const registrationPass = document.querySelector('.registration .pass');
 const logInMail = document.querySelector('.logIn .mail');
 const logInPass = document.querySelector('.logIn .pass');
+const formModal = document.querySelector('.form-modal');
+const formButtonClose = document.querySelector('.form-button-close');
+const registrationForm = document.querySelector('.registration');
+const logInForm = document.querySelector('.logIn');
 
 let user = localStorage['userId'];
 
 registrationButton.addEventListener('click', event => {
   event.preventDefault();
+  openRegistrationModal();
   console.log(user);
   createUser(registrationMail.value, registrationPass.value);
   registrationMail.value = '';
@@ -17,6 +22,7 @@ registrationButton.addEventListener('click', event => {
 });
 logInButton.addEventListener('click', event => {
   event.preventDefault();
+  openLogINModal();
   console.log(user);
   logInUser(logInMail.value, logInPass.value);
   logInMail.value = '';
@@ -27,6 +33,34 @@ signOutButton.addEventListener('click', event => {
   console.log(user);
   signOut();
 });
+
+formButtonClose.addEventListener('click', closeFormModal);
+formModal.addEventListener('click', closeFormModal);
+document.addEventListener('keydown', closeFormModal);
+
+function openRegistrationModal() {
+  formModal.classList.remove('hidden');
+  body.classList.add('blocked-scroll');
+  registrationForm.classList.remove('hidden');
+}
+function openLogINModal() {
+  formModal.classList.remove('hidden');
+  body.classList.add('blocked-scroll');
+  logInForm.classList.remove('hidden');
+}
+function closeFormModal(event) {
+  if (
+    event.target.classList.contains('form-modal') ||
+    event.target.classList.contains('form-close') ||
+    event.target.nodeName === 'use' ||
+    event.key === 'Escape'
+  ) {
+    body.classList.remove('blocked-scroll');
+    formModal.classList.add('hidden');
+    registrationForm.classList.add('hidden');
+    logInForm.classList.add('hidden');
+  }
+}
 function createUser(email, password) {
   firebase
     .auth()
