@@ -85,6 +85,7 @@ function openMovieDetails(selectedMovie) {
   ).slice(0, -2);
 
   // console.log(youtubeId);
+  monitorButtonStatusText() 
 }
 
 const fistTitle = document.getElementById('details-title-first');
@@ -104,3 +105,75 @@ secondTitle.addEventListener('click', () => {
   detailsTextContainer.classList.add('is-hidden');
   movieTrailer.classList.remove('is-hidden');
 });
+
+
+const watchedButtonAdd = document.querySelector('.button-add-to-watch');
+const queueButtonAdd = document.querySelector('.button-add-to-queue');
+console.log(watchedButtonAdd);
+console.log(queueButtonAdd);
+
+
+function monitorButtonStatusText() {
+  
+  let moviesWatched = [];
+  localStorageData = localStorage.getItem('filmsWatched');
+  if (localStorageData !== null) {
+    moviesWatched.push(...JSON.parse(localStorageData));
+  }
+  if (moviesWatched.find(el => el.id === selectedMovie.id)) {
+    watchedButtonAdd.textContent = 'Delete from watched';
+  } else {
+    watchedButtonAdd.textContent = 'Add to watched';
+  }
+
+  let moviesQueue = [];
+  let localStorageData = localStorage.getItem('filmsQueue');
+  if (localStorageData !== null) {
+    moviesQueue.push(...JSON.parse(localStorageData));
+  }
+  if (moviesQueue.find(el => el.id === selectedMovie.id)) {
+    queueButtonAdd.textContent = 'Delete from queue';
+  } else {
+    queueButtonAdd.textContent = 'Add to queue';
+  }
+  
+}
+
+watchedButtonAdd.addEventListener('click', toggleToQueue);
+queueButtonAdd.addEventListener('click', toggleToWatched);
+
+function toggleToWatched() {
+  
+  let moviesWatchedLocalStorage = [];
+  let localStorageData = localStorage.getItem('filmsWatched');
+  if (localStorageData !== null) {
+    moviesWatchedLocalStorage.push(...JSON.parse(localStorageData));
+  }
+  if (moviesWatchedLocalStorage.find(el => el.id === selectedMovie.id)) {
+    moviesWatchedLocalStorage = moviesWatchedLocalStorage.filter(el => el.id !== selectedMovie.id);
+  } else {
+    moviesWatchedLocalStorage.push(selectedMovie);
+  }
+  localStorage.setItem('filmsWatched', JSON.stringify(moviesWatchedLocalStorage));
+  monitorButtonStatusText();
+}
+
+function toggleToQueue() {
+
+  let moviesQueueLocalStorage = [];
+  let localStorageData = localStorage.getItem('filmsQueue');
+  if (localStorageData !== null) {
+    moviesQueueLocalStorage.push(...JSON.parse(localStorageData));
+  }
+  if (moviesQueueLocalStorage.find(el => el.id === selectedMovie.id)) {
+    moviesQueueLocalStorage = moviesQueueLocalStorage.filter(el => el.id !== selectedMovie.id);
+  } else {
+    moviesQueueLocalStorage.push(selectedMovie);
+  }
+  localStorage.setItem('filmsQueue', JSON.stringify(moviesQueueLocalStorage));
+  monitorButtonStatusText();
+}
+
+
+
+
