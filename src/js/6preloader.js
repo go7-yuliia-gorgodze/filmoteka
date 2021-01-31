@@ -1,9 +1,9 @@
 function removePreloader() {
-  document.querySelector('.loader').classList.add('is-hiden');
+  document.querySelector('.loader').classList.add('is-hidden');
 }
 
 function addPreloader() {
-  document.querySelector('.loader').classList.remove('is-hiden');
+  document.querySelector('.loader').classList.remove('is-hidden');
 }
 
 // preloader on start page
