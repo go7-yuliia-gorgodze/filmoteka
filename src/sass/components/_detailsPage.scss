@@ -66,14 +66,15 @@
   width: 280px;
   height: fit-content;
   position: relative;
-  background-color: $primary-white-color;
+  background-color: #f1f1f1;
+
   @include for-size(tablet-landscape-up) {
     display: flex;
     width: 80%;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    height: fit-content;
+    height: 440px;
     border-radius: 4px;
   }
   @include for-size(desktop) {
@@ -82,22 +83,30 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  @media (min-width: 1024px) {
+    height: 520px;
+  }
 }
 .details-information {
   width: 100%;
-  background-color: $primary-white-color;
+  background-color: #f1f1f2;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 20px;
+  overflow: scroll;
 
   @include for-size(tablet-landscape-up) {
     padding: 20px 30px;
   }
 
   @include for-size(desktop) {
-    height: fit-content;
+    height: 420px;
+  }
+  @media (min-width: 1024px) {
+    height: 485px;
   }
 }
+
 .details-img {
   width: 280px;
   height: 416px;
@@ -110,10 +119,12 @@
   @include for-size(tablet-landscape-up) {
     border-radius: 5px;
     height: 416px;
-    margin-right: 10px;
+    // margin-right: 10px;
     margin-bottom: 0;
+    margin-left: 3px;
   }
   @include for-size(desktop) {
+    margin-left: 10px;
     width: 426px;
     height: 475px;
   }
@@ -245,7 +256,7 @@
   }
 }
 
-.details-text .text-orange {
+.text-orange {
   display: inline-block;
   text-align: center;
   border-radius: 5px;
@@ -309,4 +320,60 @@
   background-color: $accent-color;
 
   border-radius: 2px;
+}
+
+.tabs-container {
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs li:not(:last-child) {
+  margin-right: 7px;
+}
+
+.tabs li a {
+  font-weight: bolder;
+  font-size: 12px;
+  color: black;
+  display: block;
+  position: relative;
+  top: 4px;
+  padding: 10px 25px;
+  border-radius: 2px 2px 0 0;
+  background: white;
+  opacity: 0.7;
+  transition: all 0.1s ease-in-out;
+}
+
+.tabs li.active a,
+.tabs li a:hover {
+  color: $accent-color;
+  font-weight: bolder;
+  opacity: 1;
+  top: 0;
+}
+
+.tabs-content {
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  border-radius: 0 4px 4px 4px;
+  background: white;
+}
+
+.tabs-panel {
+  display: none;
+  font-size: 12px;
+}
+
+.tabs-panel.active {
+  display: block;
+}
+
+.tabs-panel p + div {
+  margin-top: 15px;
 }

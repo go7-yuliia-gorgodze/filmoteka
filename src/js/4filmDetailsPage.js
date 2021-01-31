@@ -45,7 +45,7 @@ function activateDetailsPage(id, itsLibraryMovie) {
 fetchGenres();
 
 function openMovieDetails(selectedMovie) {
-  toTopBtn.classList.remove('show');
+  // toTopBtn.classList.remove('show');
   body.classList.add('blocked-scroll');
   detailsModal.classList.remove('hidden');
   if (selectedMovie.poster_path) {
@@ -83,24 +83,27 @@ function openMovieDetails(selectedMovie) {
       )
       .reduce((acc, item) => acc + `${item.name}, `, ''),
   ).slice(0, -2);
-
-  // console.log(youtubeId);
 }
+// TABS for movie details
+const tabLinks = document.querySelectorAll('.tabs a');
+const tabPanels = document.querySelectorAll('.tabs-panel');
 
-const fistTitle = document.getElementById('details-title-first');
-const secondTitle = document.getElementById('details-title-secondary');
-const detailsTextContainer = document.getElementById('js-detailsText');
+for (let el of tabLinks) {
+  el.addEventListener('click', e => {
+    e.preventDefault();
 
-fistTitle.addEventListener('click', () => {
-  fistTitle.classList.add('is-active');
-  secondTitle.classList.remove('is-active');
-  movieTrailer.classList.add('is-hidden');
-  detailsTextContainer.classList.remove('is-hidden');
-});
+    document.querySelector('.tabs li.active').classList.remove('active');
+    document.querySelector('.tabs-panel.active').classList.remove('active');
 
-secondTitle.addEventListener('click', () => {
-  fistTitle.classList.remove('is-active');
-  secondTitle.classList.add('is-active');
-  detailsTextContainer.classList.add('is-hidden');
-  movieTrailer.classList.remove('is-hidden');
-});
+    const parentListItem = el.parentElement;
+    parentListItem.classList.add('active');
+    const index = [...parentListItem.parentElement.children].indexOf(
+      parentListItem,
+    );
+
+    const panel = [...tabPanels].filter(
+      el => el.getAttribute('data-index') == index,
+    );
+    panel[0].classList.add('active');
+  });
+}
