@@ -272,6 +272,7 @@
   }
 }
 .details-button {
+  margin-right: 10px;
   width: 100px;
   height: 44px;
   border-radius: 5px;
@@ -287,11 +288,10 @@
     width: 136px;
   }
 }
-.button-watch {
+.button-is-active {
   background-color: $accent-color;
   border: none;
   color: $button-color;
-  margin-right: 10px;
 }
 .details-inf-list > li {
   margin-bottom: 5px;
