@@ -4,6 +4,9 @@ const queueButton = document.querySelector('#queue');
 watchedButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
+if (document.querySelector('.link-library').classList.contains('current')) {
+  drawQueueFilmList();
+}
 function drawWatchedFilmList() {
   activePage(watchedButton, queueButton);
   watchedFilms.innerHTML = '';
