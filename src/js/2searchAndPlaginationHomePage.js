@@ -47,7 +47,15 @@ function fetchMovies(movieId) {
       return data.results[0].key;
     });
 }
-
+function fetchMoviesId(movieId) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`,
+  )
+    .then(res => res.json())
+    .then(data => {
+      return data;
+    });
+}
 function paginationNavigation(arr) {
   pageNumber = arr[2];
   if (inputValue === '') createStartupMarkup();
