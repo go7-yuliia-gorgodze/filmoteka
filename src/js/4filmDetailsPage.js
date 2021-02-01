@@ -93,21 +93,25 @@ function openMovieDetails(selectedMovie) {
 function toggleButtonWatcher(id) {
   let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
   let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-  if (filmsWatchedFromLocalStorage.includes(id)) {
-    watchedButtonAdd.classList.add('button-is-active');
-    watchedButtonAdd.textContent = 'IN WATCHED';
-  } else {
-    watchedButtonAdd.classList.remove('button-is-active');
-    watchedButtonAdd.textContent = 'ADD TO WATCHED';
+  if (filmsWatchedFromLocalStorage !== null) {
+    if (filmsWatchedFromLocalStorage.includes(id)) {
+      watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
+    } else {
+      watchedButtonAdd.classList.remove('button-is-active');
+      watchedButtonAdd.textContent = 'ADD TO WATCHED';
+    }
   }
-  if (filmsQueueFromLocalStorage.includes(id)) {
-    queueButtonAdd.classList.add('button-is-active');
-    queueButtonAdd.textContent = 'IN QUEUE';
-  } else {
-    queueButtonAdd.classList.remove('button-is-active');
-    queueButtonAdd.textContent = 'ADD TO QUEUE';
+  if (filmsQueueFromLocalStorage !== null) {
+    if (filmsQueueFromLocalStorage.includes(id)) {
+      queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
+    } else {
+      queueButtonAdd.classList.remove('button-is-active');
+      queueButtonAdd.textContent = 'ADD TO QUEUE';
+    }
   }
-  console.dir(queueButtonAdd);
+
   function getArrayFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(`${key}`));
   }
@@ -137,9 +141,7 @@ for (let el of tabLinks) {
 }
 
 // buttons and local storage in modal
-
 runLocalStorage();
-
 function runLocalStorage() {
   watchedButtonAdd.addEventListener('click', toggleToWatched);
   queueButtonAdd.addEventListener('click', toggleToQueue);

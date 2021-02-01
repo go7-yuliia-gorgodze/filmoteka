@@ -1,5 +1,7 @@
-const registrationButton = document.querySelector('.button_registration');
-const logInButton = document.querySelector('.button_logIn');
+const registrationButton = document.querySelector('.register-button');
+const logInButton = document.querySelector('.log-in-button');
+const openRegistrFormButton = document.querySelector('.button_registration');
+const openLogInFormButton = document.querySelector('.button_logIn');
 const signOutButton = document.querySelector('.button_signOut');
 const registrationMail = document.querySelector('.registration .mail');
 const registrationPass = document.querySelector('.registration .pass');
@@ -12,9 +14,19 @@ const logInForm = document.querySelector('.logIn');
 
 let user = localStorage['userId'];
 
-registrationButton.addEventListener('click', event => {
+openRegistrFormButton.addEventListener('click', event => {
   event.preventDefault();
   openRegistrationModal();
+});
+
+openLogInFormButton.addEventListener('click', event => {
+  event.preventDefault();
+  openLogINModal();
+  openLogInFormButton.textContent = 'Выход';
+});
+
+registrationButton.addEventListener('click', event => {
+  event.preventDefault();
   console.log(user);
   createUser(registrationMail.value, registrationPass.value);
   registrationMail.value = '';
@@ -22,7 +34,6 @@ registrationButton.addEventListener('click', event => {
 });
 logInButton.addEventListener('click', event => {
   event.preventDefault();
-  openLogINModal();
   console.log(user);
   logInUser(logInMail.value, logInPass.value);
   logInMail.value = '';
