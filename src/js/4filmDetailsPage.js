@@ -93,17 +93,21 @@ function openMovieDetails(selectedMovie) {
 function toggleButtonWatcher(id) {
   let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
   let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-  console.log(filmsWatchedFromLocalStorage, filmsQueueFromLocalStorage);
   if (filmsWatchedFromLocalStorage.includes(id)) {
     watchedButtonAdd.classList.add('button-is-active');
+    watchedButtonAdd.textContent = 'IN WATCHED';
   } else {
     watchedButtonAdd.classList.remove('button-is-active');
+    watchedButtonAdd.textContent = 'ADD TO WATCHED';
   }
   if (filmsQueueFromLocalStorage.includes(id)) {
     queueButtonAdd.classList.add('button-is-active');
+    queueButtonAdd.textContent = 'IN QUEUE';
   } else {
     queueButtonAdd.classList.remove('button-is-active');
+    queueButtonAdd.textContent = 'ADD TO QUEUE';
   }
+  console.dir(queueButtonAdd);
   function getArrayFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(`${key}`));
   }
@@ -144,16 +148,16 @@ function runLocalStorage() {
     let currentId = document.querySelector('.details-img').dataset.filmid;
     let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
     if (filmsIdFromLocalStorage === null) {
-      console.log('new Watched');
       watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
       localStorage.setItem('filmsWatched', JSON.stringify([currentId]));
     } else if (filmsIdFromLocalStorage.includes(currentId)) {
-      console.log('remove Watched');
       watchedButtonAdd.classList.remove('button-is-active');
+      watchedButtonAdd.textContent = 'ADD TO WATCHED';
       removeFilmIdFromArray('filmsWatched', currentId);
     } else {
-      console.log('add Watched');
       watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
       addFilmIdArray('filmsWatched', currentId);
     }
   }
@@ -162,16 +166,17 @@ function runLocalStorage() {
     let currentId = document.querySelector('.details-img').dataset.filmid;
     let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
     if (filmsIdFromLocalStorage === null) {
-      console.log('new Queue');
       queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
       localStorage.setItem('filmsQueue', JSON.stringify([currentId]));
     } else if (filmsIdFromLocalStorage.includes(currentId)) {
-      console.log('remove Queue');
       queueButtonAdd.classList.remove('button-is-active');
+      queueButtonAdd.textContent = 'ADD TO QUEUE';
       removeFilmIdFromArray('filmsQueue', currentId);
     } else {
-      console.log('add Queue');
       queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
+
       addFilmIdArray('filmsQueue', currentId);
     }
   }
@@ -191,9 +196,7 @@ function runLocalStorage() {
   }
   function removeFilmIdFromArray(key, filmId) {
     let arrayFilms = getArrayFromLocalStorage(key);
-    console.log(arrayFilms);
     arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
-    console.log(arrayFilms);
     setArrayToLocalStorage(key, arrayFilms);
   }
 }
