@@ -10,9 +10,6 @@ homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeLibraryPage() {
-  if (document.querySelector('.link-library').classList.contains('current')) {
-    drawQueueFilmList();
-  }
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');
