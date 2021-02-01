@@ -28,21 +28,25 @@ function clickerInit() {
       case 'left':
         buttonsNumbers = previousPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
 
       case 'right':
         buttonsNumbers = nextPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
 
       case '1':
         buttonsNumbers = previousTwoPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
 
       case '2':
         buttonsNumbers = previousPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
 
       case '3':
@@ -51,11 +55,13 @@ function clickerInit() {
       case '4':
         buttonsNumbers = nextPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
 
       case '5':
         buttonsNumbers = nextTwoPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        toTop()
         break;
     }
     if (Number(buttonThreeRef.textContent) > 1) {
@@ -103,4 +109,10 @@ function dischargePaginationAndCreateMarkup() {
   buttonsNumbers = [-1, 0, 1, 2, 3];
   renderNumbers(buttonsNumbers);
   paginationNavigation(buttonsNumbers);
+}
+function toTop() {
+  window.scrollTo({
+    top: 270,
+    behavior: 'smooth',
+  });
 }
