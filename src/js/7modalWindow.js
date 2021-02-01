@@ -9,102 +9,34 @@ const html = document.documentElement;
 let modal, closeModalBtn, modalCollaboratorsList;
 
 
-const collaborators = [
-    {
-        src: '../images/jpg/Margot_Robbie.jpg',
-        alt: 'Марго Робби',
-        collaboratorName: 'Юля',
-        filmName: 'alibi.com'
-    },
-    {
-        src: '../images/jpg/Natalie_Portman.jpg',
-        alt: 'Natalie Portman',
-        collaboratorName: 'Валентина',
-        filmName: 'Leon: The Professional'
-    },
-    {
-        src: '../images/png/Charlie_Hunnam.png',
-        alt: 'Чарли Ханнем',
-        collaboratorName: 'MAXCOM',
-        filmName: 'Побег из Претории'
-    },
-    {
-        src: '../images/jpg/Til_Schweiger.jpg',
-        alt: 'Til Schweiger',
-        collaboratorName: 'Mikhail',
-        filmName: 'Knockin` on Heaven`s Door'
-    },    {
-        src: '../images/jpg/AbdulovA.jpg',
-        alt: 'Олександр Абдулов',
-        collaboratorName: 'Pankov Dmytro',
-        filmName: 'Чародеи'
-    },
-    {
-        src: '',
-        alt: 'alt alt alt',
-        collaboratorName: 'Оля',
-        filmName: 'alibi.com'
-    },
-    {
-        src: '',
-        alt: 'alt alt alt',
-        collaboratorName: 'Аня',
-        filmName: 'alibi.com'
-    },
-    {
-        src: '',
-        alt: 'alt alt alt',
-        collaboratorName: 'Антон',
-        filmName: 'alibi.com'
-    }
-];
+
 
 let scrollPosition = window.pageYOffset;
 
-function createModalWindow() { 
-    return `
-    <div class="modal" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true" >
-    <div class="modal-wrap">
-        <div class="modal-content">
-             <button class="button-close close-modal">
-                <svg class="details-close">
-                    <use href="../images/symbol-defs.svg#close"></use>
-                </svg>
-            </button>
-            <h2 id="modal_Title">Our team</h2>
-            <ul class="modal-our_team_list">
-                
-            </ul> 
-        </div>
-    </div>
-  </div>
-</div>
-    `
-};
+
 
 function fetchFilmModal(film) {
-  return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
-  )
-    .then(response => response.json())
-    .then(data => {
-      console.log("Fetched data",data);
-      return data;
-    });
+    return fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
+    )
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched data", data);
+            return data;
+        });
 };
 
-function modalCollaboratorFilm(e) { 
-        if (!e.target.classList.contains('modal-card_btn_text')) { 
+function modalCollaboratorFilm(e) {
+    if (!e.target.classList.contains('modal-card_btn_text')) {
         return;
-        }
-    
-    console.log(e.target.textContent);
+    }
+
     const film = e.target.textContent || 'alibi.com';
     fetchFilmModal(film).then(({ results }) => {
-        console.log(results[0].id);
         modal.style.zIndex = 1;
         openMovieDetails(results[0]);
-    });
+    })
+        .catch(e => `ERROR ${e}`);
 }
 
 function focusCatcher() {
@@ -117,7 +49,7 @@ function focusSet(element) {
     focusableElements.forEach(el => el.removeAttribute('tabindex'));
 };
 
-function trapScreenReaderFocus() { 
+function trapScreenReaderFocus() {
     modal.removeAttribute('aria-hidden');
     main.setAttribute('aria-hidden', 'true');
     header.setAttribute('aria-hidden', 'true');
@@ -128,7 +60,7 @@ function untrapScreenReaderFocus() {
     main.removeAttribute('aria-hidden');
     header.removeAttribute('aria-hidden');
 };
- 
+
 function scrollPositionOnOpen() {
 
     scrollPosition = window.pageYOffset;
@@ -143,7 +75,7 @@ function scrollPositionOnClose() {
 };
 
 function bodyScrollControlShift() {
-    
+
     let marginSize = window.innerWidth - html.clientWidth;
     if (marginSize) {
         html.style.marginRight = marginSize + "px";
@@ -160,39 +92,59 @@ function onOverlayClickClose(e) {
 };
 
 function onEscapeClose(e) {
-    if (e.which == 27&&modal.classList.contains('modal--active')) {
+    if (e.which == 27 && modal.classList.contains('modal--active')) {
         e.preventDefault();
         closeModalWindow();
         return;
     };
 };
 
-function renderCollaboratorCard(obj) { 
-    return `
-    <li class="modal-our_team_item">
-        <div class="modal-our_tem_card-wrapper">
-            <div class="modal_window-thumb">
-                <img class="modal_window-img" src="${obj.src}" alt="${obj.alt}">
-            </div>
-            <p class="modal-developer_name">${obj.collaboratorName}</p>
-            <button class="modal-card_btn">
-                <span class="modal-card_btn_text">
-                    ${obj.filmName}
-                </span>
-            </button>
-        </div>
-    </li>
-    `;
+
+
+function markup(objectsArray, templateFunction) {
+    let markup = objectsArray.reduce((acc, e) => {
+        let item = templateFunction(e);
+        acc += item;
+        return acc;
+    }, '');
+    return markup;
 };
 
-function markup(array) { 
-    let markup = array.reduce((acc, e) => {
-        let item = renderCollaboratorCard(e);
-            acc += item;
-            return acc;
-        }, '');
-    return markup;
-}
+
+const cursorHandler = {
+    currentElem: null,
+    mouseCursor: document.getElementById('cursor'),
+
+    onmouseover: function (event) {
+        let target = event.target.closest('button');
+        if (!target) return;
+        if (!modal.contains(target)) return;
+        this.currentElem = target;
+        mouseCursor.classList.add('cursor');
+        mouseCursor.classList.remove('cursor-n');
+        body.classList.add('cursor-none');;
+    },
+
+    onmouseout: function (event) {
+        if (!this.currentElem) return;
+        let relatedTarget = event.relatedTarget;
+        while (relatedTarget) {
+            if (relatedTarget == !this.currentElem) return;
+            relatedTarget = relatedTarget.parentNode;
+        };
+
+        mouseCursor.classList.remove('cursor');
+        mouseCursor.classList.add('cursor-n');
+        body.classList.remove('cursor-none');
+        this.currentElem = null;
+    }
+};
+
+
+// function changeCursor() {
+//     body.addEventListener('mouseover', cursorHandler.onmouseover);
+//     body.addEventListener('mouseout', cursorHandler.onmouseout);
+// };
 
 function openModalWindow() {
 
@@ -200,24 +152,34 @@ function openModalWindow() {
     modal = document.querySelector('.modal');
     closeModalBtn = document.querySelector('.close-modal');
     modalCollaboratorsList = document.querySelector('.modal-our_team_list');
-    modalCollaboratorsList.insertAdjacentHTML("beforeend",markup(collaborators));
+    modalCollaboratorsList.insertAdjacentHTML("beforeend", markup(collaborators, renderCollaboratorCard));
 
     modal.classList.add('modal--active');
+    // const cursor = new cursorHandler;
+
+    // console.log(cursor);
+
+    modal.addEventListener('mouseover', cursorHandler.onmouseover);
+    modal.addEventListener('mouseout', cursorHandler.onmouseout);
+
+    toTopBtn.classList.remove('show');
 
     closeModalBtn.addEventListener('click', closeModalWindow);
     document.addEventListener("click", onOverlayClickClose);
     window.addEventListener("keydown", onEscapeClose);
     openModalBtn.removeEventListener('click', openModalWindow);
     modalCollaboratorsList.addEventListener('click', modalCollaboratorFilm);
+    // window.addEventListener('mousemove', cursor);
 
-    focusCatcher();
+    body.addEventListener('mouseover', cursorHandler.onmouseover);
+    body.addEventListener('mouseout', cursorHandler.onmouseout);
     modal.querySelector(FOCUSABLE_SELECTORS).focus();
     focusSet(modal);
 
     bodyScrollControlShift();
     scrollPositionOnOpen();
-    
-    html.classList.add("modal__opened"); 
+
+    html.classList.add("modal__opened");
     // Trap the screen reader focus as well with aria roles. This is much easier as our main and modal elements are siblings, otherwise you'd have to set aria-hidden on every screen reader focusable element not in the modal.
     trapScreenReaderFocus();
 };
@@ -230,13 +192,15 @@ function closeModalWindow() {
     closeModalBtn.removeEventListener('click', closeModal);
 };
 
-function transitionClose() { 
+function transitionClose() {
     modal.classList.remove("modal--moved");
     modalCollaboratorsList.innerHTML = '';
+
     modal.removeEventListener("transitionend", transitionClose);
     document.removeEventListener("click", onOverlayClickClose);
     window.removeEventListener("keydown", onEscapeClose);
     modalCollaboratorsList.removeEventListener('click', modalCollaboratorFilm);
+
     openModalBtn.addEventListener('click', openModalWindow);
     focusSet(html);
     bodyScrollControlShift();
