@@ -1,7 +1,11 @@
+const watchedButtonAdd = document.querySelector('.button-add-to-watch');
+const queueButtonAdd = document.querySelector('.button-add-to-queue');
+
 movieGallery.addEventListener('click', event => {
   if (event.target.nodeName === 'IMG') {
     let id = event.target.dataset.id;
     activateDetailsPage(id);
+    toggleButtonWatcher(id);
   }
 });
 
@@ -85,6 +89,25 @@ function openMovieDetails(selectedMovie) {
       .reduce((acc, item) => acc + `${item.name}, `, ''),
   ).slice(0, -2);
 }
+//
+function toggleButtonWatcher(id) {
+  let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
+  let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
+  console.log(filmsWatchedFromLocalStorage, filmsQueueFromLocalStorage);
+  if (filmsWatchedFromLocalStorage.includes(id)) {
+    watchedButtonAdd.classList.add('button-is-active');
+  } else {
+    watchedButtonAdd.classList.remove('button-is-active');
+  }
+  if (filmsQueueFromLocalStorage.includes(id)) {
+    queueButtonAdd.classList.add('button-is-active');
+  } else {
+    queueButtonAdd.classList.remove('button-is-active');
+  }
+  function getArrayFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(`${key}`));
+  }
+}
 // TABS for movie details
 const tabLinks = document.querySelectorAll('.tabs a');
 const tabPanels = document.querySelectorAll('.tabs-panel');
@@ -110,32 +133,12 @@ for (let el of tabLinks) {
 }
 
 // buttons and local storage in modal
-runLocalStorage();
-function runLocalStorage() {
-  const watchedButtonAdd = document.querySelector('.button-add-to-watch');
-  const queueButtonAdd = document.querySelector('.button-add-to-queue');
 
+runLocalStorage();
+
+function runLocalStorage() {
   watchedButtonAdd.addEventListener('click', toggleToWatched);
   queueButtonAdd.addEventListener('click', toggleToQueue);
-
-  // toggleButtonWatcher();
-
-  // function toggleButtonWatcher() {
-  //   let currentId = document.querySelector('.details-img').dataset.filmid;
-  //   let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
-  //   let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-  //   console.log(filmsWatchedFromLocalStorage, filmsQueueFromLocalStorage);
-  //   if (filmsWatchedFromLocalStorage.includes(currentFilmId)) {
-  //     watchedButtonAdd.classList.add('button-is-active');
-  //   } else {
-  //     watchedButtonAdd.classList.remove('button-is-active');
-  //   }
-  //   if (filmsQueueFromLocalStorage.includes(currentFilmId)) {
-  //     queueButtonAdd.classList.add('button-is-active');
-  //   } else {
-  //     queueButtonAdd.classList.remove('button-is-active');
-  //   }
-  // }
 
   function toggleToWatched() {
     let currentId = document.querySelector('.details-img').dataset.filmid;
