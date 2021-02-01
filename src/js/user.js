@@ -108,6 +108,7 @@ function logInUser(email, password) {
 }
 function signOut() {
   user = undefined;
+  localStorage.removeItem('userId');
 }
 const filmId = '2';
 function writeUserWatchedFilm() {
