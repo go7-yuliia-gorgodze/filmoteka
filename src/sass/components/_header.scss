@@ -78,14 +78,22 @@
 .logo-container {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 .header-list {
   display: flex;
   list-style: none;
 }
-.header-list-item {
-  margin-left: 39px;
+.header-list-item:not(:first-child) {
+  margin-left: 10px;
+
+  @include tablet {
+    margin-left: 39px;
+  }
+
+  @include desktop {
+    margin-left: 39px;
+  }
 }
 .link-header {
   font-weight: 500;
@@ -136,4 +144,16 @@
     text-align: center;
     height: 16px;
   }
+}
+
+.button-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: white;
+  color: white;
+  width: 20px;
+  height: 20px;
+
+  transition: 250ms cubic-bezier(0.47, 0, 0.745, 0.71);
 }
