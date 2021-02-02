@@ -110,19 +110,29 @@ function signOut() {
   user = undefined;
   localStorage.removeItem('userId');
 }
-const filmId = '2';
-function writeUserWatchedFilm() {
-  firebase
-    .database()
-    .ref('users/' + user.uid + '/watched/')
-    .set([filmId]);
-}
 
-function writeUserQueueFilm() {
+//data base
+
+const filmId = 40;
+writeUserWatchedFilm(filmId);
+writeUserQueueFilm(filmId);
+function writeUserWatchedFilm(filmId) {
   firebase
     .database()
-    .ref('users/' + userId + '/queue/')
-    .set([filmId]);
+    .ref('users/' + user + '/watched')
+    .update({ [filmId]: true });
+}
+function writeUserQueueFilm(filmId) {
+  firebase
+    .database()
+    .ref('users/' + user + '/queue')
+    .update({ [filmId]: true });
+}
+function removeUserWatchedFilm(filmId) {
+  firebase
+    .database()
+    .ref('users/' + user + '/watched/' + filmId)
+    .remove();
 }
 function isLogIn() {
   user !== undefined;
