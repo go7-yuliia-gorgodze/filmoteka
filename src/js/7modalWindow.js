@@ -100,14 +100,6 @@ function onEscapeClose(e) {
     }
 }
 
-function onEscapeClose(e) {
-    if (e.which == 27 && modal.classList.contains('modal--active')) {
-        e.preventDefault();
-        closeModalWindow();
-        return;
-    };
-};
-
 function markup(objectsArray, templateFunction) {
     let markup = objectsArray.reduce((acc, e) => {
         let item = templateFunction(e);
