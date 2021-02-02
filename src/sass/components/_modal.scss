@@ -1,6 +1,5 @@
 .modal {
   position: fixed;
-  background: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
   right: 0;
@@ -16,15 +15,25 @@
   flex-flow: column nowrap;
   z-index: 99;
   visibility: hidden;
+  opacity: 1;
 }
 
-// .visually-hidden {
-//   position: absolute !important;
-//   height: 1px;
-//   width: 1px;
-//   overflow: hidden;
-//   clip: rect(1px, 1px, 1px, 1px);
-// }
+.modal__shadow{
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  border:none;
+  overflow: hidden;
+  z-index: 98;
+  opacity: 0.6;
+  animation: 0.6s ease 0s 1 modalVisible;
+  transition: opacity 0.15s ease;
+}
 
 .modal-wrap button:focus {
   outline: 2px solid black;
@@ -47,19 +56,19 @@
   margin: 50px 0;
   flex-shrink: 0;
   flex-grow: 0;
-  // height: 250px;
   background: white;
   padding: 20px;
   position: relative;
-  transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+
+  transition: transform 0.3s ease 0.01s, opacity 0.3s ease 0.01s;
   transform: scale(0.9);
+  opacity: 0;
+  
   overflow: visible;
-  opacity: 1;
   text-align: center;
   border-radius: 5px;
   box-shadow: 0 10px 6px -6px rgb(236, 236, 236);
 
-  //   opacity: 0;
   @include tablet {
     width: 700px;
   }
@@ -76,6 +85,7 @@
 .modal--active {
   visibility: visible;
 }
+
 .modal--active .modal-content {
   transform: scale(1);
   opacity: 1;
@@ -119,7 +129,7 @@
 }
 
 .modal_window-thumb {
-  background-color: #999;
+  background-color: black;
   border-radius: 50%;
   height: 85px;
   width: 85px;
@@ -135,7 +145,7 @@
 }
 
 .modal_window-img {
-  object-fit: scale-down;
+  object-fit: cover;
   border-radius: 50%;
   height: 85px;
   width: 85px;
@@ -154,3 +164,18 @@
   background-color: transparent;
   padding: 3px;
 }
+
+@keyframes modalVisible{
+  from { 
+    opacity: 0; 
+  }
+   to {
+     opacity: 0.6; 
+  } 
+}
+
+
+
+
+
+
