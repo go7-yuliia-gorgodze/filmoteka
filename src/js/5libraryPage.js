@@ -39,7 +39,7 @@ function createWatchCard(moviesWatched) {
           res.poster_path,
           res.title,
           res.id,
-          undefined,
+          res.release_date,
           res.vote_average,
         ),
       );
@@ -56,7 +56,7 @@ function createQueqeCard(moviesQueue) {
           res.poster_path,
           res.title,
           res.id,
-          undefined,
+          res.release_date,
           res.vote_average,
         ),
       );
