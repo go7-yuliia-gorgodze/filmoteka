@@ -5,11 +5,15 @@ const header = document.querySelector('header');
 const homePageLink = document.querySelector('.link-header');
 const homePageLogo = document.querySelector('.link-logo');
 
-myLibraryLink.addEventListener('click', activeLibraryPage);
+myLibraryLink.addEventListener('click', () => {
+  activeLibraryPage();
+  drawWatchedFilmList();
+});
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeLibraryPage() {
+  // drawWatchedFilmList();
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');
@@ -19,7 +23,7 @@ function activeLibraryPage() {
   header.classList.add('my-library-header');
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML = '';
-  drawWatchedFilmList();
+  localStorage.setItem('activePage', 'activeLibraryPage');
 }
 
 function activeHomePage() {
@@ -33,4 +37,11 @@ function activeHomePage() {
   header.classList.add('header');
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
+  localStorage.setItem('activePage', 'activeHomePage');
+}
+
+if (localStorage.getItem('activePage') === 'activeHomePage') {
+  activeHomePage();
+} else {
+  activeLibraryPage();
 }

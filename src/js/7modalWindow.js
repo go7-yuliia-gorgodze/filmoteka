@@ -1,4 +1,5 @@
-const FOCUSABLE_SELECTORS = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+const FOCUSABLE_SELECTORS =
+    'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
 
 const openModalBtn = document.querySelector('.open-modal');
 
@@ -55,12 +56,12 @@ function modalCollaboratorFilm(e) {
 function focusCatcher() {
     const focusableElements = html.querySelectorAll(FOCUSABLE_SELECTORS);
     focusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
-};
+}
 
 function focusSet(element) {
     const focusableElements = element.querySelectorAll(FOCUSABLE_SELECTORS);
     focusableElements.forEach(el => el.removeAttribute('tabindex'));
-};
+}
 
 function trapScreenReaderFocus() {
     modal.removeAttribute('aria-hidden');
@@ -89,7 +90,15 @@ function onOverlayClickClose(e) {
     if (!wrap) return;
     e.preventDefault();
     closeModalWindow();
-};
+}
+
+function onEscapeClose(e) {
+    if (e.which == 27 && modal.classList.contains('modal--active')) {
+        e.preventDefault();
+        closeModalWindow();
+        return;
+    }
+}
 
 function onEscapeClose(e) {
     if (e.which == 27 && modal.classList.contains('modal--active')) {

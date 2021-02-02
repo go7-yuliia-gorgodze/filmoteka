@@ -1,7 +1,11 @@
+const watchedButtonAdd = document.querySelector('.button-add-to-watch');
+const queueButtonAdd = document.querySelector('.button-add-to-queue');
+
 movieGallery.addEventListener('click', event => {
   if (event.target.nodeName === 'IMG') {
     let id = event.target.dataset.id;
     activateDetailsPage(id);
+    toggleButtonWatcher(id);
   }
 });
 
@@ -23,10 +27,9 @@ function closeModal(event) {
     document.querySelector('iframe').src = '';
   }
 }
-
+let selectedMovie;
 function activateDetailsPage(id, itsLibraryMovie) {
-  // let selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
-  let selectedMovie;
+  selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
   if (itsLibraryMovie) {
     let allLocalStorageMovies = [
       ...JSON.parse(localStorage.getItem('filmsQueue')),
@@ -40,12 +43,15 @@ function activateDetailsPage(id, itsLibraryMovie) {
   }
 
   openMovieDetails(selectedMovie);
+  document
+    .querySelector('.details-img')
+    .setAttribute('data-filmId', selectedMovie.id);
 }
 
 fetchGenres();
 
 function openMovieDetails(selectedMovie) {
-  toTopBtn.classList.remove('show');
+  // toTopBtn.classList.remove('show');
   body.classList.add('blocked-scroll');
   detailsModal.classList.remove('hidden');
   if (selectedMovie.poster_path) {
@@ -74,7 +80,6 @@ function openMovieDetails(selectedMovie) {
   detailsPopularuty.innerHTML = selectedMovie.popularity;
   detailsOriginalTitle.textContent = selectedMovie.original_title;
   detailsVote.textContent = selectedMovie.vote_average;
-  console.log(selectedMovie.id);
   detailsVotes.textContent = `/ ${selectedMovie.vote_count}`;
   detailsGenre.textContent = String(
     genres
@@ -83,24 +88,117 @@ function openMovieDetails(selectedMovie) {
       )
       .reduce((acc, item) => acc + `${item.name}, `, ''),
   ).slice(0, -2);
+}
+//
+function toggleButtonWatcher(id) {
+  let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
+  let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
+  if (filmsWatchedFromLocalStorage !== null) {
+    if (filmsWatchedFromLocalStorage.includes(id)) {
+      watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
+    } else {
+      watchedButtonAdd.classList.remove('button-is-active');
+      watchedButtonAdd.textContent = 'ADD TO WATCHED';
+    }
+  }
+  if (filmsQueueFromLocalStorage !== null) {
+    if (filmsQueueFromLocalStorage.includes(id)) {
+      queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
+    } else {
+      queueButtonAdd.classList.remove('button-is-active');
+      queueButtonAdd.textContent = 'ADD TO QUEUE';
+    }
+  }
 
-  // console.log(youtubeId);
+  function getArrayFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(`${key}`));
+  }
+}
+// TABS for movie details
+const tabLinks = document.querySelectorAll('.tabs a');
+const tabPanels = document.querySelectorAll('.tabs-panel');
+
+for (let el of tabLinks) {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+
+    document.querySelector('.tabs li.active').classList.remove('active');
+    document.querySelector('.tabs-panel.active').classList.remove('active');
+
+    const parentListItem = el.parentElement;
+    parentListItem.classList.add('active');
+    const index = [...parentListItem.parentElement.children].indexOf(
+      parentListItem,
+    );
+
+    const panel = [...tabPanels].filter(
+      el => el.getAttribute('data-index') == index,
+    );
+    panel[0].classList.add('active');
+  });
 }
 
-const fistTitle = document.getElementById('details-title-first');
-const secondTitle = document.getElementById('details-title-secondary');
-const detailsTextContainer = document.getElementById('js-detailsText');
+// buttons and local storage in modal
+runLocalStorage();
+function runLocalStorage() {
+  watchedButtonAdd.addEventListener('click', toggleToWatched);
+  queueButtonAdd.addEventListener('click', toggleToQueue);
 
-fistTitle.addEventListener('click', () => {
-  fistTitle.classList.add('is-active');
-  secondTitle.classList.remove('is-active');
-  movieTrailer.classList.add('is-hidden');
-  detailsTextContainer.classList.remove('is-hidden');
-});
+  function toggleToWatched() {
+    let currentId = document.querySelector('.details-img').dataset.filmid;
+    let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
+    if (filmsIdFromLocalStorage === null) {
+      watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
+      localStorage.setItem('filmsWatched', JSON.stringify([currentId]));
+    } else if (filmsIdFromLocalStorage.includes(currentId)) {
+      watchedButtonAdd.classList.remove('button-is-active');
+      watchedButtonAdd.textContent = 'ADD TO WATCHED';
+      removeFilmIdFromArray('filmsWatched', currentId);
+    } else {
+      watchedButtonAdd.classList.add('button-is-active');
+      watchedButtonAdd.textContent = 'IN WATCHED';
+      addFilmIdArray('filmsWatched', currentId);
+    }
+  }
 
-secondTitle.addEventListener('click', () => {
-  fistTitle.classList.remove('is-active');
-  secondTitle.classList.add('is-active');
-  detailsTextContainer.classList.add('is-hidden');
-  movieTrailer.classList.remove('is-hidden');
-});
+  function toggleToQueue() {
+    let currentId = document.querySelector('.details-img').dataset.filmid;
+    let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
+    if (filmsIdFromLocalStorage === null) {
+      queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
+      localStorage.setItem('filmsQueue', JSON.stringify([currentId]));
+    } else if (filmsIdFromLocalStorage.includes(currentId)) {
+      queueButtonAdd.classList.remove('button-is-active');
+      queueButtonAdd.textContent = 'ADD TO QUEUE';
+      removeFilmIdFromArray('filmsQueue', currentId);
+    } else {
+      queueButtonAdd.classList.add('button-is-active');
+      queueButtonAdd.textContent = 'IN QUEUE';
+
+      addFilmIdArray('filmsQueue', currentId);
+    }
+  }
+
+  function getArrayFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(`${key}`));
+  }
+
+  function setArrayToLocalStorage(key, arrayFilms) {
+    localStorage.setItem(`${key}`, JSON.stringify(arrayFilms));
+  }
+
+  function addFilmIdArray(key, filmId) {
+    let arrayFilms = getArrayFromLocalStorage(key);
+    arrayFilms.push(filmId);
+    setArrayToLocalStorage(key, arrayFilms);
+  }
+  function removeFilmIdFromArray(key, filmId) {
+    let arrayFilms = getArrayFromLocalStorage(key);
+    arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
+    setArrayToLocalStorage(key, arrayFilms);
+  }
+}
