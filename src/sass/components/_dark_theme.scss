@@ -3,17 +3,17 @@
     top: 200px;
     
   }
-.dark-theme {
+.darkTheme {
     color: white;
-    background-color: black;
+    background-color: rgb(16,0,0);
   }
    
-.footer-dark {
+.footer .darkTheme {
     color: white;
     background-color: $primary-text-color;
   }
 
-.textFooter-dark {
+.footer-text-wrapper .darkTheme {
     color: $accent-color;
   }
   
