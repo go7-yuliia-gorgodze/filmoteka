@@ -9,6 +9,8 @@ movieGallery.addEventListener('click', event => {
   }
 });
 
+
+
 detailsButtonClose.addEventListener('click', closeModal);
 detailsModal.addEventListener('click', closeModal);
 document.addEventListener('keydown', closeModal);
