@@ -20,7 +20,7 @@ function activeLibraryPage() {
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML = '';
   localStorage.setItem('activePage', 'activeLibraryPage');
-  drawWatchedFilmList;
+  drawWatchedFilmList();
 }
 
 function activeHomePage() {
