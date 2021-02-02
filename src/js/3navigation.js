@@ -9,11 +9,11 @@ myLibraryLink.addEventListener('click', () => {
   activeLibraryPage();
   drawWatchedFilmList();
 });
+
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeLibraryPage() {
-  // drawWatchedFilmList();
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');

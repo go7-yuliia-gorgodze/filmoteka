@@ -1,6 +1,9 @@
 'use strict';
 
 const movieGallery = document.querySelector('#js-moviesList');
+const libraryGallery = document.querySelector('#js-library');
+
+console.log(libraryGallery);
 
 const searchField = document.querySelector('#js-form');
 const moviesList = document.querySelector('#js-moviesList');
@@ -20,7 +23,6 @@ const detailsGenre = document.querySelector('#details-genre');
 const detailsOriginalTitle = document.querySelector('#details-originalTitle');
 const detailsButtonClose = document.querySelector('.button-close');
 const movieTrailer = document.getElementById('js-movieTrailer');
-
 
 const body = document.querySelector('body');
 
