@@ -145,6 +145,8 @@
 // }
 
 // buttons and local storage in modal
+<<
+<< << < HEAD
 // runLocalStorage();
 
 // function runLocalStorage() {
@@ -208,3 +210,68 @@
 //         setArrayToLocalStorage(key, arrayFilms);
 //     }
 // }
+    ===
+    === =
+    runLocalStorage();
+
+function runLocalStorage() {
+    watchedButtonAdd.addEventListener('click', toggleToWatched);
+    queueButtonAdd.addEventListener('click', toggleToQueue);
+
+    function toggleToWatched() {
+        let currentId = document.querySelector('.details-img').dataset.filmid;
+        let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
+        if (filmsIdFromLocalStorage === null) {
+            watchedButtonAdd.classList.add('button-is-active');
+            watchedButtonAdd.textContent = 'IN WATCHED';
+            writeUserWatchedFilm(currentId);
+        } else if (filmsIdFromLocalStorage.includes(currentId)) {
+            watchedButtonAdd.classList.remove('button-is-active');
+            watchedButtonAdd.textContent = 'ADD TO WATCHED';
+            removeUserWatchedFilm(currentId);
+        } else {
+            watchedButtonAdd.classList.add('button-is-active');
+            watchedButtonAdd.textContent = 'IN WATCHED';
+            writeUserWatchedFilm(currentId);
+        }
+    }
+
+    function toggleToQueue() {
+        let currentId = document.querySelector('.details-img').dataset.filmid;
+        let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
+        if (filmsIdFromLocalStorage === null) {
+            queueButtonAdd.classList.add('button-is-active');
+            queueButtonAdd.textContent = 'IN QUEUE';
+            writeUserQueueFilm(currentId);
+        } else if (filmsIdFromLocalStorage.includes(currentId)) {
+            queueButtonAdd.classList.remove('button-is-active');
+            queueButtonAdd.textContent = 'ADD TO QUEUE';
+            removeUserQueueFilm(currentId);
+        } else {
+            queueButtonAdd.classList.add('button-is-active');
+            queueButtonAdd.textContent = 'IN QUEUE';
+            writeUserQueueFilm(currentId);
+        }
+    }
+
+    function getArrayFromLocalStorage(key) {
+        return JSON.parse(localStorage.getItem(`${key}`));
+    }
+
+    function setArrayToLocalStorage(key, arrayFilms) {
+        localStorage.setItem(`${key}`, JSON.stringify(arrayFilms));
+    }
+
+    function addFilmIdArray(key, filmId) {
+        let arrayFilms = getArrayFromLocalStorage(key);
+        arrayFilms.push(filmId);
+        setArrayToLocalStorage(key, arrayFilms);
+    }
+
+    function removeFilmIdFromArray(key, filmId) {
+        let arrayFilms = getArrayFromLocalStorage(key);
+        arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
+        setArrayToLocalStorage(key, arrayFilms);
+    }
+} >>>
+>>> > 9 be5c4a5a2765f70a00207460403c5b9bed2bc88
