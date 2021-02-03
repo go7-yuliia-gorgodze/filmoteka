@@ -14,6 +14,17 @@ const logInForm = document.querySelector('.logIn');
 
 let user = localStorage['userId'];
 
+function toggleButtonLogIn() {
+  if (isLogIn()) {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#signout'></use></svg>";
+  } else {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+  }
+}
+toggleButtonLogIn();
+
 openRegistrFormButton.addEventListener('click', event => {
   event.preventDefault();
   openRegistrationModal();
@@ -21,8 +32,13 @@ openRegistrFormButton.addEventListener('click', event => {
 
 openLogInFormButton.addEventListener('click', event => {
   event.preventDefault();
-  openLogINModal();
-  openLogInFormButton.textContent = 'Выход';
+  if (isLogIn()) {
+    signOut();
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+  } else {
+    openLogINModal();
+  }
 });
 
 registrationButton.addEventListener('click', event => {
@@ -39,11 +55,12 @@ logInButton.addEventListener('click', event => {
   logInMail.value = '';
   logInPass.value = '';
 });
-signOutButton.addEventListener('click', event => {
-  event.preventDefault();
-  console.log(user);
-  signOut();
-});
+// signOutButton.addEventListener('click', event => {
+//   event.preventDefault();
+//   console.log(user);
+//   signOut();
+//   toggleButtonLogIn();
+// });
 
 formButtonClose.addEventListener('click', closeFormModal);
 formModal.addEventListener('click', closeFormModal);
@@ -71,6 +88,7 @@ function closeFormModal(event) {
     registrationForm.classList.add('hidden');
     logInForm.classList.add('hidden');
   }
+  toggleButtonLogIn();
 }
 function createUser(email, password) {
   firebase
@@ -135,11 +153,10 @@ function removeUserWatchedFilm(filmId) {
     .remove();
 }
 function isLogIn() {
-  user !== undefined;
+  return user !== undefined;
 }
 
-console.log(libraryGallery);
-
+//for library page
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   activeLibraryPage();
   drawWatchedFilmList();
