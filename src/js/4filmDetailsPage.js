@@ -1,5 +1,5 @@
-const watchedButtonAdd = document.querySelector('.button-add-to-watch');
-const queueButtonAdd = document.querySelector('.button-add-to-queue');
+// const watchedButtonAdd = document.querySelector('.button-add-to-watch');
+// const queueButtonAdd = document.querySelector('.button-add-to-queue');
 
 movieGallery.addEventListener('click', event => {
   if (event.target.nodeName === 'IMG') {
@@ -11,24 +11,24 @@ movieGallery.addEventListener('click', event => {
 
 
 
-detailsButtonClose.addEventListener('click', closeModal);
-detailsModal.addEventListener('click', closeModal);
-document.addEventListener('keydown', closeModal);
+// detailsButtonClose.addEventListener('click', closeModal);
+// detailsModal.addEventListener('click', closeModal);
+// document.addEventListener('keydown', closeModal);
 
-function closeModal(event) {
-  if (
-    event.target.classList.contains('details-container') ||
-    event.target.classList.contains('details-close') ||
-    event.target.nodeName === 'use' ||
-    event.key === 'Escape'
-  ) {
-    toTopBtn.classList.add('show');
-    body.classList.remove('blocked-scroll');
-    detailsModal.classList.add('hidden');
-    // stop player youtube
-    document.querySelector('iframe').src = '';
-  }
-}
+// function closeModal(event) {
+//   if (
+//     event.target.classList.contains('details-container') ||
+//     event.target.classList.contains('details-close') ||
+//     event.target.nodeName === 'use' ||
+//     event.key === 'Escape'
+//   ) {
+//     // toTopBtn.classList.add('show');
+//     body.classList.remove('blocked-scroll');
+//     detailsModal.classList.add('hidden');
+//     // stop player youtube
+//     document.querySelector('iframe').src = '';
+//   }
+// }
 let selectedMovie;
 function activateDetailsPage(id, itsLibraryMovie) {
   selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
@@ -48,49 +48,50 @@ function activateDetailsPage(id, itsLibraryMovie) {
   document
     .querySelector('.details-img')
     .setAttribute('data-filmId', selectedMovie.id);
+
 }
 
 fetchGenres();
 
-function openMovieDetails(selectedMovie) {
-  // toTopBtn.classList.remove('show');
-  body.classList.add('blocked-scroll');
-  detailsModal.classList.remove('hidden');
-  if (selectedMovie.poster_path) {
-    detailsPreviewImg.setAttribute(
-      'src',
-      `https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`,
-    );
-  } else {
-    detailsPreviewImg.setAttribute('src', '../images/plug.jpg');
-  }
+// function openMovieDetails(selectedMovie) {
+//   // toTopBtn.classList.remove('show');
+//   body.classList.add('blocked-scroll');
+//   detailsModal.classList.remove('hidden');
+//   if (selectedMovie.poster_path) {
+//     detailsPreviewImg.setAttribute(
+//       'src',
+//       `https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`,
+//     );
+//   } else {
+//     detailsPreviewImg.setAttribute('src', '../images/plug.jpg');
+//   }
 
-  fetchMovies(selectedMovie.id).then(res => {
-    movieTrailer.innerHTML = `
-    <iframe
-      
-      src="https://www.youtube.com/embed/${res}"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-  `;
-  });
+//   fetchMovies(selectedMovie.id).then(res => {
+//     movieTrailer.innerHTML = `
+//     <iframe
 
-  detailsTitle.textContent = selectedMovie.title;
-  detailsDescription.textContent = selectedMovie.overview;
-  detailsPopularuty.innerHTML = selectedMovie.popularity;
-  detailsOriginalTitle.textContent = selectedMovie.original_title;
-  detailsVote.textContent = selectedMovie.vote_average;
-  detailsVotes.textContent = `/ ${selectedMovie.vote_count}`;
-  detailsGenre.textContent = String(
-    genres
-      .filter(el =>
-        selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
-      )
-      .reduce((acc, item) => acc + `${item.name}, `, ''),
-  ).slice(0, -2);
-}
+//       src="https://www.youtube.com/embed/${res}"
+//       frameborder="0"
+//       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+//       allowfullscreen
+//     ></iframe>
+//   `;
+//   });
+
+//   detailsTitle.textContent = selectedMovie.title;
+//   detailsDescription.textContent = selectedMovie.overview;
+//   detailsPopularuty.innerHTML = selectedMovie.popularity;
+//   detailsOriginalTitle.textContent = selectedMovie.original_title;
+//   detailsVote.textContent = selectedMovie.vote_average;
+//   detailsVotes.textContent = `/ ${selectedMovie.vote_count}`;
+//   detailsGenre.textContent = String(
+//     genres
+//       .filter(el =>
+//         selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
+//       )
+//       .reduce((acc, item) => acc + `${item.name}, `, ''),
+//   ).slice(0, -2);
+// }
 //
 function toggleButtonWatcher(id) {
   let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
@@ -119,28 +120,28 @@ function toggleButtonWatcher(id) {
   }
 }
 // TABS for movie details
-const tabLinks = document.querySelectorAll('.tabs a');
-const tabPanels = document.querySelectorAll('.tabs-panel');
+// const tabLinks = document.querySelectorAll('.tabs a');
+// const tabPanels = document.querySelectorAll('.tabs-panel');
 
-for (let el of tabLinks) {
-  el.addEventListener('click', e => {
-    e.preventDefault();
+// for (let el of tabLinks) {
+//   el.addEventListener('click', e => {
+//     e.preventDefault();
 
-    document.querySelector('.tabs li.active').classList.remove('active');
-    document.querySelector('.tabs-panel.active').classList.remove('active');
+//     document.querySelector('.tabs li.active').classList.remove('active');
+//     document.querySelector('.tabs-panel.active').classList.remove('active');
 
-    const parentListItem = el.parentElement;
-    parentListItem.classList.add('active');
-    const index = [...parentListItem.parentElement.children].indexOf(
-      parentListItem,
-    );
+//     const parentListItem = el.parentElement;
+//     parentListItem.classList.add('active');
+//     const index = [...parentListItem.parentElement.children].indexOf(
+//       parentListItem,
+//     );
 
-    const panel = [...tabPanels].filter(
-      el => el.getAttribute('data-index') == index,
-    );
-    panel[0].classList.add('active');
-  });
-}
+//     const panel = [...tabPanels].filter(
+//       el => el.getAttribute('data-index') == index,
+//     );
+//     panel[0].classList.add('active');
+//   });
+// }
 
 // buttons and local storage in modal
 runLocalStorage();

@@ -1,4 +1,6 @@
-<!-- <div id="js-detailsPage" class="details-container details-page hidden">
+function renderDetailFilmModal() {
+    return `
+    <div id="js-detailsPage" class="details-container details-page hidden modal">
   <div class="details-wrapper">
     <img
       id="js-previewImg"
@@ -67,4 +69,6 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
+    `
+}
