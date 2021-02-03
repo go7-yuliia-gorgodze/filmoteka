@@ -30,8 +30,8 @@ function scrollPositionOnClose() {
 
 function fetchFilmModal(film) {
     return fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
-    )
+            `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
+        )
         .then(response => response.json())
         .then(data => {
             console.log("Fetched data", data);
@@ -46,10 +46,10 @@ function modalCollaboratorFilm(e) {
 
     const film = e.target.textContent || 'alibi.com';
     fetchFilmModal(film).then(({ results }) => {
-        modal.style.zIndex = 1;
-        shadow.style.zIndex = 0;
-        openMovieDetails(results[0]);
-    })
+            modal.style.zIndex = 1;
+            shadow.style.zIndex = 0;
+            openMovieDetails(results[0]);
+        })
         .catch(e => `ERROR ${e}`);
 }
 
@@ -113,7 +113,7 @@ const cursorHandler = {
     currentElem: null,
     mouseCursor: document.getElementById('cursor'),
 
-    onmouseover: function (event) {
+    onmouseover: function(event) {
         let target = event.target.closest('button');
         if (!target) return;
         if (!modal.contains(target)) return;
@@ -123,7 +123,7 @@ const cursorHandler = {
         body.classList.add('cursor-none');;
     },
 
-    onmouseout: function (event) {
+    onmouseout: function(event) {
         if (!this.currentElem) return;
         let relatedTarget = event.relatedTarget;
         while (relatedTarget) {
@@ -139,7 +139,7 @@ const cursorHandler = {
 };
 
 function shadowShow() {
-
+    if (shadow) { return };
 
     shadow = document.createElement('div');
     shadow.classList.add('modal__shadow');
@@ -167,8 +167,8 @@ function openModalWindow() {
 
 
 
+    if (toTopBtn) { toTopBtn.classList.remove('show'); }
 
-    toTopBtn.classList.remove('show');
 
 
     closeModalBtn.addEventListener('click', closeModalWindow);
@@ -215,8 +215,9 @@ function transitionClose() {
     untrapScreenReaderFocus();
     // restore focus to the triggering element
     openModalBtn.focus();
-    modal.parentNode.removeChild(modal);
-    shadow.parentNode.removeChild(shadow);
+    body.removeChild(modal);
+    body.removeChild(shadow);
+    shadow = null;
 };
 
 openModalBtn.addEventListener('click', openModalWindow);
@@ -227,56 +228,55 @@ openModalBtn.addEventListener('click', openModalWindow);
 //     defaultTemplates: null,
 // };
 
-// const collaborators = [
-//     {
-//         src: '../images/jpg/Margot_Robbie_cr.jpg',
-//         alt: 'Марго Робби',
-//         collaboratorName: 'Юля',
-//         filmName: 'alibi.com'
-//     },
-//     {
-//         src: '../images/jpg/Natalie_Portman_cr.jpg',
-//         alt: 'Natalie Portman',
-//         collaboratorName: 'Валентина',
-//         filmName: 'Leon: The Professional'
-//     },
-//     {
-//         src: '../images/png/Charlie_Hunnam.png',
-//         alt: 'Чарли Ханнем',
-//         collaboratorName: 'MAXCOM',
-//         filmName: 'Побег из Претории'
-//     },
-//     {
-//         src: '../images/jpg/Til_Schweiger_cr.jpg',
-//         alt: 'Til Schweiger',
-//         collaboratorName: 'Mikhail',
-//         filmName: 'Knockin` on Heaven`s Door'
-//     }, {
-//         src: '../images/jpg/AbdulovA.jpg',
-//         alt: 'Олександр Абдулов',
-//         collaboratorName: 'Pankov Dmytro',
-//         filmName: 'Чародеи'
-//     },
-//     {
-//         src: '../images/jpg/Johnny_Depp.jpg',
-//         alt: 'alt alt alt',
-//         collaboratorName: 'Dimas',
-//         filmName: 'Fear and Loathing in Las Vegas'
-//     },
-//     {
-//         src: '../images/jpg/Adam_Sandler.jpg',
-//         alt: 'Adam Sandler',
-//         collaboratorName: 'Victor',
-//         filmName: 'Большой папа'
-//     },
-//     {
-//         src: '../images/jpg/Tim_Robbins.jpg',
-//         alt: 'Tim Robbins',
-//         collaboratorName: 'Осипов Сергей',
-//         filmName: 'Побег из Шоушенка'
-//         // filmName: 'ghjdgjg'
-//     }
-// ];
+const collaborators = [{
+        src: '../images/jpg/Margot_Robbie_cr.jpg',
+        alt: 'Марго Робби',
+        collaboratorName: 'Юля',
+        filmName: 'alibi.com'
+    },
+    {
+        src: '../images/jpg/Natalie_Portman_cr.jpg',
+        alt: 'Natalie Portman',
+        collaboratorName: 'Валентина',
+        filmName: 'Leon: The Professional'
+    },
+    {
+        src: '../images/png/Charlie_Hunnam.png',
+        alt: 'Чарли Ханнем',
+        collaboratorName: 'MAXCOM',
+        filmName: 'Побег из Претории'
+    },
+    {
+        src: '../images/jpg/Til_Schweiger_cr.jpg',
+        alt: 'Til Schweiger',
+        collaboratorName: 'Mikhail',
+        filmName: 'Knockin` on Heaven`s Door'
+    }, {
+        src: '../images/jpg/AbdulovA.jpg',
+        alt: 'Олександр Абдулов',
+        collaboratorName: 'Pankov Dmytro',
+        filmName: 'Чародеи'
+    },
+    {
+        src: '../images/jpg/Johnny_Depp.jpg',
+        alt: 'alt alt alt',
+        collaboratorName: 'Dimas',
+        filmName: 'Fear and Loathing in Las Vegas'
+    },
+    {
+        src: '../images/jpg/Adam_Sandler.jpg',
+        alt: 'Adam Sandler',
+        collaboratorName: 'Victor',
+        filmName: 'Большой папа'
+    },
+    {
+        src: '../images/jpg/Tim_Robbins.jpg',
+        alt: 'Tim Robbins',
+        collaboratorName: 'Осипов Сергей',
+        filmName: 'Побег из Шоушенка'
+            // filmName: 'ghjdgjg'
+    }
+];
 
 
 // const collaboratorsModalProps = {
@@ -529,4 +529,3 @@ openModalBtn.addEventListener('click', openModalWindow);
 // const collaboratorsModalWindow = new ModalWindow(collaboratorsModalProps);
 
 // openModalBtn.addEventListener('click', collaboratorsModalWindow.openModalWindow.bind(collaboratorsModalWindow));
-

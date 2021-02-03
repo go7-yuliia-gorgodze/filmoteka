@@ -1,5 +1,15 @@
 let selectedMovie;
 
+movieGallery.addEventListener('click', onFilmCardClickHandler);
+
+function onFilmCardClickHandler(event) {
+    if (event.target.nodeName === 'IMG') {
+        let id = event.target.dataset.id;
+        activateDetailsPage(id);
+        // toggleButtonWatcher(id);
+    }
+};
+
 function activateDetailsPage(id, itsLibraryMovie) {
     selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
     if (itsLibraryMovie) {
@@ -16,9 +26,14 @@ function activateDetailsPage(id, itsLibraryMovie) {
 
     console.log(selectedMovie);
 
-    // openMovieDetails(selectedMovie);
+    openMovieDetails(selectedMovie);
     // document
     //     .querySelector('.details-img')
     //     .setAttribute('data-filmId', selectedMovie.id);
+};
 
+function openMovieDetails(selectedMovie) {
+    if (toTopBtn) { toTopBtn.classList.remove('show') };
+    shadowShow();
+    body.insertAdjacentHTML('beforeend', renderDetailFilmModal());
 }
