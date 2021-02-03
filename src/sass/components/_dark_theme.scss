@@ -5,16 +5,7 @@
   }
 .darkTheme {
     color: white;
-    background-color: rgb(16,0,0);
-  }
-   
-.footer .darkTheme {
-    color: white;
-    background-color: $primary-text-color;
-  }
-
-.footer-text-wrapper .darkTheme {
-    color: $accent-color;
+    background-color: rgb(28,28,28);
   }
   
 .theme-switch {
@@ -110,5 +101,41 @@
   .theme-switch__toggle:focus + .theme-switch__track,
   .theme-switch__toggle:active + .theme-switch__track {
     box-shadow: 0 0 0 2px #ffb300;
+  }
+
+  .text-orange .darkTheme {
+    background-color: rgb(28,28,28);
+  }
+  .details-container .darkTheme {
+    background-color: rgb(234,95,2);
+  }
+  .button-add-to-watch .darkTheme {
+    border: 1px solid white;
+  }
+  .button-add-to-queue .darkTheme {
+    border: 1px solid white; 
+  }
+  .button-is-active .darkTheme {
+    background-color: rgb(28,28,28);
+    border: none;
+    }
+  
+  .footer .darkTheme {
+      color: white;
+      background-color: rgb(28,28,28); 
+    }
+  
+  .footer-text-wrapper .darkTheme {
+      color: $accent-color;
+      
+    }
+  .footer-copyright .darkTheme {
+    color: $accent-color;
+  }
+  .footer-creators .darkTheme {
+    color: $accent-color;
+  }
+  .pagination__button .darkTheme {
+        color: $primary-white-color;
   }
   
