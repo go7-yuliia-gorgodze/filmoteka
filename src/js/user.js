@@ -14,6 +14,17 @@ const logInForm = document.querySelector('.logIn');
 
 let user = localStorage['userId'];
 
+function toggleButtonLogIn() {
+  if (isLogIn()) {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#signout'></use></svg>";
+  } else {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+  }
+}
+toggleButtonLogIn();
+
 openRegistrFormButton.addEventListener('click', event => {
   event.preventDefault();
   openRegistrationModal();
@@ -21,8 +32,13 @@ openRegistrFormButton.addEventListener('click', event => {
 
 openLogInFormButton.addEventListener('click', event => {
   event.preventDefault();
-  openLogINModal();
-  openLogInFormButton.textContent = 'Выход';
+  if (isLogIn()) {
+    signOut();
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+  } else {
+    openLogINModal();
+  }
 });
 
 registrationButton.addEventListener('click', event => {
@@ -39,11 +55,12 @@ logInButton.addEventListener('click', event => {
   logInMail.value = '';
   logInPass.value = '';
 });
-signOutButton.addEventListener('click', event => {
-  event.preventDefault();
-  console.log(user);
-  signOut();
-});
+// signOutButton.addEventListener('click', event => {
+//   event.preventDefault();
+//   console.log(user);
+//   signOut();
+//   toggleButtonLogIn();
+// });
 
 formButtonClose.addEventListener('click', closeFormModal);
 formModal.addEventListener('click', closeFormModal);
@@ -71,6 +88,7 @@ function closeFormModal(event) {
     registrationForm.classList.add('hidden');
     logInForm.classList.add('hidden');
   }
+  toggleButtonLogIn();
 }
 function createUser(email, password) {
   firebase
@@ -110,26 +128,35 @@ function signOut() {
   user = undefined;
   localStorage.removeItem('userId');
 }
-const filmId = '2';
-function writeUserWatchedFilm() {
-  firebase
-    .database()
-    .ref('users/' + user.uid + '/watched/')
-    .set([filmId]);
-}
 
-function writeUserQueueFilm() {
+//data base
+
+const filmId = 40;
+writeUserWatchedFilm(filmId);
+writeUserQueueFilm(filmId);
+function writeUserWatchedFilm(filmId) {
   firebase
     .database()
-    .ref('users/' + userId + '/queue/')
-    .set([filmId]);
+    .ref('users/' + user + '/watched')
+    .update({ [filmId]: true });
+}
+function writeUserQueueFilm(filmId) {
+  firebase
+    .database()
+    .ref('users/' + user + '/queue')
+    .update({ [filmId]: true });
+}
+function removeUserWatchedFilm(filmId) {
+  firebase
+    .database()
+    .ref('users/' + user + '/watched/' + filmId)
+    .remove();
 }
 function isLogIn() {
-  user !== undefined;
+  return user !== undefined;
 }
 
-console.log(libraryGallery);
-
+//for library page
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   activeLibraryPage();
   drawWatchedFilmList();

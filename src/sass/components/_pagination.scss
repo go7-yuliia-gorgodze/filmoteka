@@ -47,8 +47,10 @@
       background-color: $accent-color;
     }
     &:hover {
-      cursor: pointer;
-      background-color: $accent-color;
+      @include desktop() {
+        cursor: pointer;
+        background-color: $accent-color;
+      }
     }
   }
 }
