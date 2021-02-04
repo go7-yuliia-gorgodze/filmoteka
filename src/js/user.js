@@ -125,9 +125,6 @@ function signOut() {
 
 //data base
 
-
-
-
 function writeUserWatchedFilm(filmId) {
   firebase
     .database()
@@ -153,26 +150,36 @@ function removeUserQueueFilm(filmId) {
     .remove();
 }
 let userWatchedRef = firebase.database().ref('users/' + user + '/watched/');
-function updateUserWatched(){
-  userWatchedRef.on('value', (snapshot) => {
-  localStorage.setItem("filmsWatched", JSON.stringify(Object.keys(snapshot.val())))
-});
+function updateUserWatched() {
+  userWatchedRef.on('value', snapshot => {
+    if (snapshot.val()) {
+      localStorage.setItem(
+        'filmsWatched',
+        JSON.stringify(Object.keys(snapshot.val())),
+      );
+    } else {
+      localStorage.removeItem('filmsWatched');
+    }
+  });
 }
 let userQueueRef = firebase.database().ref('users/' + user + '/queue/');
-function updateUserQueue(){
-  userQueueRef.on('value', (snapshot) => {
-  localStorage.setItem("filmsQueue", JSON.stringify(Object.keys(snapshot.val())))
-});
+function updateUserQueue() {
+  userQueueRef.on('value', snapshot => {
+    if (snapshot.val()) {
+      localStorage.setItem(
+        'filmsQueue',
+        JSON.stringify(Object.keys(snapshot.val())),
+      );
+    } else {
+      localStorage.removeItem('filmsQueue');
+    }
+  });
 }
 updateUserQueue();
 updateUserWatched();
-
 function isLogIn() {
   return user !== undefined;
 }
-
-
-
 
 //for library page
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
