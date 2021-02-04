@@ -9,8 +9,7 @@ function drawWatchedFilmList() {
   watchedFilms.innerHTML = '';
   const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
   if (moviesWatched.length === 0) {
-    console.log('Пусто');
-    return;
+    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`
   } else {
     createWatchCard(moviesWatched);
   }
@@ -22,8 +21,7 @@ function drawQueueFilmList() {
   const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 
   if (moviesQueue.length === 0) {
-    console.log('пусто');
-    return;
+    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`
   } else {
     createQueqeCard(moviesQueue);
   }
