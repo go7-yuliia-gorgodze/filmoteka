@@ -1,21 +1,21 @@
 const collaborators = [
     {
         src: '../images/jpg/Margot_Robbie_cr.jpg',
-        alt: 'Марго Робби',
-        collaboratorName: 'Юля',
+        alt: 'Margot Robbie',
+        collaboratorName: 'Yuliia',
         filmName: 'alibi.com'
     },
     {
         src: '../images/jpg/Natalie_Portman_cr.jpg',
         alt: 'Natalie Portman',
-        collaboratorName: 'Валентина',
+        collaboratorName: 'Valentina',
         filmName: 'Leon: The Professional'
     },
     {
         src: '../images/png/Charlie_Hunnam.png',
-        alt: 'Чарли Ханнем',
+        alt: 'Charlie Hunnam',
         collaboratorName: 'MAXCOM',
-        filmName: 'Побег из Претории'
+        filmName: 'Escape from Pretoria'
     },
     {
         src: '../images/jpg/Til_Schweiger_cr.jpg',
@@ -24,13 +24,13 @@ const collaborators = [
         filmName: 'Knockin` on Heaven`s Door'
     }, {
         src: '../images/jpg/AbdulovA.jpg',
-        alt: 'Олександр Абдулов',
+        alt: 'Aleksandr Abdulov',
         collaboratorName: 'Pankov Dmytro',
-        filmName: 'Чародеи'
+        filmName: 'Charodei'
     },
     {
         src: '../images/jpg/Johnny_Depp.jpg',
-        alt: 'alt alt alt',
+        alt: 'Johnny Depp',
         collaboratorName: 'Dimas',
         filmName: 'Fear and Loathing in Las Vegas'
     },
@@ -38,13 +38,13 @@ const collaborators = [
         src: '../images/jpg/Adam_Sandler.jpg',
         alt: 'Adam Sandler',
         collaboratorName: 'Victor',
-        filmName: 'Большой папа'
+        filmName: 'Big Daddy'
     },
     {
         src: '../images/jpg/Tim_Robbins.jpg',
         alt: 'Tim Robbins',
-        collaboratorName: 'Осипов Сергей',
-        filmName: 'Побег из Шоушенка'
-        // filmName: 'ghjdgjg'
+        collaboratorName: 'Osipov Sergey',
+        filmName: 'The Shawshank Redemption'
+        
     }
 ];

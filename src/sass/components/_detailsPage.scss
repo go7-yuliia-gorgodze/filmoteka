@@ -244,6 +244,7 @@
   width: 36px;
   height: 16px;
 }
+
 .details-button-list {
   display: flex;
   justify-content: center;
@@ -268,11 +269,19 @@
     width: 136px;
   }
 }
+.details-button .darkTheme {
+  border: 1px solid #ffffff;  
+}
 .button-is-active {
   background-color: $accent-color;
   border: none;
   color: $button-color;
 }
+.button-is-active .darkTheme {
+  background-color: rgb(28,28,28);
+  border: none;
+  }
+
 .details-inf-list > li {
   margin-bottom: 5px;
   height: 32px;
@@ -295,8 +304,8 @@
 }
 .button-close {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 0px;
+  top: 0px;
   background-color: $accent-color;
 
   border-radius: 2px;
