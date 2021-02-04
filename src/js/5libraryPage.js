@@ -8,7 +8,8 @@ function drawWatchedFilmList() {
   activePage(watchedButton, queueButton);
   watchedFilms.innerHTML = '';
   const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-  if (moviesWatched !== null || moviesWatched.length === 0) {
+
+  if (moviesWatched === null || moviesWatched.length === 0) {
     watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`;
   } else {
     createWatchCard(moviesWatched);
@@ -20,7 +21,7 @@ function drawQueueFilmList() {
   watchedFilms.innerHTML = '';
   const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 
-  if ((moviesQueue !== null || moviesQueue.length) === 0) {
+  if (moviesQueue === null || moviesQueue.length === 0) {
     watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`;
   } else {
     createQueqeCard(moviesQueue);
