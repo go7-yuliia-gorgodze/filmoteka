@@ -55,12 +55,6 @@ logInButton.addEventListener('click', event => {
   logInMail.value = '';
   logInPass.value = '';
 });
-// signOutButton.addEventListener('click', event => {
-//   event.preventDefault();
-//   console.log(user);
-//   signOut();
-//   toggleButtonLogIn();
-// });
 
 formButtonClose.addEventListener('click', closeFormModal);
 formModal.addEventListener('click', closeFormModal);
@@ -131,9 +125,9 @@ function signOut() {
 
 //data base
 
-const filmId = 40;
-writeUserWatchedFilm(filmId);
-writeUserQueueFilm(filmId);
+
+
+
 function writeUserWatchedFilm(filmId) {
   firebase
     .database()
@@ -152,9 +146,33 @@ function removeUserWatchedFilm(filmId) {
     .ref('users/' + user + '/watched/' + filmId)
     .remove();
 }
+function removeUserQueueFilm(filmId) {
+  firebase
+    .database()
+    .ref('users/' + user + '/queue/' + filmId)
+    .remove();
+}
+let userWatchedRef = firebase.database().ref('users/' + user + '/watched/');
+function updateUserWatched(){
+  userWatchedRef.on('value', (snapshot) => {
+  localStorage.setItem("filmsWatched", JSON.stringify(Object.keys(snapshot.val())))
+});
+}
+let userQueueRef = firebase.database().ref('users/' + user + '/queue/');
+function updateUserQueue(){
+  userQueueRef.on('value', (snapshot) => {
+  localStorage.setItem("filmsQueue", JSON.stringify(Object.keys(snapshot.val())))
+});
+}
+updateUserQueue();
+updateUserWatched();
+
 function isLogIn() {
   return user !== undefined;
 }
+
+
+
 
 //for library page
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {

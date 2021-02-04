@@ -27,16 +27,21 @@ img {
 a {
   text-decoration: none;
   display: block;
-  cursor: none !important;
+  @include desktop {
+    cursor: none !important;
+  }
 }
 .list {
   list-style: none;
 }
 button {
   border: none;
-  cursor: none !important;
+
   display: inline-block;
   padding: 0 0;
+  @include desktop {
+    cursor: none !important;
+  }
 }
 button:focus {
   outline: none;
