@@ -273,6 +273,7 @@
   border: none;
   color: $button-color;
 }
+
 .details-inf-list > li {
   margin-bottom: 5px;
   height: 32px;
@@ -295,8 +296,8 @@
 }
 .button-close {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 0px;
+  top: 0px;
   background-color: $accent-color;
 
   border-radius: 2px;
