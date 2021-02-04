@@ -9,6 +9,8 @@ const main = document.querySelector('main');
 const header = document.querySelector('header');
 const html = document.documentElement;
 
+
+
 // variables
 
 let modal, closeModalBtn, modalCollaboratorsList, shadow, timeout;
@@ -60,6 +62,7 @@ function focusCatcher(element) {
 function focusSet(element) {
     const focusableElements = element.querySelectorAll(FOCUSABLE_SELECTORS);
     focusableElements.forEach(el => el.removeAttribute('tabindex'));
+    console.log(focusableElements);
 }
 
 function trapScreenReaderFocus() {

@@ -19,9 +19,9 @@ const detailsVotes = document.querySelector('#js-detailsVotes');
 const detailsTitle = document.querySelector('.details-title');
 const detailsDescription = document.querySelector('#js-detailsText');
 const detailsPopularuty = document.querySelector('#details-popularity');
-const detailsGenre = document.querySelector('#details-genre');
+// const detailsGenre = document.querySelector('#details-genre');
 const detailsOriginalTitle = document.querySelector('#details-originalTitle');
-const detailsButtonClose = document.querySelector('.button-close');
+// const detailsButtonClose = document.querySelector('.button-close');
 const movieTrailer = document.getElementById('js-movieTrailer');
 
 const body = document.querySelector('body');
