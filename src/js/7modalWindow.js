@@ -7,7 +7,6 @@ const openModalBtn = document.querySelector('.open-modal');
 // elements for block
 const main = document.querySelector('main');
 const header = document.querySelector('header');
-
 const html = document.documentElement;
 
 // variables
@@ -53,8 +52,8 @@ function modalCollaboratorFilm(e) {
         .catch(e => `ERROR ${e}`);
 }
 
-function focusCatcher() {
-    const focusableElements = html.querySelectorAll(FOCUSABLE_SELECTORS);
+function focusCatcher(element) {
+    const focusableElements = element.querySelectorAll(FOCUSABLE_SELECTORS);
     focusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
 }
 
@@ -90,7 +89,7 @@ function onOverlayClickClose(e) {
     if (!wrap) return;
     e.preventDefault();
     closeModalWindow();
-}
+};
 
 function onEscapeClose(e) {
     if (e.which == 27 && modal.classList.contains('modal--active')) {
@@ -98,7 +97,7 @@ function onEscapeClose(e) {
         closeModalWindow();
         return;
     }
-}
+};
 
 function markup(objectsArray, templateFunction) {
     let markup = objectsArray.reduce((acc, e) => {
@@ -169,7 +168,7 @@ function openModalWindow() {
 
     if (toTopBtn) { toTopBtn.classList.remove('show'); }
 
-
+    focusCatcher(html);
 
     closeModalBtn.addEventListener('click', closeModalWindow);
     document.addEventListener("click", onOverlayClickClose);
@@ -218,6 +217,7 @@ function transitionClose() {
     body.removeChild(modal);
     body.removeChild(shadow);
     shadow = null;
+    modal = null;
 };
 
 openModalBtn.addEventListener('click', openModalWindow);

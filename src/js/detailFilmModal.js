@@ -1,4 +1,4 @@
-let selectedMovie;
+let selectedMovie, detailsModal, filmDetailsTimeout, detailsButtonClose;
 
 movieGallery.addEventListener('click', onFilmCardClickHandler);
 
@@ -36,4 +36,50 @@ function openMovieDetails(selectedMovie) {
     if (toTopBtn) { toTopBtn.classList.remove('show') };
     shadowShow();
     body.insertAdjacentHTML('beforeend', renderDetailFilmModal());
+
+    detailsModal = document.querySelector('#js-detailsPage');
+
+    filmDetailsTimeout = setTimeout(() => detailsModal.classList.add('modal--active'), 500);
+
+    console.log(detailsModal);
+
+    detailsButtonClose = document.querySelector('.button-close');
+
+    detailsButtonClose.addEventListener('click', closeModal);
+
+    console.log(FOCUSABLE_SELECTORS);
+
+    detailsModal.querySelector(FOCUSABLE_SELECTORS).focus();
+
+    focusSet(detailsModal);
+
+    html.classList.add("modal__opened");
+
+    if (document.querySelector('.modal')) {
+
+        scrollPositionOnOpen();
+        console.log(modal);
+        focusCatcher(modal);
+    } else { focusCatcher(html); }
+
+
+
+
+
+};
+
+function closeModal(event) {
+    if (toTopBtn) { toTopBtn.classList.add('show'); }
+    if (
+        event.target.classList.contains('details-container') ||
+        event.target.classList.contains('details-close') ||
+        event.target.nodeName === 'use' ||
+        event.key === 'Escape'
+    ) {
+        console.log("CLICK");
+        // body.classList.remove('blocked-scroll');
+        detailsModal.classList.add('hidden');
+        // stop player youtube
+        // document.querySelector('iframe').src = '';
+    }
 }
