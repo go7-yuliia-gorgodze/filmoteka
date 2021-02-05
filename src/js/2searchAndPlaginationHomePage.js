@@ -1,3 +1,23 @@
+const debounce = (fn, ms) => {
+  let timeout;
+  return function () {
+    const fnCall = () => {
+      fn.apply(this, arguments);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+};
+
+function inputChange() {
+  if (searchInput.value.length != 0) {
+    inputValue = searchInput.value;
+    dischargePaginationAndCreateMarkup();
+    searchField.reset();
+  }
+}
+
+searchInput.addEventListener('input', debounce(inputChange, 1500));
 searchField.addEventListener('submit', event => {
   event.preventDefault();
 
