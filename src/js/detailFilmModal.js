@@ -34,40 +34,45 @@ fetchGenres();
 console.log(genres);
 
 function openMovieDetails(selectedMovie) {
-    if (toTopBtn) { toTopBtn.classList.remove('show') };
-    shadowShow();
-    body.insertAdjacentHTML('beforeend', renderDetailFilmModal(selectedMovie));
-    detailsModal = document.querySelector('#js-detailsPage');
-    queueButtonAdd = document.querySelector('.button-add-to-queue');
-    watchedButtonAdd = document.querySelector('.button-add-to-watch');
-    tabPanels = document.querySelectorAll('.tabs-panel');
-    tabLinks = document.querySelectorAll('.tabs a');
+  if (toTopBtn) {
+    toTopBtn.classList.remove('show');
+  }
+  shadowShow();
+  body.insertAdjacentHTML('beforeend', renderDetailFilmModal(selectedMovie));
+  detailsModal = document.querySelector('#js-detailsPage');
+  queueButtonAdd = document.querySelector('.button-add-to-queue');
+  watchedButtonAdd = document.querySelector('.button-add-to-watch');
+  tabPanels = document.querySelectorAll('.tabs-panel');
+  tabLinks = document.querySelectorAll('.tabs a');
 
-    filmDetailsTimeout = setTimeout(() => {
-        detailsModal.classList.remove('hidden');
-        detailsModal.classList.add('modal--active')
-    }, 500);
-    queueButtonAdd = document.querySelector('.button-add-to-queue')
-    detailsButtonClose = document.querySelector('.close-details');
+  filmDetailsTimeout = setTimeout(() => {
+    detailsModal.classList.remove('hidden');
+    detailsModal.classList.add('modal--active');
+  }, 500);
+  queueButtonAdd = document.querySelector('.button-add-to-queue');
+  detailsButtonClose = document.querySelector('.close-details');
 
-    getStorage();
+  getStorage();
 
-    detailsButtonClose.addEventListener('click', closeModal);
-    window.removeEventListener('mousemove', cursor);
-    window.addEventListener('mousemove', cursorHandler.mousemove);
-    detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
-    detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
-    window.addEventListener("keydown", onEscapeCloseDetails);
-    document.addEventListener("click", onOverlayDetailsClose);
+  detailsButtonClose.addEventListener('click', closeModal);
+  window.removeEventListener('mousemove', cursor);
+  window.addEventListener('mousemove', cursorHandler.mousemove);
+  detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
+  detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
+  window.addEventListener('keydown', onEscapeCloseDetails);
+  document.addEventListener('click', onOverlayDetailsClose);
 
-    let filmGeneres = genres.filter(el =>
-        selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
-    ).reduce((acc, item) => acc + `${item.name}, `, '').slice(0, -2);
+  let filmGeneres = genres
+    .filter(el =>
+      selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
+    )
+    .reduce((acc, item) => acc + `${item.name}, `, '')
+    .slice(0, -2);
 
-    document.querySelector('#details-genre').textContent = filmGeneres;
+  document.querySelector('#details-genre').textContent = filmGeneres;
 
-    fetchMovies(selectedMovie.id).then(res => {
-        document.getElementById('js-movieTrailer').innerHTML = `
+  fetchMovies(selectedMovie.id).then(res => {
+    document.getElementById('js-movieTrailer').innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${res}"
             frameborder="0"
@@ -93,8 +98,6 @@ function openMovieDetails(selectedMovie) {
   detailsModal.querySelector(FOCUSABLE_SELECTORS).focus();
   trapScreenReaderFocus(detailsModal);
 }
-
-
 
 function closeModal() {
   if (toTopBtn && !modal) {

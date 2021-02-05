@@ -4,27 +4,30 @@
   margin: 0 auto;
   color: $accent-color;
   font-size: 30px;
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-    text-shadow: -1px -1px 0 grey, 1px -1px 0 grey, -1px 1px 0 grey, 1px 1px 0 grey;
-    
-    &:after {
-      content: attr(popular-title);
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 2;
-      overflow: hidden;
-      color: red;
-      transform: translate(0.4vw, 0.3vh);
-      mix-blend-mode: darken;
-      text-align: center;
-      width: 100%;
-      text-shadow: 1px 0px 0px grey, 0px 1px 0px blue, 2px 1px 0px grey, 1px 2px 0px blue, 3px 2px 0px grey, 2px 3px 0px blue, 4px 3px 0px grey, 3px 4px 0px blue, 5px 4px 0px grey, 4px 5px 0px blue, 6px 5px 0px grey, 5px 6px 0px blue, 7px 6px 0px grey;
-    }
-  }
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  text-shadow: -1px -1px 0 grey, 1px -1px 0 grey, -1px 1px 0 grey,
+    1px 1px 0 grey;
 
+  &:after {
+    content: attr(popular-title);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    overflow: hidden;
+    color: red;
+    transform: translate(0.4vw, 0.3vh);
+    mix-blend-mode: darken;
+    text-align: center;
+    width: 100%;
+    text-shadow: 1px 0px 0px grey, 0px 1px 0px blue, 2px 1px 0px grey,
+      1px 2px 0px blue, 3px 2px 0px grey, 2px 3px 0px blue, 4px 3px 0px grey,
+      3px 4px 0px blue, 5px 4px 0px grey, 4px 5px 0px blue, 6px 5px 0px grey,
+      5px 6px 0px blue, 7px 6px 0px grey;
+  }
+}
 
 .main__filmList {
   padding: 20px;
@@ -63,7 +66,7 @@
     width: 280px;
     border-radius: 5px;
     overflow: hidden;
-    height: 445px;
+    height: 467px;
     cursor: pointer;
     color: $primary-text-color;
     background-color: #f7f7f7;
@@ -129,8 +132,7 @@
   }
 
   .main__previewImgTitle {
-    margin-top: 10px;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -198,4 +200,14 @@
   background-color: rgba(32, 32, 32, 0.7);
   width: auto;
   height: 16px;
+}
+
+.main__previewTitleContainer {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  height: 55px;
 }

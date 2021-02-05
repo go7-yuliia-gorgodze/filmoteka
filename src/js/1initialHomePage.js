@@ -134,11 +134,18 @@ function createCard(
   } else {
     previewImg.setAttribute('src', '../images/plug.jpg');
   }
+  previewImg.setAttribute('data-id', movieId);
+  previewImg.setAttribute('id', 'js-image');
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
-  previewImg.setAttribute('data-id', movieId);
-  previewImg.setAttribute('id', 'js-image');
+
+  console.log(previewImgTitle);
+
+  const previewTitleContainer = document.createElement('div');
+  previewTitleContainer.classList.add('main__previewTitleContainer');
+  previewTitleContainer.append(previewImgTitle);
+  console.log(previewTitleContainer);
 
   const previewInfoBlock = createShortDescription(
     avgVote,
@@ -155,7 +162,7 @@ function createCard(
   } else {
     previewImgTitle.textContent = movieTitle;
   }
-  movieItem.append(previewImg, previewImgTitle, previewInfoBlock);
+  movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
   return movieItem.outerHTML;
 }
 
