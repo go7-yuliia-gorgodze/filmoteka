@@ -63,7 +63,7 @@ function openMovieDetails(selectedMovie) {
         document.querySelector('#js-previewImg').setAttribute('src', '../images/plug.jpg');
     }
     document.querySelector('#js-detailsText').textContent = selectedMovie.overview;
-    fetchMovies(selectedMovie.id).then(res => {
+    (fetchMovies(selectedMovie.id).then(res => {
         // movieTrailer
         console.log("res ", res);
         const markup = `
@@ -76,7 +76,7 @@ function openMovieDetails(selectedMovie) {
     ></iframe>
   `;
         document.getElementById('js-movieTrailer').insertAdjacentHTML('beforeend', markup);
-    })();
+    }))();
     watchedButtonAdd = document.querySelector('.button-add-to-watch');
     queueButtonAdd = document.querySelector('.button-add-to-queue');
 

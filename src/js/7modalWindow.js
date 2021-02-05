@@ -215,8 +215,8 @@ function transitionClose() {
     untrapScreenReaderFocus();
     // restore focus to the triggering element
     openModalBtn.focus();
-    modal.parentNode.removeChild(modal);
-    shadow.parentNode.removeChild(shadow);
+    body.removeChild(modal);
+    body.removeChild(shadow);
 };
 
 openModalBtn.addEventListener('click', openModalWindow);
