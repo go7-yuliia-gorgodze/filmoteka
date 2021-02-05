@@ -28,8 +28,8 @@ function scrollPositionOnClose() {
 
 function fetchFilmModal(film) {
     return fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
-    )
+            `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${film}`,
+        )
         .then(response => response.json())
         .then(data => {
             console.log("Fetched data", data);
@@ -44,10 +44,10 @@ function modalCollaboratorFilm(e) {
 
     const film = e.target.textContent || 'alibi.com';
     fetchFilmModal(film).then(({ results }) => {
-        // modal.style.zIndex = 1;
-        // shadow.style.zIndex = 0;
-        openMovieDetails(results[0]);
-    })
+            // modal.style.zIndex = 1;
+            // shadow.style.zIndex = 0;
+            openMovieDetails(results[0]);
+        })
         .catch(e => `ERROR ${e}`);
 };
 
@@ -114,7 +114,7 @@ const cursorHandler = {
     currentElem: null,
     mouseCursor: document.getElementById('cursor'),
 
-    onmouseover: function (event) {
+    onmouseover: function(event) {
         let target = event.target.closest('button') || event.target.closest('a');
         if (!target) return;
         if (!body.contains(target)) return;
@@ -124,7 +124,7 @@ const cursorHandler = {
         body.classList.add('cursor-none');
     },
 
-    onmouseout: function (event) {
+    onmouseout: function(event) {
         if (!this.currentElem) return;
         let relatedTarget = event.relatedTarget;
         while (relatedTarget) {
@@ -139,13 +139,13 @@ const cursorHandler = {
         this.currentElem = null;
     },
 
-    onclose: function () {
+    onclose: function() {
         mouseCursor.classList.remove('cursor');
         mouseCursor.classList.add('cursor-n');
         body.classList.remove('cursor-none');
     },
 
-    mousemove: function (event) {
+    mousemove: function(event) {
         mouseCursor.style.top = event.pageY + scrollPosition + 'px';
         mouseCursor.style.left = event.pageX + 'px';
     }
@@ -181,10 +181,7 @@ function openModalWindow() {
     if (toTopBtn) { toTopBtn.classList.remove('show'); }
 
     focusCatcher(html);
-
-    // creatorsFooter = document.querySelector('.footer-creators');
-    // console.log(creatorsFooter);
-    // getStorage();
+    getStorage();
 
     closeModalBtn.addEventListener('click', closeModalWindow);
     document.addEventListener("click", onOverlayClickClose);
