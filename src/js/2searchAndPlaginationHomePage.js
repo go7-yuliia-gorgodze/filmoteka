@@ -75,6 +75,7 @@ function fetchMoviesId(movieId) {
   )
     .then(res => res.json())
     .then(data => {
+      // console.log(data);
       return data;
     });
 }
