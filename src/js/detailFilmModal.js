@@ -94,7 +94,7 @@ function openMovieDetails(selectedMovie) {
 
 function closeModal() {
 
-    if (toTopBtn) {
+    if (toTopBtn && !modal) {
         toTopBtn.classList.add('show');
     }
     document.querySelector('iframe').src = '';
