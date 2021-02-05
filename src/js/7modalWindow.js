@@ -182,6 +182,10 @@ function openModalWindow() {
 
     focusCatcher(html);
 
+    // creatorsFooter = document.querySelector('.footer-creators');
+    // console.log(creatorsFooter);
+    // getStorage();
+
     closeModalBtn.addEventListener('click', closeModalWindow);
     document.addEventListener("click", onOverlayClickClose);
     window.addEventListener("keydown", onEscapeClose);

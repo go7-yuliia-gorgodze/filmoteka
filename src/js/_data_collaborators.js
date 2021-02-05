@@ -45,6 +45,6 @@ const collaborators = [
         alt: 'Tim Robbins',
         collaboratorName: 'Sergey',
         filmName: 'The Shawshank Redemption'
-        
+
     }
 ];
