@@ -50,9 +50,12 @@ function openMovieDetails(selectedMovie) {
     detailsButtonClose = document.querySelector('.close-details');
 
     detailsButtonClose.addEventListener('click', closeModal);
+    window.removeEventListener('mousemove', cursor);
     window.addEventListener('mousemove', cursorHandler.mousemove);
     detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
     detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
+    window.addEventListener("keydown", onEscapeCloseDetails);
+    document.addEventListener("click", onOverlayDetailsClose);
 
     let filmGeneres = genres.filter(el =>
         selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
@@ -61,7 +64,6 @@ function openMovieDetails(selectedMovie) {
     document.querySelector('#details-genre').textContent = filmGeneres;
 
     fetchMovies(selectedMovie.id).then(res => {
-        console.log(res)
         document.getElementById('js-movieTrailer').innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${res}"
@@ -72,60 +74,102 @@ function openMovieDetails(selectedMovie) {
   `;
     });
 
-    html.classList.add("modal__opened");
-
     if (document.querySelector('.modal')) {
         focusCatcher(modal);
     } else {
+
         focusCatcher(html);
         bodyScrollControlShift();
         scrollPositionOnOpen();
+        html.classList.add("modal__opened");
     };
 
-    for (let el of tabLinks) {
-        el.addEventListener('click', e => {
-            e.preventDefault();
-
-            document.querySelector('.tabs li.active').classList.remove('active');
-            document.querySelector('.tabs-panel.active').classList.remove('active');
-
-            const parentListItem = el.parentElement;
-            parentListItem.classList.add('active');
-            const index = [...parentListItem.parentElement.children].indexOf(
-                parentListItem,
-            );
-
-            const panel = [...tabPanels].filter(
-                el => el.getAttribute('data-index') == index,
-            );
-            panel[0].classList.add('active');
-        });
-    };
-
-
-
+    tabLinks.forEach(el => el.addEventListener('click', tabLinksCallback));
 
     runLocalStorage();
     focusSet(detailsModal);
     detailsModal.querySelector(FOCUSABLE_SELECTORS).focus();
-    window.removeEventListener('mousemove', cursor);
-
+    trapScreenReaderFocus(detailsModal);
 };
 
-function closeModal(event) {
-    console.log('click')
-    if (toTopBtn) { toTopBtn.classList.add('show'); }
-    if (
-        event.target.classList.contains('details-container') ||
-        event.target.classList.contains('details-close') ||
-        event.target.nodeName === 'use' ||
-        event.key === 'Escape'
-    ) {
-        // body.classList.remove('blocked-scroll');
-        detailsModal.classList.add('hidden');
-        // stop player youtube
-        // document.querySelector('iframe').src = '';
+function closeModal() {
+
+    if (toTopBtn) {
+        toTopBtn.classList.add('show');
     }
+    document.querySelector('iframe').src = '';
+    detailsModal.classList.add('hidden');
+    detailsModal.classList.add("modal--moved");
+    detailsModal.addEventListener("transitionend", transitionDetailsClose);
+    detailsModal.classList.remove('modal--active');
+    detailsButtonClose.removeEventListener('click', closeModal);
+};
+
+function transitionDetailsClose() {
+    detailsModal.classList.remove("modal--moved");
+    detailsModal.removeEventListener("transitionend", transitionDetailsClose);
+
+    if (!modal) {
+        window.removeEventListener('mousemove', cursorHandler.mousemove);
+        detailsModal.removeEventListener('mouseover', cursorHandler.onmouseover);
+        detailsModal.removeEventListener('mouseout', cursorHandler.onmouseout);
+        cursorHandler.onclose();
+        window.addEventListener('mousemove', cursor);
+        focusSet(html);
+        bodyScrollControlShift();
+        scrollPositionOnClose();
+        body.removeChild(shadow);
+        shadow = null;
+    };
+    window.removeEventListener("keydown", onEscapeCloseDetails);
+    document.removeEventListener("click", onOverlayDetailsClose);
+    // Untrap screen reader focus
+    untrapScreenReaderFocus(detailsModal);
+    // restore focus to the triggering element
+    clearTimeout(filmDetailsTimeout);
+    filmDetailsTimeout = null;
+    openModalBtn.focus();
+    body.removeChild(detailsModal);
+    detailsModal = null;
+    tabLinks = null;
+    tabPanels = null;
+    watchedButtonAdd = null;
+    queueButtonAdd = null;
+    selectedMovie = null;
+    detailsButtonClose = null;
+};
+
+function onEscapeCloseDetails(e) {
+    if (e.which == 27 && detailsModal.classList.contains('details-container')) {
+        e.preventDefault();
+        closeModal();
+        return;
+    };
+};
+
+function onOverlayDetailsClose(e) {
+    const wrap = e.target.classList.contains('details-container');
+    if (!wrap) return;
+    e.preventDefault();
+    closeModal();
+};
+
+function tabLinksCallback(e) {
+    e.preventDefault();
+
+    document.querySelector('.tabs li.active').classList.remove('active');
+    document.querySelector('.tabs-panel.active').classList.remove('active');
+
+    const parentListItem = e.target.parentElement;
+    parentListItem.classList.add('active');
+    const index = [...parentListItem.parentElement.children].indexOf(
+        parentListItem,
+    );
+
+    const panel = [...tabPanels].filter(
+        el => el.getAttribute('data-index') == index,
+    );
+    panel[0].classList.add('active');
 };
 
 function toggleButtonWatcher(id) {
