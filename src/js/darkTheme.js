@@ -4,12 +4,14 @@ const textFooter = document.querySelector('.footer-text-wrapper');
 const copyrightFooter = document.querySelector('.footer-copyright');
 const creatorsFooter = document.querySelector('.footer-creators');
 const switchToggle = document.querySelector('#theme-switch-toggle');
+
 let detailsWrapper;// const detailsWrapper = document.querySelector('.details-wrapper');
 let detailsInfo;// const detailsInfo = document.querySelector('.details-information');
 let detailsContainer;// const detailsContainer = document.querySelector('.details-container');
 let detailsList;// const detailsList = document.querySelector('.details-inf-list');
 let detailsListSecondary;// const detailsListSecondary = document.querySelector(
 //   '.details-inf-list-secondary'
+
 // );
 
 let tabs;// const tabs = document.querySelector('.tabs');
@@ -42,6 +44,7 @@ function darkTheme() {
   footerTheme.classList.add('darkTheme');
   textFooter.classList.add('darkTheme');
   copyrightFooter.classList.add('darkTheme');
+
   paginationButton.classList.add('darkTheme');
   creatorsFooter.classList.add('darkTheme');
   if (detailsWrapper) {
@@ -57,6 +60,7 @@ function darkTheme() {
     buttonToWatch.classList.add('darkTheme');
     buttonToQueue.classList.add('darkTheme');
   }
+
   // detailsWrapper.classList.add('darkTheme');
   // detailsInfo.classList.add('darkTheme');
   // detailsContainer.classList.add('darkTheme');
@@ -75,6 +79,7 @@ function lightTheme() {
   footerTheme.classList.remove('darkTheme');
   textFooter.classList.remove('darkTheme');
   copyrightFooter.classList.remove('darkTheme');
+
   creatorsFooter.classList.remove('darkTheme');
   if (detailsWrapper) {
     setElementsForThemeToggling();
@@ -89,6 +94,7 @@ function lightTheme() {
     buttonToWatch.classList.remove('darkTheme');
     buttonToQueue.classList.remove('darkTheme');
   }
+
   // detailsWrapper.classList.remove('darkTheme');
   // detailsInfo.classList.remove('darkTheme');
   // detailsContainer.classList.remove('darkTheme');
