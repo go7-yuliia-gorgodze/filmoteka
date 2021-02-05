@@ -43,6 +43,7 @@ function fetchPopularFilms() {
   )
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       return data;
     });
 }
@@ -74,6 +75,7 @@ function fetchMoviesId(movieId) {
   )
     .then(res => res.json())
     .then(data => {
+      // console.log(data);
       return data;
     });
 }
