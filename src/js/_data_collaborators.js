@@ -14,7 +14,7 @@ const collaborators = [
     {
         src: '../images/png/Charlie_Hunnam.png',
         alt: 'Charlie Hunnam',
-        collaboratorName: 'MAX',
+        collaboratorName: 'Max',
         filmName: 'Escape from Pretoria'
     },
     {
