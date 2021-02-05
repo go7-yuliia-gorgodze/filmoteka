@@ -47,8 +47,13 @@
       background-color: $accent-color;
     }
     &:hover {
-      cursor: pointer;
-      background-color: $accent-color;
+      @include desktop() {
+        cursor: pointer;
+        background-color: $accent-color;
+      }
     }
   }
+}
+.pagination__button {
+  background-color: #f7f7f7;
 }

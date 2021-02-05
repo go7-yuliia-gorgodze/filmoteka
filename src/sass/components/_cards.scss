@@ -37,6 +37,8 @@
     overflow: hidden;
     height: 445px;
     cursor: pointer;
+    color: $primary-text-color;
+    background-color: #f7f7f7;
     box-shadow: 5px 5px 5px -5px rgba(135, 76, 37, 0.6);
     transition: transform 250ms linear;
 
