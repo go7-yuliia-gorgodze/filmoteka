@@ -1,6 +1,31 @@
 .popular-title {
-  text-align: center;
-}
+  display: inline-block;
+  padding-top: 20px;
+  margin: 0 auto;
+  color: $accent-color;
+  font-size: 30px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    text-shadow: -1px -1px 0 grey, 1px -1px 0 grey, -1px 1px 0 grey, 1px 1px 0 grey;
+    
+    &:after {
+      content: attr(popular-title);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      overflow: hidden;
+      color: red;
+      transform: translate(0.4vw, 0.3vh);
+      mix-blend-mode: darken;
+      text-align: center;
+      width: 100%;
+      text-shadow: 1px 0px 0px grey, 0px 1px 0px blue, 2px 1px 0px grey, 1px 2px 0px blue, 3px 2px 0px grey, 2px 3px 0px blue, 4px 3px 0px grey, 3px 4px 0px blue, 5px 4px 0px grey, 4px 5px 0px blue, 6px 5px 0px grey, 5px 6px 0px blue, 7px 6px 0px grey;
+    }
+  }
+
+
 .main__filmList {
   padding: 20px;
   padding-bottom: 40px;
@@ -11,7 +36,7 @@
   @include tablet {
     padding-left: 75px;
     padding-right: 75px;
-    padding-top: 60px;
+    padding-top: 20px;
     padding-bottom: 60px;
     flex-direction: row;
     flex-wrap: wrap;
@@ -20,7 +45,7 @@
 
   @include desktop {
     padding-bottom: 60px;
-    padding-top: 60px;
+    padding-top: 20px;
     padding-right: 71px;
     padding-left: 71px;
     flex-direction: row;

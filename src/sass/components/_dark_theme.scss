@@ -16,9 +16,12 @@
 .theme-switch__icon_sun {
   position: absolute;
   top: -4px;
-  left: 188px;
+  left: 189px;
   @include tablet {
     left: 525px;
+  }
+  @include desktop {
+    left: 790px;
   }
 }
 .theme-switch__icon_moon {
@@ -27,6 +30,9 @@
   left: 255px;
   @include tablet {
     left: 590px;
+  }
+  @include desktop {
+    left: 855px;
   }
 }
 
@@ -69,6 +75,9 @@
   @include tablet {
     left: 553px;
   }
+  @include desktop {
+    left: 818px;
+  }
 }
 
 .theme-switch__marker {
@@ -86,6 +95,9 @@
   transition: transform 250ms var(--timing-function);
   @include tablet {
     left: 551px;
+  }
+  @include desktop {
+    left: 818px;
   }
 }
 
