@@ -49,6 +49,8 @@ function openMovieDetails(selectedMovie) {
     queueButtonAdd = document.querySelector('.button-add-to-queue')
     detailsButtonClose = document.querySelector('.close-details');
 
+    getStorage();
+
     detailsButtonClose.addEventListener('click', closeModal);
     window.removeEventListener('mousemove', cursor);
     window.addEventListener('mousemove', cursorHandler.mousemove);
@@ -91,6 +93,8 @@ function openMovieDetails(selectedMovie) {
     detailsModal.querySelector(FOCUSABLE_SELECTORS).focus();
     trapScreenReaderFocus(detailsModal);
 };
+
+
 
 function closeModal() {
 
