@@ -6,6 +6,7 @@ const libraryGallery = document.querySelector('#js-library');
 console.log(libraryGallery);
 
 const searchField = document.querySelector('#js-form');
+const searchInput = document.querySelector('#search');
 const moviesList = document.querySelector('#js-moviesList');
 const detailsPage = document.querySelector('#js-detailsPage');
 const homePage = document.querySelector('#js-homePage');
