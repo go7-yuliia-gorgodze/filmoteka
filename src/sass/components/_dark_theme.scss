@@ -100,26 +100,7 @@
     left: 818px;
   }
 }
-
-
-  .text-orange .darkTheme {
-    background-color: rgb(28,28,28);
-  }
-  .details-container .darkTheme {
-    background-color: rgb(40,40,40);
-  }
-  .button-add-to-watch .darkTheme {
-    border: 1px solid white;
-  }
-  .button-add-to-queue .darkTheme {
-    border: 1px solid white; 
-  }
-  .button-is-active .darkTheme {
-    background-color: rgb(28,28,28);
-    border: none;
-    }
-  
-  .footer .darkTheme {
+   .footer .darkTheme {
       color: white;
       background-color: rgb(28,28,28); 
     }
@@ -152,24 +133,20 @@
   box-shadow: 0 0 0 2px #ffb300;
 }
 
-.text-orange .darkTheme {
-  background-color: rgb(28, 28, 28);
-}
-
-.details-container .darkTheme {
-  background-color: #f7f7f7;
-  color: $primary-text-color;
-}
-.button-add-to-watch .darkTheme {
-  border: 1px solid white;
-}
-.button-add-to-queue .darkTheme {
-  border: 1px solid white;
-}
-.button-is-active .darkTheme {
-  background-color: rgb(28, 28, 28);
-  border: none;
-}
+// .details-container .darkTheme {
+//   background-color: #f7f7f7;
+//   color: $primary-text-color;
+// }
+// .button-add-to-watch .darkTheme {
+//   border: 1px solid white;
+// }
+// .button-add-to-queue .darkTheme {
+//   border: 1px solid white;
+// }
+// .button-is-active .darkTheme {
+//   background-color: rgb(28, 28, 28);
+//   border: none;
+// }
 
 .footer .darkTheme {
   color: white;
@@ -180,9 +157,6 @@
   color: $accent-color;
 }
 .footer-copyright .darkTheme {
-  color: $accent-color;
-}
-.footer-creators .darkTheme {
   color: $accent-color;
 }
 .pagination__button .darkTheme {

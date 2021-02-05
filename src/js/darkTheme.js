@@ -4,6 +4,7 @@ const textFooter = document.querySelector('.footer-text-wrapper');
 const copyrightFooter = document.querySelector('.footer-copyright');
 // const creatorsFooter = document.querySelector('.footer-creators');
 const switchToggle = document.querySelector('#theme-switch-toggle');
+
 // const detailsWrapper = document.querySelector('.details-wrapper');
 // const detailsInfo = document.querySelector('.details-information');
 // const detailsContainer = document.querySelector('.details-container');
@@ -41,6 +42,7 @@ function darkTheme() {
   footerTheme.classList.add('darkTheme');
   textFooter.classList.add('darkTheme');
   copyrightFooter.classList.add('darkTheme');
+  
   // creatorsFooter.classList.add('darkTheme');
   // detailsWrapper.classList.add('darkTheme');
   // detailsInfo.classList.add('darkTheme');
@@ -61,6 +63,7 @@ function lightTheme() {
   footerTheme.classList.remove('darkTheme');
   textFooter.classList.remove('darkTheme');
   copyrightFooter.classList.remove('darkTheme');
+  
   // creatorsFooter.classList.remove('darkTheme');
   // detailsWrapper.classList.remove('darkTheme');
   // detailsInfo.classList.remove('darkTheme');

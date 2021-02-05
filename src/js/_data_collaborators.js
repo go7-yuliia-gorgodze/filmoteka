@@ -14,7 +14,7 @@ const collaborators = [
     {
         src: '../images/png/Charlie_Hunnam.png',
         alt: 'Charlie Hunnam',
-        collaboratorName: 'MAXCOM',
+        collaboratorName: 'Max',
         filmName: 'Escape from Pretoria'
     },
     {
@@ -25,7 +25,7 @@ const collaborators = [
     }, {
         src: '../images/jpg/AbdulovA.jpg',
         alt: 'Aleksandr Abdulov',
-        collaboratorName: 'Pankov Dmytro',
+        collaboratorName: 'Dmytro',
         filmName: 'Charodei'
     },
     {
@@ -43,7 +43,7 @@ const collaborators = [
     {
         src: '../images/jpg/Tim_Robbins.jpg',
         alt: 'Tim Robbins',
-        collaboratorName: 'Osipov Sergey',
+        collaboratorName: 'Sergey',
         filmName: 'The Shawshank Redemption'
         
     }
