@@ -47,8 +47,8 @@ function modalCollaboratorFilm(e) {
 
     const film = e.target.textContent || 'alibi.com';
     fetchFilmModal(film).then(({ results }) => {
-            modal.style.zIndex = 1;
-            shadow.style.zIndex = 0;
+            // modal.style.zIndex = 1;
+            // shadow.style.zIndex = 0;
             openMovieDetails(results[0]);
         })
         .catch(e => `ERROR ${e}`);
@@ -116,13 +116,13 @@ const cursorHandler = {
     mouseCursor: document.getElementById('cursor'),
 
     onmouseover: function(event) {
-        let target = event.target.closest('button');
+        let target = event.target.closest('button') || event.target.closest('a');
         if (!target) return;
-        if (!modal.contains(target)) return;
+        if (!body.contains(target)) return;
         this.currentElem = target;
         mouseCursor.classList.add('cursor');
         mouseCursor.classList.remove('cursor-n');
-        body.classList.add('cursor-none');;
+        body.classList.add('cursor-none');
     },
 
     onmouseout: function(event) {
@@ -137,6 +137,17 @@ const cursorHandler = {
         mouseCursor.classList.add('cursor-n');
         body.classList.remove('cursor-none');
         this.currentElem = null;
+    },
+
+    onclose: function() {
+        mouseCursor.classList.remove('cursor');
+        mouseCursor.classList.add('cursor-n');
+        body.classList.remove('cursor-none');
+    },
+
+    mousemove: function(event) {
+        mouseCursor.style.top = event.pageY + scrollPosition + 'px';
+        mouseCursor.style.left = event.pageX + 'px';
     }
 };
 
@@ -148,25 +159,27 @@ function shadowShow() {
     document.body.appendChild(shadow);
 };
 
+
+
 function openModalWindow() {
 
     document.body.insertAdjacentHTML('beforeend', createModalWindow());
-
     modal = document.querySelector('.modal');
-
     closeModalBtn = document.querySelector('.close-modal');
-
     modalCollaboratorsList = document.querySelector('.modal-our_team_list');
-
     modalCollaboratorsList.insertAdjacentHTML("beforeend", markup(collaborators, renderCollaboratorCard));
-
-    timeout = setTimeout(() => modal.classList.add('modal--active'), 500);
+    timeout = setTimeout(() => {
+        modal.classList.add('modal--active');
+    }, 500);
 
     shadowShow();
+    cursorHandler.focusElement = modal;
+    console.log(cursorHandler.focusElement)
 
+    window.removeEventListener('mousemove', cursor);
+    window.addEventListener('mousemove', cursorHandler.mousemove);
     modal.addEventListener('mouseover', cursorHandler.onmouseover);
     modal.addEventListener('mouseout', cursorHandler.onmouseout);
-
 
 
     if (toTopBtn) { toTopBtn.classList.remove('show'); }
@@ -206,8 +219,13 @@ function transitionClose() {
     window.removeEventListener("keydown", onEscapeClose);
     modalCollaboratorsList.removeEventListener('click', modalCollaboratorFilm);
 
+
+    window.removeEventListener('mousemove', cursorHandler.mousemove);
     modal.removeEventListener('mouseover', cursorHandler.onmouseover);
     modal.removeEventListener('mouseout', cursorHandler.onmouseout);
+    cursorHandler.onclose();
+    window.addEventListener('mousemove', cursor);
+
 
     openModalBtn.addEventListener('click', openModalWindow);
     focusSet(html);

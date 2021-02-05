@@ -50,6 +50,11 @@ function openMovieDetails(selectedMovie) {
     detailsButtonClose = document.querySelector('.close-details');
 
     detailsButtonClose.addEventListener('click', closeModal);
+    window.addEventListener('mousemove', cursorHandler.mousemove);
+    detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
+    detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
+
+
 
 
     let filmGeneres = genres.filter(el =>
@@ -76,6 +81,7 @@ function openMovieDetails(selectedMovie) {
         focusCatcher(modal);
     } else {
         focusCatcher(html);
+        bodyScrollControlShift();
         scrollPositionOnOpen();
     };
 
@@ -98,9 +104,15 @@ function openMovieDetails(selectedMovie) {
             panel[0].classList.add('active');
         });
     };
+
+
+
+
     runLocalStorage();
     focusSet(detailsModal);
     detailsModal.querySelector(FOCUSABLE_SELECTORS).focus();
+    window.removeEventListener('mousemove', cursor);
+
 };
 
 function closeModal(event) {
