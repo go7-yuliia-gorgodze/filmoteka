@@ -33,6 +33,7 @@ function fetchGenres() {
   )
     .then(data => data.json())
     .then(res => {
+      // console.log(res);
       genres = [...res.genres];
     })
     .catch(err => console.log(err));

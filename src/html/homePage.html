@@ -1,6 +1,30 @@
 <!--Home Page-->
 <section id="js-homePage" class="main__homePage">
-  <ul id="js-moviesList" class="main__filmList"></ul>
+  <section class="carousel">
+    <h2 class="carousel-title">Coming Soon</h2>
+    <div class="slider-container">
+      <div class="slider-arrows">
+        <div class="slider-arrow-left arrowLeft">
+          <svg width="16" height="30" class="svg-arrow">
+            <polyline style="stroke-linejoin:miter; stroke:#00275a; stroke-width:3; fill: none;"
+              points="15 2, 2 15, 15 28" />
+          </svg>
+        </div>
+        <div class="slider-arrow-right arrowRight">
+          <svg width="16" height="30" class="svg-arrow">
+            <polyline style="stroke-linejoin:miter; stroke:#00275a; stroke-width:3; fill: none;"
+              points="2 2, 14 15, 2 28" />
+          </svg>
+        </div>
+      </div>
+      <div id="frame">
+        <div id="slider">
+        </div>
+      </div>
+    </div>
+</section>
+<h2 class="popular-title">Popular movies</h2>
+ <ul id="js-moviesList" class="main__filmList"></ul>
   <div class="pagination">
     <a class="pagination__button pagination__button_disabled" data-index="left" href="#!"><svg class="icon" width="16"
         height="16">
