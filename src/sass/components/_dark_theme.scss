@@ -16,17 +16,17 @@
 .theme-switch__icon_sun {
   position: absolute;
   top: -4px;
-  left: -9px;
+  left: 188px;
   @include tablet {
-    left: -27px;
+    left: 525px;
   }
 }
 .theme-switch__icon_moon {
   position: absolute;
   top: -4px;
-  left: 60px;
+  left: 255px;
   @include tablet {
-    left: 37px;
+    left: 590px;
   }
 }
 
@@ -56,7 +56,7 @@
 
 .theme-switch__track {
   position: absolute;
-  left: 20px;
+  left: 217px;
   top: 0;
   width: 50%;
   height: 50%;
@@ -67,14 +67,14 @@
   z-index: 1;
   cursor: pointer;
   @include tablet {
-    left: 0;
+    left: 553px;
   }
 }
 
 .theme-switch__marker {
   position: absolute;
   top: 1px;
-  left: 20px;
+  left: 216px;
   background-color: #fff;
   width: 13px;
   height: 13px;
@@ -85,7 +85,7 @@
   transform: translateX(3px);
   transition: transform 250ms var(--timing-function);
   @include tablet {
-    left: 1px;
+    left: 551px;
   }
 }
 
