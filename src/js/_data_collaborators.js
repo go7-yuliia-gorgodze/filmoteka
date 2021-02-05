@@ -14,7 +14,7 @@ const collaborators = [
     {
         src: '../images/png/Charlie_Hunnam.png',
         alt: 'Charlie Hunnam',
-        collaboratorName: 'MAXCOM',
+        collaboratorName: 'MAX',
         filmName: 'Escape from Pretoria'
     },
     {
@@ -45,6 +45,6 @@ const collaborators = [
         alt: 'Tim Robbins',
         collaboratorName: 'Osipov Sergey',
         filmName: 'The Shawshank Redemption'
-        
+
     }
 ];
