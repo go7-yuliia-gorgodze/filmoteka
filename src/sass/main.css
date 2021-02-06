@@ -8,6 +8,7 @@ body {
   color: #000000;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.08em;
+  overflow-x: hidden;
 }
 
 ul {
@@ -2616,25 +2617,33 @@ h6 {
   background-color: #f7f7f7;
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #ff6b09;
-  border-radius: 10px;
-  background-image: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.5) 75%, transparent 75%, transparent);
+@media (min-width: 768px) {
+  ::-webkit-scrollbar-thumb {
+    background-color: #ff6b09;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.5) 75%, transparent 75%, transparent);
+  }
 }
 
-::-webkit-scrollbar-track {
-  border-radius: 7px;
-  -webkit-box-shadow: inset -10px 9px 10px #f0f0f0, inset 0 0 6px rgba(0, 0, 0, 0.5);
-          box-shadow: inset -10px 9px 10px #f0f0f0, inset 0 0 6px rgba(0, 0, 0, 0.5);
+@media (min-width: 768px) {
+  ::-webkit-scrollbar-track {
+    border-radius: 7px;
+    -webkit-box-shadow: inset -10px 9px 10px #f0f0f0, inset 0 0 6px rgba(0, 0, 0, 0.5);
+            box-shadow: inset -10px 9px 10px #f0f0f0, inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
 }
 
-::-webkit-scrollbar-corner {
-  background-color: transparent;
+@media (min-width: 768px) {
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
 }
 
 .slider-container {

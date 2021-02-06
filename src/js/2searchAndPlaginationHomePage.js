@@ -11,20 +11,15 @@ const debounce = (fn, ms) => {
 
 function inputChange() {
   if (searchInput.value.length != 0) {
-    scrollToSectionHomePage();
     inputValue = searchInput.value;
     dischargePaginationAndCreateMarkup();
-    searchField.reset();
   }
 }
 
-searchInput.addEventListener('input', debounce(inputChange, 1500));
+searchInput.addEventListener('input', debounce(inputChange, 1200));
 searchField.addEventListener('submit', event => {
   event.preventDefault();
-
-  scrollToSectionHomePage();
   inputValue = event.currentTarget.elements[0].value;
-  searchField.reset();
   dischargePaginationAndCreateMarkup();
 });
 
@@ -34,7 +29,9 @@ function fetchFilms() {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      if (data.results.length != 0) {
+        scrollToSectionHomePage();
+      }
       return data;
     });
 }
