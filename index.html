@@ -1,12 +1,356 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"><title>Placeholder title</title><!-- Сюда будет всталена ссылка на файл стилей --><!-- inject:css --><link rel="stylesheet" href="css/styles.css"><!-- endinject --></head><body><!-- Header--><header class="header" style="background-color: black; height: 230px"><div class="header-container main-container"><div class="logo-container" style="display: flex;
-                justify-content: space-between;
-                align-items: center;"><a href="../index.html" class="link-logo link"><svg class="icon-logo" width="24" height="24"><use href="../images/symbol-defs.svg#icon-film-header"></use></svg> <span class="text-logo" style="margin-left: 12px;
-                    font-weight: 500;
-                    font-size: 30px;
-                    text-decoration: none;
-                    color: white;">Filmoteka</span></a><nav class="navigation"><ul class="header-list" style="display: flex; list-style: none"><li class="header-list-item"><a href="../index.html" class="link-header current" id="home" style="color: white">HOME</a></li><li class="header-list-item link"><button class="link-library" id="my-library" style="background-color: transparent;
-                        display: block;
-                        color: white;">MY LIBRARY</button></li></ul></nav></div><form id="js-form" class="search-box" action="submit" style="text-align: center"><input type="text" id="search" class="search-input" placeholder="Search the film" style="background: transparent;
-                  border: none;
-                  border-bottom: 0.5px solid #ffffff;
-                  outline: none;"> <svg class="icon-search" width="12" height="12"><use href="../images/symbol-defs.svg#icon-search-header"></use></svg></form><p class="error-message"></p></div></header><main><!--Home Page--><section id="js-homePage" class="main__homePage"><ul id="js-moviesList" class="main__filmList"></ul></section><!--Film library--><section id="js-myFilmLibrary" class="film-library"></section><section id="js-detailsPage" class="main-container details-container details-page"><div class="details-img"><img src="#" alt="film-preview" width="100%" height="100%"></div><div class="details-information"><h1 class="details-title">a fistful of lead</h1><div class="details-inf"><ul class="details-inf-list"><li>Vote / Votes</li><li>Popularity</li><li>Original Title</li><li>Genre</li></ul><ul class="details-inf-list details-inf-list-secondary"><li><span class="text-orange">7.3 </span>/ 1260</li><li>100.2</li><li>a fistful of lead</li><li>Western</li></ul></div><h2 class="details-title-secondary">About</h2><span class="details-text">Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the most corrupt settlement of the gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of gold hide out in the abandoned gold mine where they happen across another gang of three – who themselves were planning to hit the very same bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled with lead... they’ve been double crossed – but by who and how?</span><div><button class="details-button button-watch">add to Watched</button> <button class="details-button">add to queue</button></div></div></section></main><footer class="footer"><div class="footer-text-wrapper"><p class="footer-copyright"><span class="footer-copyright-symbol">&copy; </span><span class="footer-copyright-year">2020 </span><span class="footer-copyright-text">| All rights Reserved |</span></p><p class="footer-creators"><span class="footer-text">Developed with by </span><svg class="icon" width="14" height="14"><use xlink:href="../images/svg/sprite.svg#heart"></use></svg><button type="button" class="footer-btn">GoIT Students</button></p></div></footer><div class="loader is-hiden"><div class="inner one"></div><div class="inner two"></div><div class="inner three"></div></div><!-- Сюда будет всталена ссылка на файл скриптов --><!-- inject:js --><script src="js/scripts.js"></script><!-- endinject --></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- icon for btn to top -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <!-- carousel-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <title>Filmoteka | JS-4</title>
+    <!-- Сюда будет всталена ссылка на файл стилей -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- endinject -->
+  </head>
+
+  <body>
+    <!--Header-->
+<header class="header" style="background-color: black; height: 230px">
+  <div class="header-container main-container">
+    <div class="dark-theme-switcher">
+      <div class="theme-switch">
+        <svg class="theme-switch__icon_sun" width="24" height="24">
+          <use href="../images/svg/sprite-2.svg#icon-sun-icon"></use>
+        </svg>
+       <div class="theme-switch__control">
+         <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle" 
+            aria-label="Dark-light switcher" />
+         <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+           </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+           </div>
+           <svg class="theme-switch__icon_moon" width="24" height="24">
+            <use href="../images/svg/sprite-2.svg#icon-moon-icon"></use>
+          </svg>
+         </div>         
+              </div>
+    <div class="logo-container">
+      <a href="#" class="link-logo link">
+        <svg class="icon-logo" width="24" height="24">
+          <use href="../images/symbol-defs.svg#icon-film-header"></use>
+        </svg>
+        <span
+          class="text-logo"
+          style="
+            margin-left: 12px;
+            font-weight: 500;
+            font-size: 30px;
+            text-decoration: none;
+            color: white;
+          "
+        >
+          Filmoteka</span
+        ></a
+      >
+     
+      <nav class="navigation">
+        <ul class="header-list" style="display: flex; list-style: none">
+          <li class="header-list-item">
+            <a
+              href="#"
+              class="link-header current"
+              id="home"
+              style="color: white"
+              >HOME</a
+            >
+          </li>
+          <li class="header-list-item link">
+            <a
+              href="#"
+              class="link-library"
+              id="my-library"
+              style="
+                background-color: transparent;
+                display: block;
+                color: white;
+              "
+            >
+              MY LIBRARY
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="form_buttons">
+        <button class="button_logIn button_form" type="button">
+          <svg class="button-icon">
+            <use href="../images/svg/sprite.svg#login"></use>
+          </svg>
+        </button>
+        <!-- </button> -->
+        <button class="button_registration button_form" type="button">
+          <svg class="button-icon">
+            <use href="../images/svg/sprite.svg#signup"></use>
+          </svg>
+        </button>
+        <button class="button_signOut button_form hidden" type="button">
+          <svg class="button-icon">
+            <use href="../images/svg/sprite.svg#signout"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <form
+      id="js-form"
+      class="search-box"
+      action="submit"
+      style="text-align: center"
+    >
+      <input
+        type="text"
+        id="search"
+        class="search-input"
+        placeholder="Search the film"
+        style="
+          background: transparent;
+          border: none;
+          border-bottom: 0.5px solid #ffffff;
+          outline: none;
+        "
+      />
+      <svg class="icon-search" width="12" height="12">
+        <use href="../images/symbol-defs.svg#icon-search-header"></use>
+      </svg>
+    </form>
+    <p class="error-message"></p>
+    <div class="my-library-header-div hidden">
+      <ul class="my-library">
+        <li>
+          <button class="library-button button-active" id="watched">
+            Watched
+          </button>
+        </li>
+        <li>
+          <button class="library-button queue-button" id="queue">Queue</button>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</header>
+
+     <main>
+    <!--Home Page-->
+<section id="js-homePage" class="main__homePage">
+  <section class="carousel">
+    <span class="carousel-title popular-title">Coming Soon</span>
+    <div class="slider-container">
+      <div class="slider-arrows">
+        <div class="slider-arrow-left arrowLeft">
+          <svg width="16" height="30" class="svg-arrow">
+            <polyline style="stroke-linejoin:miter; stroke:#00275a; stroke-width:3; fill: none;"
+              points="15 2, 2 15, 15 28" />
+          </svg>
+        </div>
+        <div class="slider-arrow-right arrowRight">
+          <svg width="16" height="30" class="svg-arrow">
+            <polyline style="stroke-linejoin:miter; stroke:#00275a; stroke-width:3; fill: none;"
+              points="2 2, 14 15, 2 28" />
+          </svg>
+        </div>
+      </div>
+      <div id="frame">
+        <div id="slider">
+        </div>
+      </div>
+    </div>
+</section>
+<span class="popular-title">Popular movies</span>
+ <ul id="js-moviesList" class="main__filmList"></ul>
+  <div class="pagination">
+    <a class="pagination__button pagination__button_disabled" data-index="left" href="#!"><svg class="icon" width="16"
+        height="16">
+        <use href="../images/svg/sprite.svg#arrowleft"></use>
+      </svg></a>
+    <a class="pagination__button pagination__number pagination__button_disabled" data-index="1" href="#!"></a>
+    <span class="pagination__ellipsis">...</span>
+    <a class="pagination__button pagination__number pagination__button_disabled" data-index="2" href="#!"></a>
+    <a class="pagination__button pagination__number" data-index="3" href="#!">1</a>
+    <a class="pagination__button pagination__number" data-index="4" href="#!">2</a>
+    <span class="pagination__ellipsis">...</span>
+    <a class="pagination__button pagination__number" data-index="5" href="#!">3</a></li>
+    <a class="pagination__button" data-index="right" href="#!"><svg class="icon" width="16" height="16">
+        <use href="../images/svg/sprite.svg#arrowright"></use>
+      </svg></a>
+  </div>
+</section>
+ 
+    <section class="my-library-page hidden">
+  <ul id="js-library" class="watched-list main__filmList"></ul>
+</section>
+
+    <!-- <div id="js-detailsPage" class="details-container details-page hidden">
+  <div class="details-wrapper">
+    <img
+      id="js-previewImg"
+      class="details-img"
+      src="#"
+      alt="film-preview"
+      width="100%"
+      height="100%"
+    />
+    <div class="details-information">
+      <button class="button-close">
+        <svg class="details-close">
+          <use href="../images/symbol-defs.svg#close"></use>
+        </svg>
+      </button>
+      <h1 class="details-title">a fistful of lead</h1>
+      <div class="details-inf">
+        <ul class="details-inf-list">
+          <li>Vote / Votes</li>
+          <li>Popularity</li>
+          <li>Original Title</li>
+          <li>Genre</li>
+        </ul>
+        <ul class="details-inf-list details-inf-list-secondary">
+          <li>
+            <span id="js-detailsVote" class="text-orange">7.3 </span>
+            <span id="js-detailsVotes">/ 1260</span>
+          </li>
+          <li id="details-popularity">100.2</li>
+          <li id="details-originalTitle">a fistful of lead</li>
+          <li id="details-genre">Western</li>
+        </ul>
+      </div>
+
+      <div class="tabs-container">
+        <ul class="tabs">
+          <li class="active">
+            <a href="">ABOUT</a>
+          </li>
+          <li>
+            <a href="">TRAILER</a>
+          </li>
+        </ul>
+        <div class="tabs-content">
+          <div
+            id="js-detailsText"
+            class="tabs-panel active"
+            data-index="0"
+          ></div>
+          <div
+            id="js-movieTrailer"
+            class="movie-trailer tabs-panel"
+            data-index="1"
+          ></div>
+          <div class="tabs-panel" data-index="2">
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-button-list">
+        <button class="details-button button-add-to-watch">
+          add to Watched
+        </button>
+        <button class="details-button button-add-to-queue">add to queue</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  </main>
+
+
+    
+    <footer class="footer">
+  <div class="footer-text-wrapper">
+    <p class="footer-copyright">
+      <span class="footer-copyright-symbol"> &copy; </span>
+      <span class="footer-copyright-year"> 2020 </span>
+      <span class="footer-copyright-text"> | All rights Reserved | </span>
+    </p>
+    <p class="footer-creators">
+      <span class="footer-text"> Developed with by </span
+      ><svg class="icon" width="14" height="14">
+        <use xlink:href="../images/svg/sprite.svg#heart"></use>
+      </svg>
+      <button type="button" class="footer-btn open-modal">GoIT Students</button>
+    </p>
+  </div>
+</footer>
+
+    <div class="loader is-hiden">
+  <div class="inner one"></div>
+  <div class="inner two"></div>
+  <div class="inner three"></div>
+</div>
+    <a id="to-top-button"></a>
+
+    <div id="cursor">
+  <svg width="40px" height="40px">
+    <use href="../images/symbol-defs.svg#popcorn"></use>
+  </svg>
+</div>
+
+    <div class="form-modal hidden">
+  <div class="form-wrapper">
+    <button class="form-button-close">
+      <svg class="form-close">
+        <use href="../images/symbol-defs.svg#close"></use>
+      </svg>
+    </button>
+    <form class="registration hidden">
+      <h2>Registration</h2>
+      <label for="reg-email">E-mail</label>
+      <input name="reg-email" class="mail" type="email" />
+      <label for="reg-pass">Password</label>
+      <input name="reg-pass" class="pass" type="password" />
+      <button class="register-button" type="submit">Зарегестрироваться</button>
+    </form>
+    <form class="logIn hidden">
+      <h2>LogIn</h2>
+      <label for="log-email">E-mail</label>
+      <input name="log-email" class="mail" type="email" />
+      <label for="log-pass">Password</label>
+      <input name="log-pass" class="pass" type="password" />
+      <button class="log-in-button" type="submit">Войти</button>
+    </form>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <script>
+      //Config
+      var firebaseConfig = {
+        apiKey: 'AIzaSyB5qrzdmfAe847rQauzTKPf0UazgyDkRvk',
+        authDomain: 'filmoteka-99806.firebaseapp.com',
+        databaseURL: 'https://filmoteka-99806-default-rtdb.firebaseio.com',
+        projectId: 'filmoteka-99806',
+        storageBucket: 'filmoteka-99806.appspot.com',
+        messagingSenderId: '436032791506',
+        appId: '1:436032791506:web:792469e5d115a5925fde0b',
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </div>
+</div>
+
+    <!-- Сюда будет всталена ссылка на файл скриптов -->
+    <!-- inject:js -->
+    <script src="js/scripts.js"></script>
+    <!-- endinject -->
+   
+  </body>
+  
+</html>
