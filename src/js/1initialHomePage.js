@@ -58,7 +58,6 @@ function createMarkup() {
             res.id,
             res.release_date,
             res.vote_average,
-            res.production_countries[0].name,
             res.budget,
             res.revenue,
             res.genres,
@@ -95,7 +94,6 @@ function createStartupMarkup() {
             res.id,
             res.release_date,
             res.vote_average,
-            res.production_countries[0].name,
             res.budget,
             res.revenue,
             res.genres,
@@ -115,7 +113,6 @@ function createCard(
   movieId,
   date,
   avgVote,
-  country,
   budget,
   revenue,
   genres,
@@ -150,7 +147,6 @@ function createCard(
   const previewInfoBlock = createShortDescription(
     avgVote,
     date,
-    country,
     budget,
     revenue,
     genres,
@@ -169,7 +165,6 @@ function createCard(
 function createShortDescription(
   vote,
   releaseDate,
-  country,
   budget,
   revenue,
   movieGenres,
@@ -197,8 +192,6 @@ function createShortDescription(
 <h2 id="js-minicardReleaseDate" class="minicard__title">Release date</h2>
 <p class="minicard__description">${releaseDate}</p>
 <h2 id="js-minicardCountry" class="minicard__title">Country of Origin</h2>
-<p class="minicard__description">${country}</p>
-<h2 id="js-minicardRevenue" class="minicard__title">Budget/Revenue</h2>
 <p class="minicard__description">
   $${budget / 1000000}mln/$${Math.round(revenue / 1000000)}mln
 </p>
