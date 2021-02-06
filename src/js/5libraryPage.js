@@ -17,13 +17,7 @@ function drawWatchedFilmList() {
     return;
 };
 
-  if (moviesWatched === null || moviesWatched.length === 0) {
-    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
-  } else {
-    createWatchCard(moviesWatched);
-  }
-  return;
-}
+
 function drawQueueFilmList() {
     activePage(queueButton, watchedButton);
     watchedFilms.innerHTML = '';
@@ -37,13 +31,6 @@ function drawQueueFilmList() {
     return;
 };
 
-  if (moviesQueue === null || moviesQueue.length === 0) {
-    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
-  } else {
-    createQueqeCard(moviesQueue);
-  }
-  return;
-}
 function createWatchCard(moviesWatched) {
   moviesWatched.forEach(el => {
     fetchMoviesId(el).then(res => {
@@ -62,6 +49,7 @@ function createWatchCard(moviesWatched) {
         ),
       );
     });
+  })
 };
 
 function createQueqeCard(moviesQueue) {
@@ -82,6 +70,7 @@ function createQueqeCard(moviesQueue) {
         ),
       );
     });
+  });
 };
 
 function activePage(active, notActive) {
