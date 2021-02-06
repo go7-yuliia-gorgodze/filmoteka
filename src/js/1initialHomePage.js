@@ -1,5 +1,39 @@
 'use strict';
 
+const movieGallery = document.querySelector('#js-moviesList');
+const libraryGallery = document.querySelector('#js-library');
+
+console.log(libraryGallery);
+
+const searchField = document.querySelector('#js-form');
+const searchInput = document.querySelector('#search');
+const moviesList = document.querySelector('#js-moviesList');
+const detailsPage = document.querySelector('#js-detailsPage');
+const homePage = document.querySelector('#js-homePage');
+const headerError = document.querySelector('.error-message');
+
+//detailsPage refs
+const detailsModal = document.querySelector('#js-detailsPage');
+const detailsPreviewImg = document.querySelector('#js-previewImg');
+const detailsVote = document.querySelector('#js-detailsVote');
+const detailsVotes = document.querySelector('#js-detailsVotes');
+const detailsTitle = document.querySelector('.details-title');
+const detailsDescription = document.querySelector('#js-detailsText');
+const detailsPopularuty = document.querySelector('#details-popularity');
+// const detailsGenre = document.querySelector('#details-genre');
+const detailsOriginalTitle = document.querySelector('#details-originalTitle');
+// const detailsButtonClose = document.querySelector('.button-close');
+const movieTrailer = document.getElementById('js-movieTrailer');
+
+const body = document.querySelector('body');
+
+const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
+let inputValue = '';
+let pageNumber = 1;
+let genres;
+
+let renderedMovies = [];
+
 function createMarkup() {
     addPreloader();
     fetchFilms().then(result => {
@@ -123,7 +157,7 @@ function createCard(
         previewImgTitle.textContent = `${movieTitle} (${releaseYear})`;
     } else {
         previewImgTitle.textContent = movieTitle;
-    };
+    }
     movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
     return movieItem.outerHTML;
 };
