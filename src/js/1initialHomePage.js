@@ -189,12 +189,10 @@ function createShortDescription(
   previewInfoBlock.innerHTML = `
   <h2 id="js-minicardVotes" class="minicard__title">Avarage raiting</h2>
 <span class="minicard__description">${vote}</span>
+
 <h2 id="js-minicardReleaseDate" class="minicard__title">Release date</h2>
 <p class="minicard__description">${releaseDate}</p>
-<h2 id="js-minicardCountry" class="minicard__title">Country of Origin</h2>
-<p class="minicard__description">
-  $${budget / 1000000}mln/$${Math.round(revenue / 1000000)}mln
-</p>
+
 <h2 id="js-minicardRevenue" class="minicard__title">Genres</h2>
 <p class="minicard__description">${genres}</p>`;
 
