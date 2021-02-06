@@ -161,12 +161,14 @@
 }
 
 .main__previewInfoBlock {
+  width: 230px;
+
   padding: 10px;
   background: rgba(255, 245, 215, 0.7);
   border-radius: 5px;
   position: absolute;
-  bottom: 50%;
-  right: 20%;
+  bottom: 35%;
+  right: 15%;
 
   display: flex;
   flex-direction: column;
@@ -181,8 +183,19 @@
   transform: translateX(110%);
 }
 
-.minicard__votes,
-.minicard__date {
+.minicard__title,
+.minicard__description {
   font-size: small;
   margin: 1px;
+}
+
+.minicard__title,
+.text__orange {
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+  color: $accent-color;
+  background-color: rgba(32, 32, 32, 0.7);
+  width: auto;
+  height: 16px;
 }
