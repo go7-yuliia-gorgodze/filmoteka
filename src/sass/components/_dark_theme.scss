@@ -137,16 +137,16 @@
 //   background-color: #f7f7f7;
 //   color: $primary-text-color;
 // }
-// .button-add-to-watch .darkTheme {
-//   border: 1px solid white;
-// }
-// .button-add-to-queue .darkTheme {
-//   border: 1px solid white;
-// }
-// .button-is-active .darkTheme {
-//   background-color: rgb(28, 28, 28);
-//   border: none;
-// }
+.button-add-to-watch.darkTheme {
+  border: 1px solid white;
+}
+.button-add-to-queue.darkTheme {
+  border: 1px solid white;
+}
+.button-is-active.darkTheme {
+  background-color: $accent-color;
+  border: none;
+}
 
 .footer .darkTheme {
   color: white;
