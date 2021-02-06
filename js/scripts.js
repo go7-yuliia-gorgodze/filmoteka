@@ -236,20 +236,7 @@ myLibraryLink.addEventListener('click', function () {
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
-function activeLibraryPage() {
-  myLibraryLink.classList.add('current');
-  homePageLink.classList.remove('current');
-  homePage.classList.add('hidden');
-  myLibraryPage.classList.remove('hidden');
-  searchField.classList.add('hidden');
-  header.classList.remove('header');
-  header.classList.add('my-library-header');
-  myLibraryHeaderDiv.classList.remove('hidden');
-  headerError.innerHTML = '';
-  localStorage.setItem('activePage', 'activeLibraryPage');
-}
-
-function activeHomePage() {
+var activeHomePage = function activeHomePage() {
   inputValue = '';
   dischargePaginationAndCreateMarkup();
   myLibraryLink.classList.remove('current');
@@ -261,7 +248,20 @@ function activeHomePage() {
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
   localStorage.setItem('activePage', 'activeHomePage');
-}
+};
+
+var activeLibraryPage = function activeLibraryPage() {
+  myLibraryLink.classList.add('current');
+  homePageLink.classList.remove('current');
+  homePage.classList.add('hidden');
+  myLibraryPage.classList.remove('hidden');
+  searchField.classList.add('hidden');
+  header.classList.remove('header');
+  header.classList.add('my-library-header');
+  myLibraryHeaderDiv.classList.remove('hidden');
+  headerError.innerHTML = '';
+  localStorage.setItem('activePage', 'activeLibraryPage');
+};
 
 if (localStorage.getItem('activePage') === 'activeHomePage') {
   activeHomePage();
