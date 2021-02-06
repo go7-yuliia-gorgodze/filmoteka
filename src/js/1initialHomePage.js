@@ -117,22 +117,22 @@ function createCard(
     revenue,
     genres,
 ) {
-    const movieItem = document.createElement('li');
-    movieItem.classList.add('main__movieItem');
-    movieItem.setAttribute('id', 'js-movieItem');
+  const movieItem = document.createElement('li');
+  movieItem.classList.add('main__movieItem');
+  movieItem.setAttribute('id', 'js-movieItem');
 
-    const previewImg = document.createElement('img');
-    previewImg.classList.add('main__previewImgItem');
-    if (imgPath) {
-        previewImg.setAttribute(
-            'src',
-            `https://image.tmdb.org/t/p/w500/${imgPath}`,
-        );
-    } else {
-        previewImg.setAttribute('src', '../images/plug.jpg');
-    }
-    previewImg.setAttribute('data-id', movieId);
-    previewImg.setAttribute('id', 'js-image');
+  const previewImg = document.createElement('img');
+  previewImg.classList.add('main__previewImgItem');
+  if (imgPath) {
+    previewImg.setAttribute(
+      'src',
+      `https://image.tmdb.org/t/p/w500/${imgPath}`,
+    );
+  } else {
+    previewImg.setAttribute('src', './images/plug.jpg');
+  }
+  previewImg.setAttribute('data-id', movieId);
+  previewImg.setAttribute('id', 'js-image');
 
     const previewImgTitle = document.createElement('h2');
     previewImgTitle.classList.add('main__previewImgTitle');

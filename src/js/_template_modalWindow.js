@@ -1,11 +1,11 @@
 function createModalWindow() {
-    return `
+  return `
     <div class="modal" role="dialog" aria-labelledby="Modal_Title" aria-describedby="Modal_Description" aria-hidden="true" >
     <div class="modal-wrap">
         <div class="modal-content">
              <button class="button-close close-modal">
                 <svg class="details-close">
-                    <use href="../images/symbol-defs.svg#close"></use>
+                    <use href="./images/symbol-defs.svg#close"></use>
                 </svg>
             </button>
             <h2 id="modal_Title">Our team</h2>
@@ -16,5 +16,5 @@ function createModalWindow() {
     </div>
   </div>
 </div>
-    `
-};
+    `;
+}

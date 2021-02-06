@@ -15,14 +15,14 @@ const logInForm = document.querySelector('.logIn');
 let user = localStorage['userId'];
 
 function toggleButtonLogIn() {
-    if (isLogIn()) {
-        openLogInFormButton.innerHTML =
-            "<svg class='button-icon'><use href='../images/svg/sprite.svg#signout'></use></svg>";
-    } else {
-        openLogInFormButton.innerHTML =
-            "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
-    };
-};
+  if (isLogIn()) {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='./images/sprite.svg#signout'></use></svg>";
+  } else {
+    openLogInFormButton.innerHTML =
+      "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
+  }
+}
 toggleButtonLogIn();
 
 openRegistrFormButton.addEventListener('click', event => {

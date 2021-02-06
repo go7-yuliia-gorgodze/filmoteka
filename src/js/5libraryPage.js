@@ -17,6 +17,13 @@ function drawWatchedFilmList() {
     return;
 };
 
+  if (moviesWatched === null || moviesWatched.length === 0) {
+    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
+  } else {
+    createWatchCard(moviesWatched);
+  }
+  return;
+}
 function drawQueueFilmList() {
     activePage(queueButton, watchedButton);
     watchedFilms.innerHTML = '';
@@ -30,39 +37,50 @@ function drawQueueFilmList() {
     return;
 };
 
+  if (moviesQueue === null || moviesQueue.length === 0) {
+    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
+  } else {
+    createQueqeCard(moviesQueue);
+  }
+  return;
+}
 function createWatchCard(moviesWatched) {
-    moviesWatched.forEach(el => {
-        fetchMoviesId(el).then(res => {
-            console.log(res);
-            watchedFilms.insertAdjacentHTML(
-                'beforeend',
-                createCard(
-                    res.poster_path,
-                    res.title,
-                    res.id,
-                    res.release_date,
-                    res.vote_average,
-                ),
-            );
-        });
+  moviesWatched.forEach(el => {
+    fetchMoviesId(el).then(res => {
+      console.log(res);
+      watchedFilms.insertAdjacentHTML(
+        'beforeend',
+        createCard(
+          res.poster_path,
+            res.title,
+            res.id,
+            res.release_date,
+            res.vote_average,
+            res.budget,
+            res.revenue,
+            res.genres,
+        ),
+      );
     });
 };
 
 function createQueqeCard(moviesQueue) {
-    moviesQueue.forEach(el => {
-        fetchMoviesId(el).then(res => {
-            console.log(res);
-            watchedFilms.insertAdjacentHTML(
-                'beforeend',
-                createCard(
-                    res.poster_path,
-                    res.title,
-                    res.id,
-                    res.release_date,
-                    res.vote_average,
-                ),
-            );
-        });
+  moviesQueue.forEach(el => {
+    fetchMoviesId(el).then(res => {
+      console.log(res);
+      watchedFilms.insertAdjacentHTML(
+        'beforeend',
+        createCard(
+          res.poster_path,
+            res.title,
+            res.id,
+            res.release_date,
+            res.vote_average,
+            res.budget,
+            res.revenue,
+            res.genres,
+        ),
+      );
     });
 };
 

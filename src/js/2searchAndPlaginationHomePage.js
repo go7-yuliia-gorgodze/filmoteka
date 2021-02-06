@@ -10,34 +10,31 @@ const debounce = (fn, ms) => {
 };
 
 function inputChange() {
-    if (searchInput.value.length != 0) {
-        scrollToSectionHomePage();
-        inputValue = searchInput.value;
-        dischargePaginationAndCreateMarkup();
-        searchField.reset();
-    }
+  if (searchInput.value.length != 0) {
+    inputValue = searchInput.value;
+    dischargePaginationAndCreateMarkup();
+  }
 }
 
-searchInput.addEventListener('input', debounce(inputChange, 1500));
+searchInput.addEventListener('input', debounce(inputChange, 1200));
 searchField.addEventListener('submit', event => {
-    event.preventDefault();
-
-    scrollToSectionHomePage();
-    inputValue = event.currentTarget.elements[0].value;
-    searchField.reset();
-    dischargePaginationAndCreateMarkup();
+  event.preventDefault();
+  inputValue = event.currentTarget.elements[0].value;
+  dischargePaginationAndCreateMarkup();
 });
 
 function fetchFilms() {
-    return fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false&query=${inputValue}`,
-        )
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            return data;
-        });
-};
+  return fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false&query=${inputValue}`,
+  )
+    .then(response => response.json())
+    .then(data => {
+      if (data.results.length != 0) {
+        scrollToSectionHomePage();
+      }
+      return data;
+    });
+}
 
 function fetchPopularFilms() {
     return fetch(
