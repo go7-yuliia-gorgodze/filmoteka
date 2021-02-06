@@ -5,29 +5,32 @@ watchedButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
 function drawWatchedFilmList() {
-  activePage(watchedButton, queueButton);
-  watchedFilms.innerHTML = '';
-  const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+    activePage(watchedButton, queueButton);
+    watchedFilms.innerHTML = '';
+    const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
 
-  if (moviesWatched === null || moviesWatched.length === 0) {
-    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
-  } else {
-    createWatchCard(moviesWatched);
-  }
-  return;
-}
+    if (moviesWatched === null || moviesWatched.length === 0) {
+        watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`;
+    } else {
+        createWatchCard(moviesWatched);
+    };
+    return;
+};
+
+
 function drawQueueFilmList() {
-  activePage(queueButton, watchedButton);
-  watchedFilms.innerHTML = '';
-  const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+    activePage(queueButton, watchedButton);
+    watchedFilms.innerHTML = '';
+    const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 
-  if (moviesQueue === null || moviesQueue.length === 0) {
-    watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
-  } else {
-    createQueqeCard(moviesQueue);
-  }
-  return;
-}
+    if (moviesQueue === null || moviesQueue.length === 0) {
+        watchedFilms.innerHTML = `<img class="catch-error-pagination" src="../images/image1.jpg" />`;
+    } else {
+        createQueqeCard(moviesQueue);
+    };
+    return;
+};
+
 function createWatchCard(moviesWatched) {
   moviesWatched.forEach(el => {
     fetchMoviesId(el).then(res => {
@@ -46,8 +49,9 @@ function createWatchCard(moviesWatched) {
         ),
       );
     });
-  });
-}
+  })
+};
+
 function createQueqeCard(moviesQueue) {
   moviesQueue.forEach(el => {
     fetchMoviesId(el).then(res => {
@@ -67,8 +71,9 @@ function createQueqeCard(moviesQueue) {
       );
     });
   });
-}
+};
+
 function activePage(active, notActive) {
-  active.classList.add('button-active');
-  notActive.classList.remove('button-active');
-}
+    active.classList.add('button-active');
+    notActive.classList.remove('button-active');
+};

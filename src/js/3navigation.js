@@ -6,26 +6,26 @@ const homePageLink = document.querySelector('.link-header');
 const homePageLogo = document.querySelector('.link-logo');
 
 myLibraryLink.addEventListener('click', () => {
-  activeLibraryPage();
-  drawWatchedFilmList();
+    activeLibraryPage();
+    drawWatchedFilmList();
 });
 
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeHomePage() {
-  inputValue = '';
-  dischargePaginationAndCreateMarkup();
-  myLibraryLink.classList.remove('current');
-  homePageLink.classList.add('current');
-  homePage.classList.remove('hidden');
-  myLibraryPage.classList.add('hidden');
-  searchField.classList.remove('hidden');
-  header.classList.add('header');
-  header.classList.remove('my-library-header');
-  myLibraryHeaderDiv.classList.add('hidden');
-  localStorage.setItem('activePage', 'activeHomePage');
-}
+    inputValue = '';
+    dischargePaginationAndCreateMarkup();
+    myLibraryLink.classList.remove('current');
+    homePageLink.classList.add('current');
+    homePage.classList.remove('hidden');
+    myLibraryPage.classList.add('hidden');
+    searchField.classList.remove('hidden');
+    header.classList.add('header');
+    header.classList.remove('my-library-header');
+    myLibraryHeaderDiv.classList.add('hidden');
+    localStorage.setItem('activePage', 'activeHomePage');
+};
 
 function activeLibraryPage() {
   myLibraryLink.classList.add('current');
