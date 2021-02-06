@@ -27,11 +27,11 @@ var inputValue = '';
 var pageNumber = 1;
 var genres;
 var renderedMovies = [];
-createStartupMarkup();
 
 function createMarkup() {
   addPreloader();
   fetchFilms().then(function (result) {
+    // console.log(result);
     if (inputValue === '') {
       removePreloader();
       headerError.textContent = 'Please enter movie name';
@@ -42,7 +42,10 @@ function createMarkup() {
     }
 
     result.results.forEach(function (element) {
-      moviesList.insertAdjacentHTML('beforeend', createCard(element.poster_path, element.title, element.id, element.release_date, element.vote_average));
+      fetchMoviesId(element.id).then(function (res) {
+        // console.log(res);
+        moviesList.insertAdjacentHTML('beforeend', createCard(res.poster_path, res.title, res.id, res.release_date, res.vote_average, res.budget, res.revenue, res.genres));
+      });
     });
 
     if (result.results.length === 0) {
@@ -62,7 +65,10 @@ function createStartupMarkup() {
   fetchPopularFilms().then(function (result) {
     moviesList.innerHTML = '';
     result.results.forEach(function (element) {
-      moviesList.insertAdjacentHTML('beforeend', createCard(element.poster_path, element.title, element.id, element.release_date, element.vote_average));
+      fetchMoviesId(element.id).then(function (res) {
+        // console.log(res.genres);
+        moviesList.insertAdjacentHTML('beforeend', createCard(res.poster_path, res.title, res.id, res.release_date, res.vote_average, res.budget, res.revenue, res.genres));
+      });
     });
     removePreloader();
     renderedMovies = result.results;
@@ -70,7 +76,7 @@ function createStartupMarkup() {
   });
 }
 
-function createCard(imgPath, movieTitle, movieId, date, avgVote) {
+function createCard(imgPath, movieTitle, movieId, date, avgVote, budget, revenue, genres) {
   var movieItem = document.createElement('li');
   movieItem.classList.add('main__movieItem');
   movieItem.setAttribute('id', 'js-movieItem');
@@ -83,11 +89,16 @@ function createCard(imgPath, movieTitle, movieId, date, avgVote) {
     previewImg.setAttribute('src', '../images/plug.jpg');
   }
 
-  var previewImgTitle = document.createElement('h2');
-  previewImgTitle.classList.add('main__previewImgTitle');
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
-  var previewInfoBlock = createShortDescription(avgVote, date);
+  var previewImgTitle = document.createElement('h2');
+  previewImgTitle.classList.add('main__previewImgTitle');
+  console.log(previewImgTitle);
+  var previewTitleContainer = document.createElement('div');
+  previewTitleContainer.classList.add('main__previewTitleContainer');
+  previewTitleContainer.append(previewImgTitle);
+  console.log(previewTitleContainer);
+  var previewInfoBlock = createShortDescription(avgVote, date, budget, revenue, genres);
   var releaseYear = new Date(date).getFullYear();
 
   if (!Number.isNaN(releaseYear)) {
@@ -96,14 +107,25 @@ function createCard(imgPath, movieTitle, movieId, date, avgVote) {
     previewImgTitle.textContent = movieTitle;
   }
 
-  movieItem.append(previewImg, previewImgTitle, previewInfoBlock);
+  movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
   return movieItem.outerHTML;
 }
 
-function createShortDescription(vote, releaseDate) {
+function createShortDescription(vote, releaseDate, budget, revenue, movieGenres) {
+  console.log(movieGenres);
+  var genres = movieGenres.reduce(function (acc, item) {
+    return acc + "".concat(item.name, ", ");
+  }, '').slice(0, -2);
+  console.log(genres); //   let genres = movieGenres
+  //     .filter(el => {
+  //       el.find(movie => el.id === movie) ? true : false;
+  //     })
+  //     .reduce((acc, item) => acc + `${item.name}, `, '')
+  //     .slice(0, -2);
+
   var previewInfoBlock = document.createElement('div');
   previewInfoBlock.classList.add('main__previewInfoBlock');
-  previewInfoBlock.innerHTML = "\n  <p id=\"js-minicardVotes\" class=\"minicard__votes\">Avarage raiting | <span class=\"text-orange\">".concat(vote, "</span></p>\n  <p id=\"js-minicardDate\" class=\"minicard__date\">Release date | ").concat(releaseDate, "</p>");
+  previewInfoBlock.innerHTML = "\n  <h2 id=\"js-minicardVotes\" class=\"minicard__title\">Avarage raiting</h2>\n<span class=\"minicard__description\">".concat(vote, "</span>\n\n<h2 id=\"js-minicardReleaseDate\" class=\"minicard__title\">Release date</h2>\n<p class=\"minicard__description\">").concat(releaseDate, "</p>\n\n<h2 id=\"js-minicardRevenue\" class=\"minicard__title\">Genres</h2>\n<p class=\"minicard__description\">").concat(genres, "</p>");
   return previewInfoBlock;
 }
 "use strict";
@@ -133,6 +155,7 @@ var debounce = function debounce(fn, ms) {
 
 function inputChange() {
   if (searchInput.value.length != 0) {
+    scrollToSectionHomePage();
     inputValue = searchInput.value;
     dischargePaginationAndCreateMarkup();
     searchField.reset();
@@ -142,6 +165,7 @@ function inputChange() {
 searchInput.addEventListener('input', debounce(inputChange, 1500));
 searchField.addEventListener('submit', function (event) {
   event.preventDefault();
+  scrollToSectionHomePage();
   inputValue = event.currentTarget.elements[0].value;
   searchField.reset();
   dischargePaginationAndCreateMarkup();
@@ -160,6 +184,7 @@ function fetchPopularFilms() {
   return fetch("https://api.themoviedb.org/3/movie/popular?api_key=".concat(apiKey, "&language=en-US&page=").concat(pageNumber)).then(function (response) {
     return response.json();
   }).then(function (data) {
+    console.log(data);
     return data;
   });
 }
@@ -187,6 +212,7 @@ function fetchMoviesId(movieId) {
   return fetch("https://api.themoviedb.org/3/movie/".concat(movieId, "?api_key=").concat(apiKey, "&language=en-US")).then(function (res) {
     return res.json();
   }).then(function (data) {
+    // console.log(data);
     return data;
   });
 }
@@ -764,6 +790,7 @@ function openModalWindow() {
   }
 
   focusCatcher(html);
+  getStorage();
   closeModalBtn.addEventListener('click', closeModalWindow);
   document.addEventListener("click", onOverlayClickClose);
   window.addEventListener("keydown", onEscapeClose);
@@ -1226,20 +1253,30 @@ button.forEach(function (button) {
 var body = document.querySelector('body');
 var footerTheme = document.querySelector('footer');
 var textFooter = document.querySelector('.footer-text-wrapper');
-var copyrightFooter = document.querySelector('.footer-copyright'); // const creatorsFooter = document.querySelector('.footer-creators');
+var copyrightFooter = document.querySelector('.footer-copyright');
+var creatorsFooter = document.querySelector('.footer-creators');
+var switchToggle = document.querySelector('#theme-switch-toggle');
+var detailsWrapper; // const detailsWrapper = document.querySelector('.details-wrapper');
 
-var switchToggle = document.querySelector('#theme-switch-toggle'); // const detailsWrapper = document.querySelector('.details-wrapper');
-// const detailsInfo = document.querySelector('.details-information');
-// const detailsContainer = document.querySelector('.details-container');
-// const detailsList = document.querySelector('.details-inf-list');
-// const detailsListSecondary = document.querySelector(
-//   '.details-inf-list-secondary',
+var detailsInfo; // const detailsInfo = document.querySelector('.details-information');
+
+var detailsContainer; // const detailsContainer = document.querySelector('.details-container');
+
+var detailsList; // const detailsList = document.querySelector('.details-inf-list');
+
+var detailsListSecondary; // const detailsListSecondary = document.querySelector(
+//   '.details-inf-list-secondary'
 // );
-// const tabs = document.querySelector('.tabs');
-// const tabsContent = document.querySelector('.tabs-content');
-// const buttonToWatch = document.querySelector('.button-add-to-watch');
-// const buttonToQueue = document.querySelector('.button-add-to-queue');
 
+var tabs; // const tabs = document.querySelector('.tabs');
+
+var tabsContent; // const tabsContent = document.querySelector('.tabs-content');
+
+var buttonToWatch; // const buttonToWatch = document.querySelector('.button-add-to-watch');
+
+var buttonToQueue; // const buttonToQueue = document.querySelector('.button-add-to-queue');
+
+var ourTeamModal;
 var paginationButton = document.querySelector('.pagination__button');
 var Theme = {
   LIGHT: 'light-theme',
@@ -1249,6 +1286,7 @@ switchToggle.addEventListener('click', themeChange);
 getStorage();
 
 function getStorage() {
+  console.log("click");
   var themeCheck = localStorage.getItem('Theme:');
 
   if (themeCheck === null || themeCheck === 'light-theme') {
@@ -1263,8 +1301,31 @@ function darkTheme() {
   body.classList.add('darkTheme');
   footerTheme.classList.add('darkTheme');
   textFooter.classList.add('darkTheme');
-  copyrightFooter.classList.add('darkTheme'); // creatorsFooter.classList.add('darkTheme');
-  // detailsWrapper.classList.add('darkTheme');
+  copyrightFooter.classList.add('darkTheme');
+  paginationButton.classList.add('darkTheme');
+  creatorsFooter.classList.add('darkTheme');
+
+  if (detailsModal) {
+    setDetailsFilmThemeToggling();
+    detailsWrapper.classList.add('darkTheme');
+    detailsInfo.classList.add('darkTheme');
+    detailsContainer.classList.add('darkTheme');
+    detailsList.classList.add('darkTheme');
+    detailsListSecondary.classList.add('darkTheme');
+    tabs.classList.add('darkTheme');
+    tabsContent.classList.add('darkTheme');
+    buttonToWatch.classList.add('darkTheme');
+    buttonToQueue.classList.add('darkTheme');
+  }
+
+  ;
+
+  if (modal) {
+    setOurTeamThemeToggling();
+    ourTeamModal.classList.add('darkTheme');
+  }
+
+  ; // detailsWrapper.classList.add('darkTheme');
   // detailsInfo.classList.add('darkTheme');
   // detailsContainer.classList.add('darkTheme');
   // detailsList.classList.add('darkTheme');
@@ -1274,16 +1335,39 @@ function darkTheme() {
   // buttonToWatch.classList.add('darkTheme');
   // buttonToQueue.classList.add('darkTheme');
 
-  paginationButton.classList.add('darkTheme');
   switchToggle.checked = true;
 }
+
+;
 
 function lightTheme() {
   body.classList.remove('darkTheme');
   footerTheme.classList.remove('darkTheme');
   textFooter.classList.remove('darkTheme');
-  copyrightFooter.classList.remove('darkTheme'); // creatorsFooter.classList.remove('darkTheme');
-  // detailsWrapper.classList.remove('darkTheme');
+  copyrightFooter.classList.remove('darkTheme');
+  creatorsFooter.classList.remove('darkTheme');
+
+  if (detailsModal) {
+    setDetailsFilmThemeToggling();
+    detailsWrapper.classList.remove('darkTheme');
+    detailsInfo.classList.remove('darkTheme');
+    detailsContainer.classList.remove('darkTheme');
+    detailsList.classList.remove('darkTheme');
+    detailsListSecondary.classList.remove('darkTheme');
+    tabs.classList.remove('darkTheme');
+    tabsContent.classList.remove('darkTheme');
+    buttonToWatch.classList.remove('darkTheme');
+    buttonToQueue.classList.remove('darkTheme');
+  }
+
+  ;
+
+  if (modal) {
+    setOurTeamThemeToggling();
+    ourTeamModal.classList.remove('darkTheme');
+  }
+
+  ; // detailsWrapper.classList.remove('darkTheme');
   // detailsInfo.classList.remove('darkTheme');
   // detailsContainer.classList.remove('darkTheme');
   // detailsList.classList.remove('darkTheme');
@@ -1297,6 +1381,8 @@ function lightTheme() {
   switchToggle.checked = false;
 }
 
+;
+
 function themeChange() {
   if (switchToggle.checked) {
     darkTheme();
@@ -1305,10 +1391,34 @@ function themeChange() {
     lightTheme();
     setLocalStorage(Theme.LIGHT);
   }
+
+  ;
 }
+
+;
 
 function setLocalStorage(info) {
   localStorage.setItem('Theme:', info);
+}
+
+;
+
+function setDetailsFilmThemeToggling() {
+  detailsWrapper = document.querySelector('.details-wrapper');
+  detailsInfo = document.querySelector('.details-information');
+  detailsContainer = document.querySelector('.details-container');
+  detailsList = document.querySelector('.details-inf-list');
+  detailsListSecondary = document.querySelector('.details-inf-list-secondary');
+  tabs = document.querySelector('.tabs');
+  tabsContent = document.querySelector('.tabs-content');
+  buttonToWatch = document.querySelector('.button-add-to-watch');
+  buttonToQueue = document.querySelector('.button-add-to-queue');
+}
+
+;
+
+function setOurTeamThemeToggling() {
+  ourTeamModal = document.querySelector('.modal-content');
 }
 "use strict";
 
@@ -1335,8 +1445,6 @@ function onFilmCardClickHandler(event) {
   }
 }
 
-;
-
 function activateDetailsPage(id, itsLibraryMovie) {
   selectedMovie = renderedMovies.find(function (movie) {
     return movie.id === Number(id);
@@ -1353,19 +1461,17 @@ function activateDetailsPage(id, itsLibraryMovie) {
     });
   }
 
-  ;
   openMovieDetails(selectedMovie);
 }
 
-;
 fetchGenres();
+console.log(genres);
 
 function openMovieDetails(selectedMovie) {
   if (toTopBtn) {
     toTopBtn.classList.remove('show');
   }
 
-  ;
   shadowShow();
   body.insertAdjacentHTML('beforeend', renderDetailFilmModal(selectedMovie));
   detailsModal = document.querySelector('#js-detailsPage');
@@ -1379,13 +1485,14 @@ function openMovieDetails(selectedMovie) {
   }, 500);
   queueButtonAdd = document.querySelector('.button-add-to-queue');
   detailsButtonClose = document.querySelector('.close-details');
+  getStorage();
   detailsButtonClose.addEventListener('click', closeModal);
   window.removeEventListener('mousemove', cursor);
   window.addEventListener('mousemove', cursorHandler.mousemove);
   detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
   detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
-  window.addEventListener("keydown", onEscapeCloseDetails);
-  document.addEventListener("click", onOverlayDetailsClose);
+  window.addEventListener('keydown', onEscapeCloseDetails);
+  document.addEventListener('click', onOverlayDetailsClose);
   var filmGeneres = genres.filter(function (el) {
     return selectedMovie.genre_ids.find(function (movie) {
       return el.id === movie;
@@ -1404,10 +1511,9 @@ function openMovieDetails(selectedMovie) {
     focusCatcher(html);
     bodyScrollControlShift();
     scrollPositionOnOpen();
-    html.classList.add("modal__opened");
+    html.classList.add('modal__opened');
   }
 
-  ;
   tabLinks.forEach(function (el) {
     return el.addEventListener('click', tabLinksCallback);
   });
@@ -1417,8 +1523,6 @@ function openMovieDetails(selectedMovie) {
   trapScreenReaderFocus(detailsModal);
 }
 
-;
-
 function closeModal() {
   if (toTopBtn && !modal) {
     toTopBtn.classList.add('show');
@@ -1426,17 +1530,15 @@ function closeModal() {
 
   document.querySelector('iframe').src = '';
   detailsModal.classList.add('hidden');
-  detailsModal.classList.add("modal--moved");
-  detailsModal.addEventListener("transitionend", transitionDetailsClose);
+  detailsModal.classList.add('modal--moved');
+  detailsModal.addEventListener('transitionend', transitionDetailsClose);
   detailsModal.classList.remove('modal--active');
   detailsButtonClose.removeEventListener('click', closeModal);
 }
 
-;
-
 function transitionDetailsClose() {
-  detailsModal.classList.remove("modal--moved");
-  detailsModal.removeEventListener("transitionend", transitionDetailsClose);
+  detailsModal.classList.remove('modal--moved');
+  detailsModal.removeEventListener('transitionend', transitionDetailsClose);
 
   if (!modal) {
     window.removeEventListener('mousemove', cursorHandler.mousemove);
@@ -1451,9 +1553,8 @@ function transitionDetailsClose() {
     shadow = null;
   }
 
-  ;
-  window.removeEventListener("keydown", onEscapeCloseDetails);
-  document.removeEventListener("click", onOverlayDetailsClose); // Untrap screen reader focus
+  window.removeEventListener('keydown', onEscapeCloseDetails);
+  document.removeEventListener('click', onOverlayDetailsClose); // Untrap screen reader focus
 
   untrapScreenReaderFocus(detailsModal); // restore focus to the triggering element
 
@@ -1470,19 +1571,13 @@ function transitionDetailsClose() {
   detailsButtonClose = null;
 }
 
-;
-
 function onEscapeCloseDetails(e) {
   if (e.which == 27 && detailsModal.classList.contains('details-container')) {
     e.preventDefault();
     closeModal();
     return;
   }
-
-  ;
 }
-
-;
 
 function onOverlayDetailsClose(e) {
   var wrap = e.target.classList.contains('details-container');
@@ -1490,8 +1585,6 @@ function onOverlayDetailsClose(e) {
   e.preventDefault();
   closeModal();
 }
-
-;
 
 function tabLinksCallback(e) {
   e.preventDefault();
@@ -1508,8 +1601,6 @@ function tabLinksCallback(e) {
 
   panel[0].classList.add('active');
 }
-
-;
 
 function toggleButtonWatcher(id) {
   var filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
@@ -1538,11 +1629,7 @@ function toggleButtonWatcher(id) {
   function getArrayFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem("".concat(key)));
   }
-
-  ;
 }
-
-;
 
 function runLocalStorage() {
   watchedButtonAdd.addEventListener('click', toggleToWatched);
@@ -1565,11 +1652,7 @@ function runLocalStorage() {
       watchedButtonAdd.textContent = 'IN WATCHED';
       addFilmIdArray('filmsWatched', currentId);
     }
-
-    ;
   }
-
-  ;
 
   function toggleToQueue() {
     var currentId = document.querySelector('.details-img').dataset.filmid;
@@ -1588,23 +1671,15 @@ function runLocalStorage() {
       queueButtonAdd.textContent = 'IN QUEUE';
       addFilmIdArray('filmsQueue', currentId);
     }
-
-    ;
   }
-
-  ;
 
   function getArrayFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem("".concat(key)));
   }
 
-  ;
-
   function setArrayToLocalStorage(key, arrayFilms) {
     localStorage.setItem("".concat(key), JSON.stringify(arrayFilms));
   }
-
-  ;
 
   function addFilmIdArray(key, filmId) {
     var arrayFilms = getArrayFromLocalStorage(key);
@@ -1612,18 +1687,12 @@ function runLocalStorage() {
     setArrayToLocalStorage(key, arrayFilms);
   }
 
-  ;
-
   function removeFilmIdFromArray(key, filmId) {
     var arrayFilms = getArrayFromLocalStorage(key);
     arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
     setArrayToLocalStorage(key, arrayFilms);
   }
-
-  ;
 }
-
-;
 "use strict";
 
 // realle time
@@ -1646,25 +1715,25 @@ function clickerInit() {
       case 'left':
         buttonsNumbers = previousPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
 
       case 'right':
         buttonsNumbers = nextPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
 
       case '1':
         buttonsNumbers = previousTwoPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
 
       case '2':
         buttonsNumbers = previousPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
 
       case '3':
@@ -1673,13 +1742,13 @@ function clickerInit() {
       case '4':
         buttonsNumbers = nextPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
 
       case '5':
         buttonsNumbers = nextTwoPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
-        toTop();
+        scrollToSectionHomePage();
         break;
     }
 
@@ -1736,11 +1805,24 @@ function dischargePaginationAndCreateMarkup() {
   paginationNavigation(buttonsNumbers);
 }
 
-function toTop() {
-  window.scrollTo({
-    top: 270,
-    behavior: 'smooth'
-  });
+function scrollToSectionHomePage() {
+  var mediaQuery = window.matchMedia('(max-width: 767px)');
+  mediaQuery.addListener(handleTabletChange);
+  handleTabletChange(mediaQuery);
+
+  function handleTabletChange(e) {
+    if (e.matches) {
+      window.scrollTo({
+        top: 250,
+        behavior: 'smooth'
+      });
+    } else {
+      window.scrollTo({
+        top: 670,
+        behavior: 'smooth'
+      });
+    }
+  }
 }
 "use strict";
 
@@ -1946,7 +2028,7 @@ var collaborators = [{
 }, {
   src: '../images/png/Charlie_Hunnam.png',
   alt: 'Charlie Hunnam',
-  collaboratorName: 'MAXCOM',
+  collaboratorName: 'Max',
   filmName: 'Escape from Pretoria'
 }, {
   src: '../images/jpg/Til_Schweiger_cr.jpg',
@@ -1956,7 +2038,7 @@ var collaborators = [{
 }, {
   src: '../images/jpg/AbdulovA.jpg',
   alt: 'Aleksandr Abdulov',
-  collaboratorName: 'Pankov Dmytro',
+  collaboratorName: 'Dmytro',
   filmName: 'Charodei'
 }, {
   src: '../images/jpg/Johnny_Depp.jpg',
@@ -1971,7 +2053,7 @@ var collaborators = [{
 }, {
   src: '../images/jpg/Tim_Robbins.jpg',
   alt: 'Tim Robbins',
-  collaboratorName: 'Osipov Sergey',
+  collaboratorName: 'Sergey',
   filmName: 'The Shawshank Redemption'
 }];
 "use strict";
