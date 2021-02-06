@@ -1,39 +1,5 @@
 'use strict';
 
-const movieGallery = document.querySelector('#js-moviesList');
-const libraryGallery = document.querySelector('#js-library');
-
-console.log(libraryGallery);
-
-const searchField = document.querySelector('#js-form');
-const searchInput = document.querySelector('#search');
-const moviesList = document.querySelector('#js-moviesList');
-const detailsPage = document.querySelector('#js-detailsPage');
-const homePage = document.querySelector('#js-homePage');
-const headerError = document.querySelector('.error-message');
-
-//detailsPage refs
-const detailsModal = document.querySelector('#js-detailsPage');
-const detailsPreviewImg = document.querySelector('#js-previewImg');
-const detailsVote = document.querySelector('#js-detailsVote');
-const detailsVotes = document.querySelector('#js-detailsVotes');
-const detailsTitle = document.querySelector('.details-title');
-const detailsDescription = document.querySelector('#js-detailsText');
-const detailsPopularuty = document.querySelector('#details-popularity');
-// const detailsGenre = document.querySelector('#details-genre');
-const detailsOriginalTitle = document.querySelector('#details-originalTitle');
-// const detailsButtonClose = document.querySelector('.button-close');
-const movieTrailer = document.getElementById('js-movieTrailer');
-
-const body = document.querySelector('body');
-
-const apiKey = '5f4a8cd7bcedd7efa785bad615b94f98';
-let inputValue = '';
-let pageNumber = 1;
-let genres;
-
-let renderedMovies = [];
-
 function createMarkup() {
     addPreloader();
     fetchFilms().then(result => {
@@ -45,7 +11,7 @@ function createMarkup() {
         } else {
             moviesList.innerHTML = '';
             headerError.textContent = '';
-        }
+        };
 
         result.results.forEach(element => {
             fetchMoviesId(element.id).then(res => {
@@ -58,7 +24,6 @@ function createMarkup() {
                         res.id,
                         res.release_date,
                         res.vote_average,
-                        res.production_countries[0].name,
                         res.budget,
                         res.revenue,
                         res.genres,
@@ -72,7 +37,7 @@ function createMarkup() {
             headerError.textContent =
                 'No movies were found. Please specify your request';
             createStartupMarkup();
-        }
+        };
 
         removePreloader();
         renderedMovies = result.results;
@@ -95,7 +60,6 @@ function createStartupMarkup() {
                         res.id,
                         res.release_date,
                         res.vote_average,
-                        res.production_countries[0].name,
                         res.budget,
                         res.revenue,
                         res.genres,
@@ -107,7 +71,7 @@ function createStartupMarkup() {
         renderedMovies = result.results;
         return renderedMovies;
     });
-}
+};
 
 function createCard(
     imgPath,
@@ -115,7 +79,6 @@ function createCard(
     movieId,
     date,
     avgVote,
-    country,
     budget,
     revenue,
     genres,
@@ -150,7 +113,6 @@ function createCard(
     const previewInfoBlock = createShortDescription(
         avgVote,
         date,
-        country,
         budget,
         revenue,
         genres,
@@ -161,15 +123,14 @@ function createCard(
         previewImgTitle.textContent = `${movieTitle} (${releaseYear})`;
     } else {
         previewImgTitle.textContent = movieTitle;
-    }
+    };
     movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
     return movieItem.outerHTML;
-}
+};
 
 function createShortDescription(
     vote,
     releaseDate,
-    country,
     budget,
     revenue,
     movieGenres,
@@ -196,14 +157,8 @@ function createShortDescription(
 <span class="minicard__description">${vote}</span>
 <h2 id="js-minicardReleaseDate" class="minicard__title">Release date</h2>
 <p class="minicard__description">${releaseDate}</p>
-<h2 id="js-minicardCountry" class="minicard__title">Country of Origin</h2>
-<p class="minicard__description">${country}</p>
-<h2 id="js-minicardRevenue" class="minicard__title">Budget/Revenue</h2>
-<p class="minicard__description">
-  $${budget / 1000000}mln/$${Math.round(revenue / 1000000)}mln
-</p>
 <h2 id="js-minicardRevenue" class="minicard__title">Genres</h2>
 <p class="minicard__description">${genres}</p>`;
 
     return previewInfoBlock;
-}
+};
