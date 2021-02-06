@@ -25,7 +25,7 @@
     // }
   }
   &__button {
-    padding-top: 12px;
+    padding-top: 7px;
     min-width: 40px;
     height: 40px;
     font-weight: 500;
@@ -34,6 +34,9 @@
     color: $primary-text-color;
     &_disabled {
       pointer-events: none;
+    }
+    &_is-hidden {
+      display: none;
     }
     svg {
       pointer-events: none;
@@ -47,6 +50,8 @@
       background-color: $accent-color;
     }
     &:hover {
+      color: $primary-text-color;
+      text-decoration: none;
       @include desktop() {
         cursor: pointer;
         background-color: $accent-color;
