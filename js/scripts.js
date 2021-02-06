@@ -86,7 +86,7 @@ function createCard(imgPath, movieTitle, movieId, date, avgVote, budget, revenue
   if (imgPath) {
     previewImg.setAttribute('src', "https://image.tmdb.org/t/p/w500/".concat(imgPath));
   } else {
-    previewImg.setAttribute('src', '../images/plug.jpg');
+    previewImg.setAttribute('src', './images/plug.jpg');
   }
 
   previewImg.setAttribute('data-id', movieId);
@@ -268,243 +268,6 @@ if (localStorage.getItem('activePage') === 'activeHomePage') {
 } else {
   activeLibraryPage();
 }
-// const watchedButtonAdd = document.querySelector('.button-add-to-watch');
-// const queueButtonAdd = document.querySelector('.button-add-to-queue');
-// movieGallery.addEventListener('click', event => {
-//     if (event.target.nodeName === 'IMG') {
-//         let id = event.target.dataset.id;
-//         activateDetailsPage(id);
-//         toggleButtonWatcher(id);
-//     }
-// });
-// detailsButtonClose.addEventListener('click', closeModal);
-// detailsModal.addEventListener('click', closeModal);
-// document.addEventListener('keydown', closeModal);
-// function closeModal(event) {
-//     if (
-//         event.target.classList.contains('details-container') ||
-//         event.target.classList.contains('details-close') ||
-//         event.target.nodeName === 'use' ||
-//         event.key === 'Escape'
-//     ) {
-//         // toTopBtn.classList.add('show');
-//         body.classList.remove('blocked-scroll');
-//         detailsModal.classList.add('hidden');
-//         // stop player youtube
-//         document.querySelector('iframe').src = '';
-//     }
-// }
-// let selectedMovie;
-// function activateDetailsPage(id, itsLibraryMovie) {
-//     selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
-//     if (itsLibraryMovie) {
-//         let allLocalStorageMovies = [
-//             ...JSON.parse(localStorage.getItem('filmsQueue')),
-//             ...JSON.parse(localStorage.getItem('filmsWatched')),
-//         ];
-//         selectedMovie = allLocalStorageMovies.find(
-//             movie => movie.id === Number(id),
-//         );
-//     } else {
-//         selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
-//     }
-//     openMovieDetails(selectedMovie);
-//     document
-//         .querySelector('.details-img')
-//         .setAttribute('data-filmId', selectedMovie.id);
-// }
-// fetchGenres();
-// function openMovieDetails(selectedMovie) {
-//     // toTopBtn.classList.remove('show');
-//     body.classList.add('blocked-scroll');
-//     detailsModal.classList.remove('hidden');
-//     if (selectedMovie.poster_path) {
-//         detailsPreviewImg.setAttribute(
-//             'src',
-//             `https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`,
-//         );
-//     } else {
-//         detailsPreviewImg.setAttribute('src', '../images/plug.jpg');
-//     }
-//     fetchMovies(selectedMovie.id).then(res => {
-//         movieTrailer.innerHTML = `
-//     <iframe
-//       src="https://www.youtube.com/embed/${res}"
-//       frameborder="0"
-//       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-//       allowfullscreen
-//     ></iframe>
-//   `;
-//     });
-//     detailsTitle.textContent = selectedMovie.title;
-//     detailsDescription.textContent = selectedMovie.overview;
-//     detailsPopularuty.innerHTML = selectedMovie.popularity;
-//     detailsOriginalTitle.textContent = selectedMovie.original_title;
-//     detailsVote.textContent = selectedMovie.vote_average;
-//     detailsVotes.textContent = `/ ${selectedMovie.vote_count}`;
-//     detailsGenre.textContent = String(
-//         genres
-//         .filter(el =>
-//             selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
-//         )
-//         .reduce((acc, item) => acc + `${item.name}, `, ''),
-//     ).slice(0, -2);
-// }
-// function toggleButtonWatcher(id) {
-//     let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
-//     let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-//     if (filmsWatchedFromLocalStorage !== null) {
-//         if (filmsWatchedFromLocalStorage.includes(id)) {
-//             watchedButtonAdd.classList.add('button-is-active');
-//             watchedButtonAdd.textContent = 'IN WATCHED';
-//         } else {
-//             watchedButtonAdd.classList.remove('button-is-active');
-//             watchedButtonAdd.textContent = 'ADD TO WATCHED';
-//         }
-//     }
-//     if (filmsQueueFromLocalStorage !== null) {
-//         if (filmsQueueFromLocalStorage.includes(id)) {
-//             queueButtonAdd.classList.add('button-is-active');
-//             queueButtonAdd.textContent = 'IN QUEUE';
-//         } else {
-//             queueButtonAdd.classList.remove('button-is-active');
-//             queueButtonAdd.textContent = 'ADD TO QUEUE';
-//         }
-//     }
-//     function getArrayFromLocalStorage(key) {
-//         return JSON.parse(localStorage.getItem(`${key}`));
-//     }
-// }
-// TABS for movie details
-// const tabLinks = document.querySelectorAll('.tabs a');
-// const tabPanels = document.querySelectorAll('.tabs-panel');
-// for (let el of tabLinks) {
-//   el.addEventListener('click', e => {
-//     e.preventDefault();
-//     document.querySelector('.tabs li.active').classList.remove('active');
-//     document.querySelector('.tabs-panel.active').classList.remove('active');
-//     const parentListItem = el.parentElement;
-//     parentListItem.classList.add('active');
-//     const index = [...parentListItem.parentElement.children].indexOf(
-//       parentListItem,
-//     );
-//     const panel = [...tabPanels].filter(
-//       el => el.getAttribute('data-index') == index,
-//     );
-//     panel[0].classList.add('active');
-//   });
-// }
-// buttons and local storage in modal
-// runLocalStorage();
-// function runLocalStorage() {
-//     watchedButtonAdd.addEventListener('click', toggleToWatched);
-//     queueButtonAdd.addEventListener('click', toggleToQueue);
-//     function toggleToWatched() {
-//         let currentId = document.querySelector('.details-img').dataset.filmid;
-//         let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
-//         if (filmsIdFromLocalStorage === null) {
-//             watchedButtonAdd.classList.add('button-is-active');
-//             watchedButtonAdd.textContent = 'IN WATCHED';
-//             localStorage.setItem('filmsWatched', JSON.stringify([currentId]));
-//         } else if (filmsIdFromLocalStorage.includes(currentId)) {
-//             watchedButtonAdd.classList.remove('button-is-active');
-//             watchedButtonAdd.textContent = 'ADD TO WATCHED';
-//             removeFilmIdFromArray('filmsWatched', currentId);
-//         } else {
-//             watchedButtonAdd.classList.add('button-is-active');
-//             watchedButtonAdd.textContent = 'IN WATCHED';
-//             addFilmIdArray('filmsWatched', currentId);
-//         }
-//     }
-//     function toggleToQueue() {
-//         let currentId = document.querySelector('.details-img').dataset.filmid;
-//         let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-//         if (filmsIdFromLocalStorage === null) {
-//             queueButtonAdd.classList.add('button-is-active');
-//             queueButtonAdd.textContent = 'IN QUEUE';
-//             localStorage.setItem('filmsQueue', JSON.stringify([currentId]));
-//         } else if (filmsIdFromLocalStorage.includes(currentId)) {
-//             queueButtonAdd.classList.remove('button-is-active');
-//             queueButtonAdd.textContent = 'ADD TO QUEUE';
-//             removeFilmIdFromArray('filmsQueue', currentId);
-//         } else {
-//             queueButtonAdd.classList.add('button-is-active');
-//             queueButtonAdd.textContent = 'IN QUEUE';
-//             addFilmIdArray('filmsQueue', currentId);
-//         }
-//     }
-//     function getArrayFromLocalStorage(key) {
-//         return JSON.parse(localStorage.getItem(`${key}`));
-//     }
-//     function setArrayToLocalStorage(key, arrayFilms) {
-//         localStorage.setItem(`${key}`, JSON.stringify(arrayFilms));
-//     }
-//     function addFilmIdArray(key, filmId) {
-//         let arrayFilms = getArrayFromLocalStorage(key);
-//         arrayFilms.push(filmId);
-//         setArrayToLocalStorage(key, arrayFilms);
-//     }
-//     function removeFilmIdFromArray(key, filmId) {
-//         let arrayFilms = getArrayFromLocalStorage(key);
-//         arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
-//         setArrayToLocalStorage(key, arrayFilms);
-//     }
-// }
-// runLocalStorage();
-// function runLocalStorage() {
-//     watchedButtonAdd.addEventListener('click', toggleToWatched);
-//     queueButtonAdd.addEventListener('click', toggleToQueue);
-//     function toggleToWatched() {
-//         let currentId = document.querySelector('.details-img').dataset.filmid;
-//         let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
-//         if (filmsIdFromLocalStorage === null) {
-//             watchedButtonAdd.classList.add('button-is-active');
-//             watchedButtonAdd.textContent = 'IN WATCHED';
-//             writeUserWatchedFilm(currentId);
-//         } else if (filmsIdFromLocalStorage.includes(currentId)) {
-//             watchedButtonAdd.classList.remove('button-is-active');
-//             watchedButtonAdd.textContent = 'ADD TO WATCHED';
-//             removeUserWatchedFilm(currentId);
-//         } else {
-//             watchedButtonAdd.classList.add('button-is-active');
-//             watchedButtonAdd.textContent = 'IN WATCHED';
-//             writeUserWatchedFilm(currentId);
-//         }
-//     }
-//     function toggleToQueue() {
-//         let currentId = document.querySelector('.details-img').dataset.filmid;
-//         let filmsIdFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
-//         if (filmsIdFromLocalStorage === null) {
-//             queueButtonAdd.classList.add('button-is-active');
-//             queueButtonAdd.textContent = 'IN QUEUE';
-//             writeUserQueueFilm(currentId);
-//         } else if (filmsIdFromLocalStorage.includes(currentId)) {
-//             queueButtonAdd.classList.remove('button-is-active');
-//             queueButtonAdd.textContent = 'ADD TO QUEUE';
-//             removeUserQueueFilm(currentId);
-//         } else {
-//             queueButtonAdd.classList.add('button-is-active');
-//             queueButtonAdd.textContent = 'IN QUEUE';
-//             writeUserQueueFilm(currentId);
-//         }
-//     }
-//     function getArrayFromLocalStorage(key) {
-//         return JSON.parse(localStorage.getItem(`${key}`));
-//     }
-//     function setArrayToLocalStorage(key, arrayFilms) {
-//         localStorage.setItem(`${key}`, JSON.stringify(arrayFilms));
-//     }
-//     function addFilmIdArray(key, filmId) {
-//         let arrayFilms = getArrayFromLocalStorage(key);
-//         arrayFilms.push(filmId);
-//         setArrayToLocalStorage(key, arrayFilms);
-//     }
-//     function removeFilmIdFromArray(key, filmId) {
-//         let arrayFilms = getArrayFromLocalStorage(key);
-//         arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
-//         setArrayToLocalStorage(key, arrayFilms);
-//     }
-// };
 "use strict";
 "use strict";
 
@@ -520,7 +283,7 @@ function drawWatchedFilmList() {
   var moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
 
   if (moviesWatched === null || moviesWatched.length === 0) {
-    watchedFilms.innerHTML = "<img class=\"catch-error-pagination\" src=\"../images/image1.jpg\" />";
+    watchedFilms.innerHTML = "<img class=\"catch-error-pagination\" src=\"./images/image1.jpg\" />";
   } else {
     createWatchCard(moviesWatched);
   }
@@ -534,7 +297,7 @@ function drawQueueFilmList() {
   var moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 
   if (moviesQueue === null || moviesQueue.length === 0) {
-    watchedFilms.innerHTML = "<img class=\"catch-error-pagination\" src=\"../images/image1.jpg\" />";
+    watchedFilms.innerHTML = "<img class=\"catch-error-pagination\" src=\"./images/image1.jpg\" />";
   } else {
     createQueqeCard(moviesQueue);
   }
@@ -1858,9 +1621,9 @@ var user = localStorage['userId'];
 
 function toggleButtonLogIn() {
   if (isLogIn()) {
-    openLogInFormButton.innerHTML = "<svg class='button-icon'><use href='../images/svg/sprite.svg#signout'></use></svg>";
+    openLogInFormButton.innerHTML = "<svg class='button-icon'><use href='./images/sprite.svg#signout'></use></svg>";
   } else {
-    openLogInFormButton.innerHTML = "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+    openLogInFormButton.innerHTML = "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
   }
 }
 
@@ -2016,42 +1779,42 @@ if (localStorage.getItem('activePage') === 'activeLibraryPage') {
 "use strict";
 
 var collaborators = [{
-  src: '../images/jpg/Margot_Robbie_cr.jpg',
+  src: './images/Margot_Robbie_cr.jpg',
   alt: 'Margot Robbie',
   collaboratorName: 'Yuliia',
   filmName: 'alibi.com'
 }, {
-  src: '../images/jpg/Natalie_Portman_cr.jpg',
+  src: './images/Natalie_Portman_cr.jpg',
   alt: 'Natalie Portman',
   collaboratorName: 'Valentina',
   filmName: 'Leon: The Professional'
 }, {
-  src: '../images/png/Charlie_Hunnam.png',
+  src: './images/Charlie_Hunnam.png',
   alt: 'Charlie Hunnam',
   collaboratorName: 'Max',
   filmName: 'Escape from Pretoria'
 }, {
-  src: '../images/jpg/Til_Schweiger_cr.jpg',
+  src: './images/Til_Schweiger_cr.jpg',
   alt: 'Til Schweiger',
   collaboratorName: 'Mikhail',
   filmName: 'Knockin` on Heaven`s Door'
 }, {
-  src: '../images/jpg/AbdulovA.jpg',
+  src: './images/AbdulovA.jpg',
   alt: 'Aleksandr Abdulov',
   collaboratorName: 'Dmytro',
   filmName: 'Charodei'
 }, {
-  src: '../images/jpg/Johnny_Depp.jpg',
+  src: './images/Johnny_Depp.jpg',
   alt: 'Johnny Depp',
   collaboratorName: 'Dimas',
   filmName: 'Fear and Loathing in Las Vegas'
 }, {
-  src: '../images/jpg/Adam_Sandler.jpg',
+  src: './images/Adam_Sandler.jpg',
   alt: 'Adam Sandler',
   collaboratorName: 'Victor',
   filmName: 'Big Daddy'
 }, {
-  src: '../images/jpg/Tim_Robbins.jpg',
+  src: './images/Tim_Robbins.jpg',
   alt: 'Tim Robbins',
   collaboratorName: 'Sergey',
   filmName: 'The Shawshank Redemption'
@@ -2067,12 +1830,10 @@ function renderCollaboratorCard(obj) {
 
 function renderDetailFilmModal(movie) {
   console.log(movie);
-  return "\n    <div id=\"js-detailsPage\" class=\"details-container details-page hidden\">\n  <div class=\"details-wrapper\">\n    <img\n      id=\"js-previewImg\"\n      class=\"details-img\"\n      src=\"https://image.tmdb.org/t/p/w500/".concat(movie.poster_path ? movie.poster_path : '../images/plug.jpg', "\"\n      alt=\"film-preview\"\n      width=\"100%\"\n      height=\"100%\"\n      data-filmId=").concat(movie.id, "\n    />\n    <div class=\"details-information\">\n      <button class=\"button-close close-details\">\n        <svg class=\"details-close\">\n          <use href=\"../images/symbol-defs.svg#close\"></use>\n        </svg>\n      </button>\n      <h1 class=\"details-title\">").concat(movie.title ? movie.title : "a fistful of lead", "</h1>\n      <div class=\"details-inf\">\n        <ul class=\"details-inf-list\">\n          <li>Vote / Votes</li>\n          <li>Popularity</li>\n          <li>Original Title</li>\n          <li>Genre</li>\n        </ul>\n        <ul class=\"details-inf-list details-inf-list-secondary\">\n          <li>\n            <span id=\"js-detailsVote\" class=\"text-orange\">").concat(movie.vote_average ? movie.vote_average : "0.0", "</span>\n            <span id=\"js-detailsVotes\">/").concat(movie.vote_count ? movie.vote_count : "0000", "</span>\n          </li>\n          <li id=\"details-popularity\">").concat(movie.popularity ? movie.popularity : "100.2", "</li>\n          <li id=\"details-originalTitle\">").concat(movie.original_title ? movie.original_title : "a fistful of lead", "</li>\n          <li id=\"details-genre\">Western</li>\n        </ul>\n      </div>\n\n      <div class=\"tabs-container\">\n        <ul class=\"tabs\">\n          <li class=\"active\">\n            <a href=\"\">ABOUT</a>\n          </li>\n          <li>\n            <a href=\"\">TRAILER</a>\n          </li>\n        </ul>\n        <div class=\"tabs-content\">\n          <div\n            id=\"js-detailsText\"\n            class=\"tabs-panel active\"\n            data-index=\"0\"\n          >").concat(movie.overview, "</div>\n          <div\n            id=\"js-movieTrailer\"\n            class=\"movie-trailer tabs-panel\"\n            data-index=\"1\"\n          ></div>\n          <div class=\"tabs-panel\" data-index=\"2\">\n            <p></p>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"details-button-list\">\n        <button class=\"details-button button-add-to-watch\">\n          add to Watched\n        </button>\n        <button class=\"details-button button-add-to-queue\">add to queue</button>\n      </div>\n    </div>\n  </div>\n</div>\n    ");
+  return "\n    <div id=\"js-detailsPage\" class=\"details-container details-page hidden\">\n  <div class=\"details-wrapper\">\n    <img\n      id=\"js-previewImg\"\n      class=\"details-img\"\n      src=\"https://image.tmdb.org/t/p/w500/".concat(movie.poster_path ? movie.poster_path : './images/plug.jpg', "\"\n      alt=\"film-preview\"\n      width=\"100%\"\n      height=\"100%\"\n      data-filmId=").concat(movie.id, "\n    />\n    <div class=\"details-information\">\n      <button class=\"button-close close-details\">\n        <svg class=\"details-close\">\n          <use href=\"./images/symbol-defs.svg#close\"></use>\n        </svg>\n      </button>\n      <h1 class=\"details-title\">").concat(movie.title ? movie.title : 'a fistful of lead', "</h1>\n      <div class=\"details-inf\">\n        <ul class=\"details-inf-list\">\n          <li>Vote / Votes</li>\n          <li>Popularity</li>\n          <li>Original Title</li>\n          <li>Genre</li>\n        </ul>\n        <ul class=\"details-inf-list details-inf-list-secondary\">\n          <li>\n            <span id=\"js-detailsVote\" class=\"text-orange\">").concat(movie.vote_average ? movie.vote_average : '0.0', "</span>\n            <span id=\"js-detailsVotes\">/").concat(movie.vote_count ? movie.vote_count : '0000', "</span>\n          </li>\n          <li id=\"details-popularity\">").concat(movie.popularity ? movie.popularity : '100.2', "</li>\n          <li id=\"details-originalTitle\">").concat(movie.original_title ? movie.original_title : 'a fistful of lead', "</li>\n          <li id=\"details-genre\">Western</li>\n        </ul>\n      </div>\n\n      <div class=\"tabs-container\">\n        <ul class=\"tabs\">\n          <li class=\"active\">\n            <a href=\"\">ABOUT</a>\n          </li>\n          <li>\n            <a href=\"\">TRAILER</a>\n          </li>\n        </ul>\n        <div class=\"tabs-content\">\n          <div\n            id=\"js-detailsText\"\n            class=\"tabs-panel active\"\n            data-index=\"0\"\n          >").concat(movie.overview, "</div>\n          <div\n            id=\"js-movieTrailer\"\n            class=\"movie-trailer tabs-panel\"\n            data-index=\"1\"\n          ></div>\n          <div class=\"tabs-panel\" data-index=\"2\">\n            <p></p>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"details-button-list\">\n        <button class=\"details-button button-add-to-watch\">\n          add to Watched\n        </button>\n        <button class=\"details-button button-add-to-queue\">add to queue</button>\n      </div>\n    </div>\n  </div>\n</div>\n    ");
 }
 "use strict";
 
 function createModalWindow() {
-  return "\n    <div class=\"modal\" role=\"dialog\" aria-labelledby=\"Modal_Title\" aria-describedby=\"Modal_Description\" aria-hidden=\"true\" >\n    <div class=\"modal-wrap\">\n        <div class=\"modal-content\">\n             <button class=\"button-close close-modal\">\n                <svg class=\"details-close\">\n                    <use href=\"../images/symbol-defs.svg#close\"></use>\n                </svg>\n            </button>\n            <h2 id=\"modal_Title\">Our team</h2>\n            <ul class=\"modal-our_team_list\">\n                \n            </ul> \n        </div>\n    </div>\n  </div>\n</div>\n    ";
+  return "\n    <div class=\"modal\" role=\"dialog\" aria-labelledby=\"Modal_Title\" aria-describedby=\"Modal_Description\" aria-hidden=\"true\" >\n    <div class=\"modal-wrap\">\n        <div class=\"modal-content\">\n             <button class=\"button-close close-modal\">\n                <svg class=\"details-close\">\n                    <use href=\"./images/symbol-defs.svg#close\"></use>\n                </svg>\n            </button>\n            <h2 id=\"modal_Title\">Our team</h2>\n            <ul class=\"modal-our_team_list\">\n                \n            </ul> \n        </div>\n    </div>\n  </div>\n</div>\n    ";
 }
-
-;
