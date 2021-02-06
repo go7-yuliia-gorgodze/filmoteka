@@ -236,7 +236,7 @@ myLibraryLink.addEventListener('click', function () {
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
-var activeHomePage = function activeHomePage() {
+function activeHomePage() {
   inputValue = '';
   dischargePaginationAndCreateMarkup();
   myLibraryLink.classList.remove('current');
@@ -248,9 +248,9 @@ var activeHomePage = function activeHomePage() {
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
   localStorage.setItem('activePage', 'activeHomePage');
-};
+}
 
-var activeLibraryPage = function activeLibraryPage() {
+function activeLibraryPage() {
   myLibraryLink.classList.add('current');
   homePageLink.classList.remove('current');
   homePage.classList.add('hidden');
@@ -261,13 +261,11 @@ var activeLibraryPage = function activeLibraryPage() {
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML = '';
   localStorage.setItem('activePage', 'activeLibraryPage');
-};
-
-if (localStorage.getItem('activePage') === 'activeHomePage') {
-  activeHomePage();
-} else {
-  activeLibraryPage();
-}
+} // if (localStorage.getItem('activePage') === 'activeHomePage') {
+//   activeHomePage();
+// } else {
+//   activeLibraryPage();
+// }
 "use strict";
 "use strict";
 
