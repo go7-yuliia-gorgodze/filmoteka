@@ -129,7 +129,7 @@ function createCard(
       `https://image.tmdb.org/t/p/w500/${imgPath}`,
     );
   } else {
-    previewImg.setAttribute('src', '../images/plug.jpg');
+    previewImg.setAttribute('src', './images/plug.jpg');
   }
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
