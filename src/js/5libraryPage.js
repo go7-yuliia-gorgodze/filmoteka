@@ -36,10 +36,13 @@ function createWatchCard(moviesWatched) {
         'beforeend',
         createCard(
           res.poster_path,
-          res.title,
-          res.id,
-          res.release_date,
-          res.vote_average,
+            res.title,
+            res.id,
+            res.release_date,
+            res.vote_average,
+            res.budget,
+            res.revenue,
+            res.genres,
         ),
       );
     });
@@ -53,10 +56,13 @@ function createQueqeCard(moviesQueue) {
         'beforeend',
         createCard(
           res.poster_path,
-          res.title,
-          res.id,
-          res.release_date,
-          res.vote_average,
+            res.title,
+            res.id,
+            res.release_date,
+            res.vote_average,
+            res.budget,
+            res.revenue,
+            res.genres,
         ),
       );
     });
