@@ -72,7 +72,7 @@ function createMarkup() {
             headerError.textContent =
                 'No movies were found. Please specify your request';
             createStartupMarkup();
-        };
+        }
 
         removePreloader();
         renderedMovies = result.results;
@@ -107,7 +107,7 @@ function createStartupMarkup() {
         renderedMovies = result.results;
         return renderedMovies;
     });
-};
+}
 
 function createCard(
     imgPath,
@@ -133,7 +133,7 @@ function createCard(
         );
     } else {
         previewImg.setAttribute('src', '../images/plug.jpg');
-    };
+    }
     previewImg.setAttribute('data-id', movieId);
     previewImg.setAttribute('id', 'js-image');
 
@@ -164,7 +164,7 @@ function createCard(
     }
     movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
     return movieItem.outerHTML;
-};
+}
 
 function createShortDescription(
     vote,
@@ -206,4 +206,4 @@ function createShortDescription(
 <p class="minicard__description">${genres}</p>`;
 
     return previewInfoBlock;
-};
+}

@@ -29,25 +29,25 @@ function clickerInit() {
             case 'left':
                 buttonsNumbers = previousPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
 
             case 'right':
                 buttonsNumbers = nextPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
 
             case '1':
                 buttonsNumbers = previousTwoPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
 
             case '2':
                 buttonsNumbers = previousPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
 
             case '3':
@@ -56,13 +56,13 @@ function clickerInit() {
             case '4':
                 buttonsNumbers = nextPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
 
             case '5':
                 buttonsNumbers = nextTwoPage(buttonsNumbers);
                 renderNumbers(buttonsNumbers);
-                toTop()
+                scrollToSectionHomePage();
                 break;
         }
         if (Number(buttonThreeRef.textContent) > 1) {
@@ -72,7 +72,7 @@ function clickerInit() {
         }
         paginationNavigation(buttonsNumbers);
     });
-};
+}
 
 function renderNumbers(newButtonsNumbers) {
     Array.from(document.querySelectorAll('.pagination__number')).forEach(
@@ -118,9 +118,22 @@ function dischargePaginationAndCreateMarkup() {
     paginationNavigation(buttonsNumbers);
 };
 
-function toTop() {
-    window.scrollTo({
-        top: 270,
-        behavior: 'smooth',
-    });
+function scrollToSectionHomePage() {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    mediaQuery.addListener(handleTabletChange);
+    handleTabletChange(mediaQuery);
+
+    function handleTabletChange(e) {
+        if (e.matches) {
+            window.scrollTo({
+                top: 250,
+                behavior: 'smooth',
+            });
+        } else {
+            window.scrollTo({
+                top: 670,
+                behavior: 'smooth',
+            });
+        };
+    };
 };
