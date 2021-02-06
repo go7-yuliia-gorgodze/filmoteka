@@ -39,7 +39,7 @@ function getStorage() {
     } else if (themeCheck === 'dark-theme') {
         darkTheme();
     }
-}
+};
 
 function darkTheme() {
     body.classList.add('darkTheme');
@@ -150,4 +150,4 @@ function setDetailsFilmThemeToggling() {
 
 function setOurTeamThemeToggling() {
     ourTeamModal = document.querySelector('.modal-content');
-}
+};
