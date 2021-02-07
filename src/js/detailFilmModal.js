@@ -72,6 +72,7 @@ function openMovieDetails(selectedMovie) {
     document.querySelector('#details-genre').textContent = filmGeneres;
 
     fetchMovies(selectedMovie.id).then(res => {
+        console.log(res);
         document.getElementById('js-movieTrailer').innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${res}"
