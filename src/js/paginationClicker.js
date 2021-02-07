@@ -1,28 +1,8 @@
 'use strict';
 let buttonsNumbers = [-1, 0, 1, 2, 3];
+
 clickerInit();
 function clickerInit() {
-  const buttonLeftRef = document.querySelector(
-    '.pagination__button[data-index = "left"]',
-  );
-  const buttonRightRef = document.querySelector(
-    '.pagination__button[data-index = "right"]',
-  );
-  const buttonOneRef = document.querySelector(
-    '.pagination__button[data-index = "1"]',
-  );
-  const buttonTwoRef = document.querySelector(
-    '.pagination__button[data-index = "2"]',
-  );
-  const buttonThreeRef = document.querySelector(
-    '.pagination__button[data-index = "3"]',
-  );
-  const buttonFourRef = document.querySelector(
-    '.pagination__button[data-index = "4"]',
-  );
-  const buttonFiveRef = document.querySelector(
-    '.pagination__button[data-index = "5"]',
-  );
   document.querySelector('.pagination').addEventListener('click', element => {
     switch (element.target.dataset.index) {
       case 'left':
@@ -122,6 +102,10 @@ function previousTwoPage(buttonsNumbers) {
   });
 }
 function dischargePaginationAndCreateMarkup() {
+  buttonLeftRef.classList.add('pagination__button_disabled');
+  buttonOneRef.classList.add('pagination__button_is-hidden');
+  buttonTwoRef.classList.add('pagination__button_is-hidden');
+
   buttonsNumbers = [-1, 0, 1, 2, 3];
   renderNumbers(buttonsNumbers);
   paginationNavigation(buttonsNumbers);
