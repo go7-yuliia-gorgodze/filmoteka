@@ -42,6 +42,7 @@ function clickerInit() {
       case '1':
         buttonsNumbers = previousTwoPage(buttonsNumbers);
         renderNumbers(buttonsNumbers);
+        paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
         break;
 
@@ -53,6 +54,10 @@ function clickerInit() {
         break;
 
       case '3':
+        buttonsNumbers = nextPage(buttonsNumbers);
+        renderNumbers(buttonsNumbers);
+        paginationNavigation(buttonsNumbers);
+        scrollToSectionHomePage();
         break;
 
       case '4':
