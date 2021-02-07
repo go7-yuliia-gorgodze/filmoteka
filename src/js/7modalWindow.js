@@ -32,7 +32,7 @@ function fetchFilmModal(film) {
         )
         .then(response => response.json())
         .then(data => {
-            console.log("Fetched data", data);
+            console.log("Fetched data FUNCTION", data);
             return data;
         });
 };
@@ -46,6 +46,7 @@ function modalCollaboratorFilm(e) {
     fetchFilmModal(film).then(({ results }) => {
             // modal.style.zIndex = 1;
             // shadow.style.zIndex = 0;
+            console.log('RESULTS ',results[0]);
             openMovieDetails(results[0]);
         })
         .catch(e => `ERROR ${e}`);

@@ -204,7 +204,7 @@ if (localStorage.getItem('activePage') === 'activeLibraryPage') {
         console.log('click');
         if (event.target.nodeName === 'IMG') {
             let id = event.target.dataset.id;
-            activateDetailsPage(id);
+            activateDetailsPage(id,true);
             toggleButtonWatcher(id);
         };
     });

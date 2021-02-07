@@ -6,6 +6,8 @@ let queueButtonAdd = null;
 
 movieGallery.addEventListener('click', onFilmCardClickHandler);
 
+fetchGenres();
+
 function onFilmCardClickHandler(event) {
     if (event.target.nodeName === 'IMG') {
         let id = event.target.dataset.id;
@@ -15,23 +17,21 @@ function onFilmCardClickHandler(event) {
 };
 
 function activateDetailsPage(id, itsLibraryMovie) {
-    selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
+    console.log()
     if (itsLibraryMovie) {
-        let allLocalStorageMovies = [
-            ...JSON.parse(localStorage.getItem('filmsQueue')),
-            ...JSON.parse(localStorage.getItem('filmsWatched')),
-        ];
-        selectedMovie = allLocalStorageMovies.find(
-            movie => movie.id === Number(id),
-        );
+        // let allLocalStorageMovies = [
+        //     ...JSON.parse(localStorage.getItem('filmsQueue')),
+        //     ...JSON.parse(localStorage.getItem('filmsWatched')),
+        // ];
+        // console.log("allLocalStorageMovies ", allLocalStorageMovies);
+        selectedMovie = watchedAndQueueFilms.find(movie => {
+           return  movie.id === Number(id)
+        });
     } else {
         selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
     };
     openMovieDetails(selectedMovie);
 };
-
-fetchGenres();
-console.log(genres);
 
 function openMovieDetails(selectedMovie) {
     if (toTopBtn) {
@@ -62,17 +62,13 @@ function openMovieDetails(selectedMovie) {
     window.addEventListener('keydown', onEscapeCloseDetails);
     document.addEventListener('click', onOverlayDetailsClose);
 
-    let filmGeneres = genres
-        .filter(el =>
-            selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
-        )
-        .reduce((acc, item) => acc + `${item.name}, `, '')
-        .slice(0, -2);
-
-    document.querySelector('#details-genre').textContent = filmGeneres;
-
+    document.querySelector('#details-genre').textContent = setFilmGenres(selectedMovie);
+   
     fetchMovies(selectedMovie.id).then(res => {
-        console.log(res);
+        
+        if(res===null){ 
+            document.getElementById('js-movieTrailer').insertAdjacentHTML('beforeend', '<div style="background-color: tomato; color: teal; height: 200px;font-size: 20px; padding: 10px"> Короче, немає тут ніякого трейлера</div>');
+            return;}
         document.getElementById('js-movieTrailer').innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${res}"
@@ -100,11 +96,30 @@ function openMovieDetails(selectedMovie) {
     trapScreenReaderFocus(detailsModal);
 };
 
+function setFilmGenres(movie){
+    let filmGeneres;
+    if(movie.genre_ids){
+    filmGeneres = genres
+        .filter(el =>{
+            if(movie.genre_ids){
+                return movie.genre_ids.find(movie => el.id === movie) ? true : false
+            };
+        })
+        .reduce((acc, item) => acc + `${item.name}, `, '')
+        .slice(0, -2);
+    }else if(movie.genres){
+        filmGeneres = movie.genres.reduce((acc, item) => acc + `${item.name}, `, '');
+    };
+    return filmGeneres;
+}
+
 function closeModal() {
     if (toTopBtn && !modal) {
         toTopBtn.classList.add('show');
-    }
-    document.querySelector('iframe').src = '';
+    };
+    if(document.querySelector('iframe')){
+        document.querySelector('iframe').src = '';
+    };
     detailsModal.classList.add('hidden');
     detailsModal.classList.add('modal--moved');
     detailsModal.addEventListener('transitionend', transitionDetailsClose);
