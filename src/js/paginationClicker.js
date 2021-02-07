@@ -10,6 +10,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case 'right':
@@ -17,6 +18,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case '1':
@@ -24,6 +26,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case '2':
@@ -31,6 +34,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case '3':
@@ -38,6 +42,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case '4':
@@ -45,6 +50,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
 
       case '5':
@@ -52,6 +58,7 @@ function clickerInit() {
         renderNumbers(buttonsNumbers);
         paginationNavigation(buttonsNumbers);
         scrollToSectionHomePage();
+        dischargeHeaderError();
         break;
     }
     if (Number(buttonThreeRef.textContent) > 1) {
@@ -127,5 +134,15 @@ function scrollToSectionHomePage() {
         behavior: 'smooth',
       });
     }
+  }
+}
+
+function dischargeHeaderError() {
+  if (
+    headerError.textContent ===
+    'No movies were found. Please specify your request'
+  ) {
+    inputValue = '';
+    searchField.reset();
   }
 }
