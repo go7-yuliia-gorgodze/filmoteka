@@ -16,11 +16,10 @@ const fileinclude = require('gulp-file-include');
 const html = () => {
   return gulp
     .src(paths.src.html)
-    .pipe(mode.production(cachebust(cachebustConfig)))
     .pipe(fileinclude())
     .pipe(mode.production(htmlmin(htmlminConfig)))
-    .pipe(gulp.dest(paths.build.html))
-
+    .pipe(mode.production(cachebust(cachebustConfig)))
+    .pipe(gulp.dest(paths.build.html));
 };
 
 module.exports = html;
