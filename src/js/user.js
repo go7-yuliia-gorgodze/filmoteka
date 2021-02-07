@@ -35,7 +35,7 @@ openLogInFormButton.addEventListener('click', event => {
     if (isLogIn()) {
         signOut();
         openLogInFormButton.innerHTML =
-            "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+            "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
     } else {
         openLogINModal();
     };
