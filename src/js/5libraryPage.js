@@ -1,6 +1,9 @@
 const watchedFilms = document.querySelector('.watched-list');
 const watchedButton = document.querySelector('#watched');
 const queueButton = document.querySelector('#queue');
+
+
+
 watchedButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
@@ -16,6 +19,7 @@ function drawWatchedFilmList() {
     watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
   } else {
     createWatchCard(moviesWatched);
+    
   };
   return;
 };
@@ -30,6 +34,7 @@ function drawQueueFilmList() {
     watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
   } else {
     createQueqeCard(moviesQueue);
+    
   }
   return;
 }
@@ -54,6 +59,7 @@ function createWatchCard(moviesWatched) {
       );
     });
   });
+  deleteLibraryButton.classList.remove('hidden');
 };
 
 function createQueqeCard(moviesQueue) {
@@ -76,7 +82,8 @@ function createQueqeCard(moviesQueue) {
       );
     });
   });
-};
+  deleteLibraryButton.classList.remove('hidden');
+  };
 
 function activePage(active, notActive) {
   active.classList.add('button-active');

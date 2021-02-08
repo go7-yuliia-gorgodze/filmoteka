@@ -143,7 +143,7 @@ function createCard(
   const movieItem = document.createElement('li');
   movieItem.classList.add('main__movieItem');
   movieItem.setAttribute('id', 'js-movieItem');
-
+  
   const previewImg = document.createElement('img');
   previewImg.classList.add('main__previewImgItem');
   if (imgPath) {
@@ -156,6 +156,7 @@ function createCard(
   }
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
+  
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
@@ -166,6 +167,16 @@ function createCard(
   previewTitleContainer.classList.add('main__previewTitleContainer');
   previewTitleContainer.append(previewImgTitle);
   console.log(previewTitleContainer);
+
+  const deleteLibraryButton = document.createElement('button');
+  deleteLibraryButton.classList.add('btn-delete');
+  // deleteLibraryButton.classList.add('hidden');
+  deleteLibraryButton.setAttribute('type', 'button');
+  deleteLibraryButton.innerHTML = `<svg class="svg-delete" width="24" height="24">
+  <use href="./images/symbol-defs2.svg#icon-iconfinder_trash_115789"></use>
+</svg>`
+
+    console.log(deleteLibraryButton);
 
   const previewInfoBlock = createShortDescription(
     avgVote,
@@ -181,7 +192,7 @@ function createCard(
   } else {
     previewImgTitle.textContent = movieTitle;
   }
-  movieItem.append(previewImg, previewTitleContainer, previewInfoBlock);
+  movieItem.append(previewImg, previewTitleContainer, previewInfoBlock, deleteLibraryButton);
   return movieItem.outerHTML;
 }
 
