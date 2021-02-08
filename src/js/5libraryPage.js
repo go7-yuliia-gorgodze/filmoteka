@@ -4,7 +4,7 @@ const queueButton = document.querySelector('#queue');
 watchedButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
-let watchedAndQueueFilms = []
+let watchedAndQueueFilms = [];
 
 function drawWatchedFilmList() {
 
@@ -16,9 +16,9 @@ function drawWatchedFilmList() {
     watchedFilms.innerHTML = `<img class="catch-error-pagination" src="./images/image1.jpg" />`;
   } else {
     createWatchCard(moviesWatched);
-  }
+  };
   return;
-}
+};
 
 function drawQueueFilmList() {
 
@@ -37,7 +37,7 @@ function drawQueueFilmList() {
 function createWatchCard(moviesWatched) {
   moviesWatched.forEach(el => {
     fetchMoviesId(el).then(res => {
-      console.log("CARD     WATCHED ",res);
+      // console.log("CARD     WATCHED ",res);
       watchedAndQueueFilms.push(res);
       watchedFilms.insertAdjacentHTML(
         'beforeend',
@@ -54,13 +54,13 @@ function createWatchCard(moviesWatched) {
       );
     });
   });
-}
+};
 
 function createQueqeCard(moviesQueue) {
   moviesQueue.forEach(el => {
     fetchMoviesId(el).then(res => {
       watchedAndQueueFilms.push(res);
-      console.log("CARD     QUEUE ",res);
+      console.log("CARD     QUEUE ", res);
       watchedFilms.insertAdjacentHTML(
         'beforeend',
         createCard(
@@ -76,9 +76,32 @@ function createQueqeCard(moviesQueue) {
       );
     });
   });
-}
+};
 
 function activePage(active, notActive) {
   active.classList.add('button-active');
   notActive.classList.remove('button-active');
-}
+};
+
+//for library page
+function libraryListener() {
+
+  // if (localStorage.getItem('activePage') === 'activeLibraryPage') {
+  activeLibraryPage();
+  drawWatchedFilmList();
+  // libraryGallery.addEventListener('click', openLibraryMovieDetails);
+  // };
+};
+
+function openLibraryMovieDetails(event) {
+
+  if (event.target.nodeName === 'IMG') {
+    let id = event.target.dataset.id;
+    activateDetailsPage(id, true);
+    toggleButtonWatcher(id);
+  };
+};
+
+if (localStorage.getItem('activePage') === 'activeLibraryPage') {
+  libraryListener();
+};
