@@ -104,6 +104,7 @@
 .registration {
   display: flex;
   flex-direction: column;
+  color: #000000;
 
   &.hidden {
     display: none;
@@ -139,6 +140,7 @@
 .logIn {
   display: flex;
   flex-direction: column;
+  color: #000000;
 
   &.hidden {
     display: none;
