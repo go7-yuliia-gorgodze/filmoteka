@@ -35,6 +35,7 @@ function drawQueueFilmList() {
   } else {
     createQueqeCard(moviesQueue);
     
+    
   }
   return;
 }
@@ -59,7 +60,7 @@ function createWatchCard(moviesWatched) {
       );
     });
   });
-  deleteLibraryButton.classList.remove('hidden');
+
 };
 
 function createQueqeCard(moviesQueue) {
@@ -82,7 +83,7 @@ function createQueqeCard(moviesQueue) {
       );
     });
   });
-  deleteLibraryButton.classList.remove('hidden');
+ 
   };
 
 function activePage(active, notActive) {
@@ -111,4 +112,5 @@ function openLibraryMovieDetails(event) {
 
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   libraryListener();
+  
 };

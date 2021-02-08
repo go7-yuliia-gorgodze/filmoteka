@@ -170,13 +170,16 @@ function createCard(
 
   const deleteLibraryButton = document.createElement('button');
   deleteLibraryButton.classList.add('btn-delete');
-  // deleteLibraryButton.classList.add('hidden');
+  deleteLibraryButton.classList.add('hidden');
   deleteLibraryButton.setAttribute('type', 'button');
   deleteLibraryButton.innerHTML = `<svg class="svg-delete" width="24" height="24">
   <use href="./images/symbol-defs2.svg#icon-iconfinder_trash_115789"></use>
-</svg>`
+</svg>`;
+if (localStorage.getItem('activePage') === 'activeLibraryPage') {
+deleteLibraryButton.classList.remove('hidden');
+} else deleteLibraryButton.classList.add('hidden');
 
-    console.log(deleteLibraryButton);
+    // console.log(deleteLibraryButton);
 
   const previewInfoBlock = createShortDescription(
     avgVote,
