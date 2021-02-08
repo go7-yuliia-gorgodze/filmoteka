@@ -56,7 +56,6 @@
 }
 .icon-logo {
   vertical-align: unset;
-
 }
 .text-logo {
   margin-left: 12px;
@@ -65,6 +64,9 @@
   line-height: 1.166;
 
   color: $primary-white-color;
+}
+.link-logo:hover {
+  text-decoration: none;
 }
 .link-library {
   font-weight: 500;
