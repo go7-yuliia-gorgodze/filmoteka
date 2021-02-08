@@ -5,27 +5,29 @@ const header = document.querySelector('header');
 const homePageLink = document.querySelector('.link-header');
 const homePageLogo = document.querySelector('.link-logo');
 
-myLibraryLink.addEventListener('click', () => {
-    activeLibraryPage();
-    drawWatchedFilmList();
-    libraryListener();
-});
+myLibraryLink.addEventListener('click', myLibraryLinkClick);
+
+function myLibraryLinkClick() {
+  // activeLibraryPage();
+  libraryListener();
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+}
 
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
 function activeHomePage() {
-    inputValue = '';
-    dischargePaginationAndCreateMarkup();
-    myLibraryLink.classList.remove('current');
-    homePageLink.classList.add('current');
-    homePage.classList.remove('hidden');
-    myLibraryPage.classList.add('hidden');
-    searchField.classList.remove('hidden');
-    header.classList.add('header');
-    header.classList.remove('my-library-header');
-    myLibraryHeaderDiv.classList.add('hidden');
-    localStorage.setItem('activePage', 'activeHomePage');
+  inputValue = '';
+  dischargePaginationAndCreateMarkup();
+  myLibraryLink.classList.remove('current');
+  homePageLink.classList.add('current');
+  homePage.classList.remove('hidden');
+  myLibraryPage.classList.add('hidden');
+  searchField.classList.remove('hidden');
+  header.classList.add('header');
+  header.classList.remove('my-library-header');
+  myLibraryHeaderDiv.classList.add('hidden');
+  localStorage.setItem('activePage', 'activeHomePage');
 };
 
 function activeLibraryPage() {
@@ -43,6 +45,12 @@ function activeLibraryPage() {
 
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   activeLibraryPage();
-} else {
+
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+  movieGallery.removeEventListener('click', onFilmCardClickHandler);
+} else if (localStorage.getItem('activePage') === 'activeHomePage') {
   activeHomePage();
-}
+  console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+  libraryGallery.removeEventListener('click', openLibraryMovieDetails);
+  movieGallery.addEventListener('click', onFilmCardClickHandler);
+};

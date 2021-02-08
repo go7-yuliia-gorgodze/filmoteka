@@ -15,13 +15,13 @@ const logInForm = document.querySelector('.logIn');
 let user = localStorage['userId'];
 
 function toggleButtonLogIn() {
-  if (isLogIn()) {
-    openLogInFormButton.innerHTML =
-      "<svg class='button-icon'><use href='./images/sprite.svg#signout'></use></svg>";
-  } else {
-    openLogInFormButton.innerHTML =
-      "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
-  }
+    if (isLogIn()) {
+        openLogInFormButton.innerHTML =
+            "<svg class='button-icon'><use href='./images/sprite.svg#signout'></use></svg>";
+    } else {
+        openLogInFormButton.innerHTML =
+            "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
+    }
 }
 toggleButtonLogIn();
 
@@ -135,7 +135,8 @@ function writeUserWatchedFilm(filmId) {
         .database()
         .ref('users/' + user + '/watched')
         .update({
-            [filmId]: true });
+            [filmId]: true
+        });
 };
 
 function writeUserQueueFilm(filmId) {
@@ -143,7 +144,8 @@ function writeUserQueueFilm(filmId) {
         .database()
         .ref('users/' + user + '/queue')
         .update({
-            [filmId]: true });
+            [filmId]: true
+        });
 };
 
 function removeUserWatchedFilm(filmId) {
@@ -194,23 +196,3 @@ function isLogIn() {
     return user !== undefined;
 };
 
-//for library page
-function libraryListener(){
-
-    if (localStorage.getItem('activePage') === 'activeLibraryPage') {
-        console.log("UUUUUUUUUUUSSSSSSSSSSSSSSSSEEEEEEEEEEEEEERRRRRRRRRRRRRR WWWWHHHHHHEEERRREEEEE AAAARRRRREEEEEE YYYYYOOOUUUUUUUU????????");
-        activeLibraryPage();
-        drawWatchedFilmList();
-        console.log(libraryGallery);
-
-        libraryGallery.addEventListener('click', event => {
-            console.log('click');
-            if (event.target.nodeName === 'IMG') {
-                let id = event.target.dataset.id;
-                activateDetailsPage(id,true);
-                toggleButtonWatcher(id);
-            };
-        });
-    }
-
-};
