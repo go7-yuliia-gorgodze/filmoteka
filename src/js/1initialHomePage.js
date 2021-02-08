@@ -3,8 +3,6 @@
 const movieGallery = document.querySelector('#js-moviesList');
 const libraryGallery = document.querySelector('#js-library');
 
-console.log(libraryGallery);
-
 const searchField = document.querySelector('#js-form');
 const searchInput = document.querySelector('#search');
 const moviesList = document.querySelector('#js-moviesList');
@@ -60,7 +58,6 @@ let renderedMovies = [];
 function createMarkup() {
   addPreloader();
   fetchFilms().then(result => {
-    // console.log(result);
     if (inputValue === '') {
       removePreloader();
       headerError.textContent = 'Please enter movie name';
@@ -72,7 +69,6 @@ function createMarkup() {
 
     result.results.forEach(element => {
       fetchMoviesId(element.id).then(res => {
-        // console.log(res);
         moviesList.insertAdjacentHTML(
           'beforeend',
           createCard(
@@ -108,7 +104,6 @@ function createStartupMarkup() {
     moviesList.innerHTML = '';
     result.results.forEach(element => {
       fetchMoviesId(element.id).then(res => {
-        // console.log(res.genres);
         moviesList.insertAdjacentHTML(
           'beforeend',
           createCard(
@@ -143,7 +138,7 @@ function createCard(
   const movieItem = document.createElement('li');
   movieItem.classList.add('main__movieItem');
   movieItem.setAttribute('id', 'js-movieItem');
-  
+
   const previewImg = document.createElement('img');
   previewImg.classList.add('main__previewImgItem');
   if (imgPath) {
@@ -156,17 +151,13 @@ function createCard(
   }
   previewImg.setAttribute('data-id', movieId);
   previewImg.setAttribute('id', 'js-image');
-  
 
   const previewImgTitle = document.createElement('h2');
   previewImgTitle.classList.add('main__previewImgTitle');
 
-  console.log(previewImgTitle);
-
   const previewTitleContainer = document.createElement('div');
   previewTitleContainer.classList.add('main__previewTitleContainer');
   previewTitleContainer.append(previewImgTitle);
-  console.log(previewTitleContainer);
 
   const deleteLibraryButton = document.createElement('button');
   deleteLibraryButton.classList.add('btn-delete');
@@ -175,11 +166,9 @@ function createCard(
   deleteLibraryButton.innerHTML = `<svg class="svg-delete" width="24" height="24">
   <use href="./images/symbol-defs2.svg#icon-iconfinder_trash_115789"></use>
 </svg>`;
-if (localStorage.getItem('activePage') === 'activeLibraryPage') {
-deleteLibraryButton.classList.remove('hidden');
-} else deleteLibraryButton.classList.add('hidden');
-
-    // console.log(deleteLibraryButton);
+  if (localStorage.getItem('activePage') === 'activeLibraryPage') {
+    deleteLibraryButton.classList.remove('hidden');
+  } else deleteLibraryButton.classList.add('hidden');
 
   const previewInfoBlock = createShortDescription(
     avgVote,
@@ -195,7 +184,12 @@ deleteLibraryButton.classList.remove('hidden');
   } else {
     previewImgTitle.textContent = movieTitle;
   }
-  movieItem.append(previewImg, previewTitleContainer, previewInfoBlock, deleteLibraryButton);
+  movieItem.append(
+    previewImg,
+    previewTitleContainer,
+    previewInfoBlock,
+    deleteLibraryButton,
+  );
   return movieItem.outerHTML;
 }
 
@@ -206,13 +200,9 @@ function createShortDescription(
   revenue,
   movieGenres,
 ) {
-  console.log(movieGenres);
-
   let genres = movieGenres
     .reduce((acc, item) => acc + `${item.name}, `, '')
     .slice(0, -2);
-
-  console.log(genres);
 
   //   let genres = movieGenres
   //     .filter(el => {

@@ -48,14 +48,14 @@ openLogInFormButton.addEventListener('click', event => {
 
 registrationButton.addEventListener('click', event => {
   event.preventDefault();
-  console.log(user);
+
   createUser(registrationMail.value, registrationPass.value);
   registrationMail.value = '';
   registrationPass.value = '';
 });
 logInButton.addEventListener('click', event => {
   event.preventDefault();
-  console.log(user);
+
   logInUser(logInMail.value, logInPass.value);
   logInMail.value = '';
   logInPass.value = '';
@@ -99,13 +99,13 @@ function createUser(email, password) {
     .then(userCredential => {
       // Signed in
       user = userCredential.user.uid;
-      console.log('register complite, user:', user);
+
       // ...
     })
     .catch(error => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log('register error:', errorCode, errorMessage);
+
       // ..
     });
 }
@@ -118,13 +118,12 @@ function logInUser(email, password) {
       // Signed in
       user = userCredential.user.uid;
       localStorage.setItem('userId', user);
-      console.log('logIn user:', user);
+
       // ...
     })
     .catch(error => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log('login error:', errorCode, errorMessage);
     });
 }
 

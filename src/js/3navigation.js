@@ -28,7 +28,7 @@ function activeHomePage() {
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
   localStorage.setItem('activePage', 'activeHomePage');
-};
+}
 
 function activeLibraryPage() {
   myLibraryLink.classList.add('current');
@@ -50,7 +50,7 @@ if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   movieGallery.removeEventListener('click', onFilmCardClickHandler);
 } else if (localStorage.getItem('activePage') === 'activeHomePage') {
   activeHomePage();
-  console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
   libraryGallery.removeEventListener('click', openLibraryMovieDetails);
   movieGallery.addEventListener('click', onFilmCardClickHandler);
-};
+}
