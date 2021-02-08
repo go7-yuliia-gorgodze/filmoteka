@@ -8,6 +8,7 @@ const homePageLogo = document.querySelector('.link-logo');
 myLibraryLink.addEventListener('click', () => {
     activeLibraryPage();
     drawWatchedFilmList();
+    libraryListener();
 });
 
 homePageLink.addEventListener('click', activeHomePage);

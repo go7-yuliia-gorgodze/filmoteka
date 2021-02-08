@@ -195,17 +195,22 @@ function isLogIn() {
 };
 
 //for library page
-if (localStorage.getItem('activePage') === 'activeLibraryPage') {
-    activeLibraryPage();
-    drawWatchedFilmList();
-    console.log(libraryGallery);
+function libraryListener(){
 
-    libraryGallery.addEventListener('click', event => {
-        console.log('click');
-        if (event.target.nodeName === 'IMG') {
-            let id = event.target.dataset.id;
-            activateDetailsPage(id);
-            toggleButtonWatcher(id);
-        };
-    });
+    if (localStorage.getItem('activePage') === 'activeLibraryPage') {
+        console.log("UUUUUUUUUUUSSSSSSSSSSSSSSSSEEEEEEEEEEEEEERRRRRRRRRRRRRR WWWWHHHHHHEEERRREEEEE AAAARRRRREEEEEE YYYYYOOOUUUUUUUU????????");
+        activeLibraryPage();
+        drawWatchedFilmList();
+        console.log(libraryGallery);
+
+        libraryGallery.addEventListener('click', event => {
+            console.log('click');
+            if (event.target.nodeName === 'IMG') {
+                let id = event.target.dataset.id;
+                activateDetailsPage(id,true);
+                toggleButtonWatcher(id);
+            };
+        });
+    }
+
 };

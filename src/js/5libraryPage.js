@@ -4,7 +4,10 @@ const queueButton = document.querySelector('#queue');
 watchedButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
+let watchedAndQueueFilms = []
+
 function drawWatchedFilmList() {
+
   activePage(watchedButton, queueButton);
   watchedFilms.innerHTML = '';
   const moviesWatched = JSON.parse(localStorage.getItem('filmsWatched'));
@@ -18,6 +21,7 @@ function drawWatchedFilmList() {
 }
 
 function drawQueueFilmList() {
+
   activePage(queueButton, watchedButton);
   watchedFilms.innerHTML = '';
   const moviesQueue = JSON.parse(localStorage.getItem('filmsQueue'));
@@ -33,7 +37,8 @@ function drawQueueFilmList() {
 function createWatchCard(moviesWatched) {
   moviesWatched.forEach(el => {
     fetchMoviesId(el).then(res => {
-      console.log(res);
+      console.log("CARD     WATCHED ",res);
+      watchedAndQueueFilms.push(res);
       watchedFilms.insertAdjacentHTML(
         'beforeend',
         createCard(
@@ -54,7 +59,8 @@ function createWatchCard(moviesWatched) {
 function createQueqeCard(moviesQueue) {
   moviesQueue.forEach(el => {
     fetchMoviesId(el).then(res => {
-      console.log(res);
+      watchedAndQueueFilms.push(res);
+      console.log("CARD     QUEUE ",res);
       watchedFilms.insertAdjacentHTML(
         'beforeend',
         createCard(

@@ -65,6 +65,7 @@ function fetchMovies(movieId) {
         )
         .then(res => res.json())
         .then(data => {
+          if(data.results.length===0||!data.results[0].key){return null}
             return data.results[0].key;
         });
 };

@@ -6,6 +6,8 @@ let queueButtonAdd = null;
 
 movieGallery.addEventListener('click', onFilmCardClickHandler);
 
+fetchGenres();
+
 function onFilmCardClickHandler(event) {
   if (event.target.nodeName === 'IMG') {
     let id = event.target.dataset.id;
@@ -15,64 +17,59 @@ function onFilmCardClickHandler(event) {
 }
 
 function activateDetailsPage(id, itsLibraryMovie) {
-  selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
-  if (itsLibraryMovie) {
-    let allLocalStorageMovies = [
-      ...JSON.parse(localStorage.getItem('filmsQueue')),
-      ...JSON.parse(localStorage.getItem('filmsWatched')),
-    ];
-    selectedMovie = allLocalStorageMovies.find(
-      movie => movie.id === Number(id),
-    );
-  } else {
-    selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
-  }
-  openMovieDetails(selectedMovie);
-}
-
-fetchGenres();
-console.log(genres);
+    console.log()
+    if (itsLibraryMovie) {
+        // let allLocalStorageMovies = [
+        //     ...JSON.parse(localStorage.getItem('filmsQueue')),
+        //     ...JSON.parse(localStorage.getItem('filmsWatched')),
+        // ];
+        // console.log("allLocalStorageMovies ", allLocalStorageMovies);
+        selectedMovie = watchedAndQueueFilms.find(movie => {
+           return  movie.id === Number(id)
+        });
+    } else {
+        selectedMovie = renderedMovies.find(movie => movie.id === Number(id));
+    };
+    openMovieDetails(selectedMovie);
+};
 
 function openMovieDetails(selectedMovie) {
-  if (toTopBtn) {
-    toTopBtn.classList.remove('show');
-  }
-  shadowShow();
-  body.insertAdjacentHTML('beforeend', renderDetailFilmModal(selectedMovie));
-  detailsModal = document.querySelector('#js-detailsPage');
-  queueButtonAdd = document.querySelector('.button-add-to-queue');
-  watchedButtonAdd = document.querySelector('.button-add-to-watch');
-  tabPanels = document.querySelectorAll('.tabs-panel');
-  tabLinks = document.querySelectorAll('.tabs a');
+    if (toTopBtn) {
+        toTopBtn.classList.remove('show');
+    }
+    shadowShow();
+    body.insertAdjacentHTML('beforeend', renderDetailFilmModal(selectedMovie));
+    detailsModal = document.querySelector('#js-detailsPage');
+    queueButtonAdd = document.querySelector('.button-add-to-queue');
+    watchedButtonAdd = document.querySelector('.button-add-to-watch');
+    tabPanels = document.querySelectorAll('.tabs-panel');
+    tabLinks = document.querySelectorAll('.tabs a');
 
-  filmDetailsTimeout = setTimeout(() => {
-    detailsModal.classList.remove('hidden');
-    detailsModal.classList.add('modal--active');
-  }, 500);
-  queueButtonAdd = document.querySelector('.button-add-to-queue');
-  detailsButtonClose = document.querySelector('.close-details');
+    filmDetailsTimeout = setTimeout(() => {
+        detailsModal.classList.remove('hidden');
+        detailsModal.classList.add('modal--active');
+    }, 500);
+    queueButtonAdd = document.querySelector('.button-add-to-queue');
+    detailsButtonClose = document.querySelector('.close-details');
 
-  getStorage();
+    getStorage();
 
-  detailsButtonClose.addEventListener('click', closeModal);
-  window.removeEventListener('mousemove', cursor);
-  window.addEventListener('mousemove', cursorHandler.mousemove);
-  detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
-  detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
-  window.addEventListener('keydown', onEscapeCloseDetails);
-  document.addEventListener('click', onOverlayDetailsClose);
+    detailsButtonClose.addEventListener('click', closeModal);
+    window.removeEventListener('mousemove', cursor);
+    window.addEventListener('mousemove', cursorHandler.mousemove);
+    detailsModal.addEventListener('mouseover', cursorHandler.onmouseover);
+    detailsModal.addEventListener('mouseout', cursorHandler.onmouseout);
+    window.addEventListener('keydown', onEscapeCloseDetails);
+    document.addEventListener('click', onOverlayDetailsClose);
 
-  let filmGeneres = genres
-    .filter(el =>
-      selectedMovie.genre_ids.find(movie => el.id === movie) ? true : false,
-    )
-    .reduce((acc, item) => acc + `${item.name}, `, '')
-    .slice(0, -2);
-
-  document.querySelector('#details-genre').textContent = filmGeneres;
-
-  fetchMovies(selectedMovie.id).then(res => {
-    document.getElementById('js-movieTrailer').innerHTML = `
+    document.querySelector('#details-genre').textContent = setFilmGenres(selectedMovie);
+   
+    fetchMovies(selectedMovie.id).then(res => {
+        
+        if(res===null){ 
+            document.getElementById('js-movieTrailer').insertAdjacentHTML('beforeend', '<div style="background-color: tomato; color: teal; height: 200px;font-size: 20px; padding: 10px"> Короче, немає тут ніякого трейлера</div>');
+            return;}
+        document.getElementById('js-movieTrailer').innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${res}"
             frameborder="0"
@@ -99,17 +96,36 @@ function openMovieDetails(selectedMovie) {
   trapScreenReaderFocus(detailsModal);
 }
 
-function closeModal() {
-  if (toTopBtn && !modal) {
-    toTopBtn.classList.add('show');
-  }
-  document.querySelector('iframe').src = '';
-  detailsModal.classList.add('hidden');
-  detailsModal.classList.add('modal--moved');
-  detailsModal.addEventListener('transitionend', transitionDetailsClose);
-  detailsModal.classList.remove('modal--active');
-  detailsButtonClose.removeEventListener('click', closeModal);
+function setFilmGenres(movie){
+    let filmGeneres;
+    if(movie.genre_ids){
+    filmGeneres = genres
+        .filter(el =>{
+            if(movie.genre_ids){
+                return movie.genre_ids.find(movie => el.id === movie) ? true : false
+            };
+        })
+        .reduce((acc, item) => acc + `${item.name}, `, '')
+        .slice(0, -2);
+    }else if(movie.genres){
+        filmGeneres = movie.genres.reduce((acc, item) => acc + `${item.name}, `, '');
+    };
+    return filmGeneres;
 }
+
+function closeModal() {
+    if (toTopBtn && !modal) {
+        toTopBtn.classList.add('show');
+    };
+    if(document.querySelector('iframe')){
+        document.querySelector('iframe').src = '';
+    };
+    detailsModal.classList.add('hidden');
+    detailsModal.classList.add('modal--moved');
+    detailsModal.addEventListener('transitionend', transitionDetailsClose);
+    detailsModal.classList.remove('modal--active');
+    detailsButtonClose.removeEventListener('click', closeModal);
+};
 
 function transitionDetailsClose() {
   detailsModal.classList.remove('modal--moved');
