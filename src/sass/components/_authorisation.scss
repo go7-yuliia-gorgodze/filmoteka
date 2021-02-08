@@ -14,6 +14,7 @@
 
   &:not(:last-child) {
     margin-right: 10px;
+    margin-left: auto;
   }
   @include tablet {
     font-size: 15px;
