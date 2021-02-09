@@ -325,15 +325,3 @@ function runLocalStorage() {
     }
 };
 
-function deleteFilmFromLibrary() {
-
-    let elements = libraryGallery.querySelectorAll(`img[data-id]`);
-    let element;
-    elements.forEach(el => {
-        if (el.dataset.id == this.id) {
-            element = el;
-        };
-    });
-    libraryGallery.removeChild(element.parentNode);
-    closeModal();
-};

@@ -40,14 +40,14 @@
     padding-left: 75px;
     padding-right: 75px;
     padding-top: 20px;
-    padding-bottom: 60px;
+    padding-bottom: 0;
+    margin-bottom: 90px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   @include desktop {
-    padding-bottom: 60px;
     padding-top: 20px;
     padding-right: 71px;
     padding-left: 71px;
@@ -57,6 +57,7 @@
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 110px;
   }
   .main__movieItem {
     // background-color: #f1f1f2;

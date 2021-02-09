@@ -1,5 +1,5 @@
 function renderDetailFilmModal(movie) {
-    console.log(movie);
+    
     return `
     <div id="js-detailsPage" class="details-container details-page hidden">
   <div class="details-wrapper">

@@ -59,4 +59,4 @@ if (localStorage.getItem('activePage') === 'activeLibraryPage') {
 
   libraryGallery.removeEventListener('click', openLibraryMovieDetails);
   movieGallery.addEventListener('click', onFilmCardClickHandler);
-};
+}
