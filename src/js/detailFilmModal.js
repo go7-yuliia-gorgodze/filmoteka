@@ -4,7 +4,7 @@ let tabPanels = null;
 let watchedButtonAdd = null;
 let queueButtonAdd = null;
 
-movieGallery.addEventListener('click', onFilmCardClickHandler);
+
 
 fetchGenres();
 
@@ -199,18 +199,54 @@ function toggleButtonWatcher(id) {
     let filmsWatchedFromLocalStorage = getArrayFromLocalStorage('filmsWatched');
     let filmsQueueFromLocalStorage = getArrayFromLocalStorage('filmsQueue');
     if (filmsWatchedFromLocalStorage !== null) {
-        if (filmsWatchedFromLocalStorage.includes(id)) {
+        if (filmsWatchedFromLocalStorage.includes(id) &&
+            homePageLink.classList.contains('current')) {
             watchedButtonAdd.classList.add('button-is-active');
             watchedButtonAdd.textContent = 'IN WATCHED';
+        } else if (myLibraryLink.classList.contains('current') &&
+            watchedButton.classList.contains('button-active') &&
+            filmsWatchedFromLocalStorage.includes(id)) {
+            watchedButtonAdd.classList.add('button-is-active');
+            watchedButtonAdd.textContent = 'DELETE';
+            watchedButtonAdd.addEventListener('click', () => {
+                let elements = libraryGallery.querySelectorAll(`img[data-id]`);
+                let element;
+                elements.forEach(el => {
+                    if (el.dataset.id == id) {
+                        element = el;
+                    };
+                });
+                libraryGallery.removeChild(element.parentNode);
+                closeModal();
+            });
         } else {
+
             watchedButtonAdd.classList.remove('button-is-active');
             watchedButtonAdd.textContent = 'ADD TO WATCHED';
         }
     }
     if (filmsQueueFromLocalStorage !== null) {
-        if (filmsQueueFromLocalStorage.includes(id)) {
+        if (filmsQueueFromLocalStorage.includes(id) &&
+            homePageLink.classList.contains('current')) {
             queueButtonAdd.classList.add('button-is-active');
             queueButtonAdd.textContent = 'IN QUEUE';
+        } else if (myLibraryLink.classList.contains('current') &&
+            queueButton.classList.contains('button-active') &&
+            filmsQueueFromLocalStorage.includes(id)) {
+            queueButtonAdd.classList.add('button-is-active');
+            queueButtonAdd.textContent = 'DELETE';
+            queueButtonAdd.addEventListener('click', () => {
+                let elements = libraryGallery.querySelectorAll(`img[data-id]`);
+                let element;
+                elements.forEach(el => {
+                    if (el.dataset.id == id) {
+                        element = el;
+                    };
+                });
+                libraryGallery.removeChild(element.parentNode);
+                closeModal();
+            });
+
         } else {
             queueButtonAdd.classList.remove('button-is-active');
             queueButtonAdd.textContent = 'ADD TO QUEUE';
@@ -220,7 +256,7 @@ function toggleButtonWatcher(id) {
     function getArrayFromLocalStorage(key) {
         return JSON.parse(localStorage.getItem(`${key}`));
     }
-}
+};
 
 function runLocalStorage() {
     watchedButtonAdd.addEventListener('click', toggleToWatched);
@@ -287,4 +323,17 @@ function runLocalStorage() {
         arrayFilms.splice(getArrayFromLocalStorage(key).indexOf(filmId), 1);
         setArrayToLocalStorage(key, arrayFilms);
     }
-}
+};
+
+function deleteFilmFromLibrary() {
+
+    let elements = libraryGallery.querySelectorAll(`img[data-id]`);
+    let element;
+    elements.forEach(el => {
+        if (el.dataset.id == this.id) {
+            element = el;
+        };
+    });
+    libraryGallery.removeChild(element.parentNode);
+    closeModal();
+};

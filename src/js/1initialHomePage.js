@@ -57,6 +57,8 @@ let genres;
 
 let renderedMovies = [];
 
+
+
 function createMarkup() {
   addPreloader();
   fetchFilms().then(result => {
