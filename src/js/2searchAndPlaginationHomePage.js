@@ -13,16 +13,13 @@ function inputChange() {
   if (searchInput.value.length != 0) {
     inputValue = searchInput.value;
     dischargePaginationAndCreateMarkup();
-    searchField.reset();
   }
 }
 
-searchInput.addEventListener('input', debounce(inputChange, 1500));
+searchInput.addEventListener('input', debounce(inputChange, 1200));
 searchField.addEventListener('submit', event => {
   event.preventDefault();
-
   inputValue = event.currentTarget.elements[0].value;
-  searchField.reset();
   dischargePaginationAndCreateMarkup();
 });
 
@@ -32,7 +29,9 @@ function fetchFilms() {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      if (data.results.length != 0) {
+        scrollToSectionHomePage();
+      }
       return data;
     });
 }
@@ -53,7 +52,6 @@ function fetchGenres() {
   )
     .then(data => data.json())
     .then(res => {
-      // console.log(res);
       genres = [...res.genres];
     })
     .catch(err => console.log(err));
@@ -65,9 +63,13 @@ function fetchMovies(movieId) {
   )
     .then(res => res.json())
     .then(data => {
+      if (data.results.length === 0 || !data.results[0].key) {
+        return null;
+      }
       return data.results[0].key;
     });
 }
+
 function fetchMoviesId(movieId) {
   return fetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`,
@@ -77,6 +79,7 @@ function fetchMoviesId(movieId) {
       return data;
     });
 }
+
 function paginationNavigation(arr) {
   pageNumber = arr[2];
   if (inputValue === '') createStartupMarkup();

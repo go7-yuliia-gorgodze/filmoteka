@@ -16,11 +16,15 @@ let user = localStorage['userId'];
 
 function toggleButtonLogIn() {
   if (isLogIn()) {
+    openRegistrFormButton.style.opacity = '0';
+    openRegistrFormButton.style.pointerEvents = 'none';
     openLogInFormButton.innerHTML =
-      "<svg class='button-icon'><use href='../images/svg/sprite.svg#signout'></use></svg>";
+      "<svg class='button-icon'><use href='./images/sprite.svg#signout'></use></svg>";
   } else {
+    openRegistrFormButton.style.opacity = '1';
+    openRegistrFormButton.style.pointerEvents = 'auto';
     openLogInFormButton.innerHTML =
-      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+      "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
   }
 }
 toggleButtonLogIn();
@@ -35,7 +39,8 @@ openLogInFormButton.addEventListener('click', event => {
   if (isLogIn()) {
     signOut();
     openLogInFormButton.innerHTML =
-      "<svg class='button-icon'><use href='../images/svg/sprite.svg#login'></use></svg>";
+      "<svg class='button-icon'><use href='./images/sprite.svg#login'></use></svg>";
+    toggleButtonLogIn();
   } else {
     openLogINModal();
   }
@@ -43,14 +48,14 @@ openLogInFormButton.addEventListener('click', event => {
 
 registrationButton.addEventListener('click', event => {
   event.preventDefault();
-  console.log(user);
+
   createUser(registrationMail.value, registrationPass.value);
   registrationMail.value = '';
   registrationPass.value = '';
 });
 logInButton.addEventListener('click', event => {
   event.preventDefault();
-  console.log(user);
+
   logInUser(logInMail.value, logInPass.value);
   logInMail.value = '';
   logInPass.value = '';
@@ -65,11 +70,13 @@ function openRegistrationModal() {
   body.classList.add('blocked-scroll');
   registrationForm.classList.remove('hidden');
 }
+
 function openLogINModal() {
   formModal.classList.remove('hidden');
   body.classList.add('blocked-scroll');
   logInForm.classList.remove('hidden');
 }
+
 function closeFormModal(event) {
   if (
     event.target.classList.contains('form-modal') ||
@@ -84,6 +91,7 @@ function closeFormModal(event) {
   }
   toggleButtonLogIn();
 }
+
 function createUser(email, password) {
   firebase
     .auth()
@@ -91,16 +99,17 @@ function createUser(email, password) {
     .then(userCredential => {
       // Signed in
       user = userCredential.user.uid;
-      console.log('register complite, user:', user);
+
       // ...
     })
     .catch(error => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log('register error:', errorCode, errorMessage);
+
       // ..
     });
 }
+
 function logInUser(email, password) {
   firebase
     .auth()
@@ -109,15 +118,15 @@ function logInUser(email, password) {
       // Signed in
       user = userCredential.user.uid;
       localStorage.setItem('userId', user);
-      console.log('logIn user:', user);
+
       // ...
     })
     .catch(error => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log('login error:', errorCode, errorMessage);
     });
 }
+
 function signOut() {
   user = undefined;
   localStorage.removeItem('userId');
@@ -129,20 +138,27 @@ function writeUserWatchedFilm(filmId) {
   firebase
     .database()
     .ref('users/' + user + '/watched')
-    .update({ [filmId]: true });
+    .update({
+      [filmId]: true,
+    });
 }
+
 function writeUserQueueFilm(filmId) {
   firebase
     .database()
     .ref('users/' + user + '/queue')
-    .update({ [filmId]: true });
+    .update({
+      [filmId]: true,
+    });
 }
+
 function removeUserWatchedFilm(filmId) {
   firebase
     .database()
     .ref('users/' + user + '/watched/' + filmId)
     .remove();
 }
+
 function removeUserQueueFilm(filmId) {
   firebase
     .database()
@@ -150,6 +166,7 @@ function removeUserQueueFilm(filmId) {
     .remove();
 }
 let userWatchedRef = firebase.database().ref('users/' + user + '/watched/');
+
 function updateUserWatched() {
   userWatchedRef.on('value', snapshot => {
     if (snapshot.val()) {
@@ -163,6 +180,7 @@ function updateUserWatched() {
   });
 }
 let userQueueRef = firebase.database().ref('users/' + user + '/queue/');
+
 function updateUserQueue() {
   userQueueRef.on('value', snapshot => {
     if (snapshot.val()) {
@@ -177,22 +195,7 @@ function updateUserQueue() {
 }
 updateUserQueue();
 updateUserWatched();
+
 function isLogIn() {
   return user !== undefined;
-}
-
-//for library page
-if (localStorage.getItem('activePage') === 'activeLibraryPage') {
-  activeLibraryPage();
-  drawWatchedFilmList();
-  console.log(libraryGallery);
-
-  libraryGallery.addEventListener('click', event => {
-    console.log('click');
-    if (event.target.nodeName === 'IMG') {
-      let id = event.target.dataset.id;
-      activateDetailsPage(id);
-      toggleButtonWatcher(id);
-    }
-  });
 }

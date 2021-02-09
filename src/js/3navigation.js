@@ -5,26 +5,18 @@ const header = document.querySelector('header');
 const homePageLink = document.querySelector('.link-header');
 const homePageLogo = document.querySelector('.link-logo');
 
-myLibraryLink.addEventListener('click', () => {
-  activeLibraryPage();
-  drawWatchedFilmList();
-});
+myLibraryLink.addEventListener('click', myLibraryLinkClick);
+
+function myLibraryLinkClick() {
+  // activeLibraryPage();
+  libraryListener();
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+}
+
+
 
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
-
-function activeLibraryPage() {
-  myLibraryLink.classList.add('current');
-  homePageLink.classList.remove('current');
-  homePage.classList.add('hidden');
-  myLibraryPage.classList.remove('hidden');
-  searchField.classList.add('hidden');
-  header.classList.remove('header');
-  header.classList.add('my-library-header');
-  myLibraryHeaderDiv.classList.remove('hidden');
-  headerError.innerHTML = '';
-  localStorage.setItem('activePage', 'activeLibraryPage');
-}
 
 function activeHomePage() {
   inputValue = '';
@@ -38,10 +30,33 @@ function activeHomePage() {
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
   localStorage.setItem('activePage', 'activeHomePage');
+  movieGallery.addEventListener('click', onFilmCardClickHandler);
+  libraryGallery.removeEventListener('click', openLibraryMovieDetails);
+};
+
+function activeLibraryPage() {
+  myLibraryLink.classList.add('current');
+  homePageLink.classList.remove('current');
+  homePage.classList.add('hidden');
+  myLibraryPage.classList.remove('hidden');
+  searchField.classList.add('hidden');
+  header.classList.remove('header');
+  header.classList.add('my-library-header');
+  myLibraryHeaderDiv.classList.remove('hidden');
+  headerError.innerHTML = '';
+  localStorage.setItem('activePage', 'activeLibraryPage');
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+  movieGallery.removeEventListener('click', onFilmCardClickHandler);
 }
 
-if (localStorage.getItem('activePage') === 'activeHomePage') {
-  activeHomePage();
-} else {
+if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   activeLibraryPage();
+
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+  movieGallery.removeEventListener('click', onFilmCardClickHandler);
+} else if (localStorage.getItem('activePage') === 'activeHomePage') {
+  activeHomePage();
+
+  libraryGallery.removeEventListener('click', openLibraryMovieDetails);
+  movieGallery.addEventListener('click', onFilmCardClickHandler);
 }

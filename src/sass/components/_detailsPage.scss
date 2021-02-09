@@ -67,7 +67,6 @@
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        overflow-y: auto;
         height: 440px;
         border-radius: 4px;
     }
@@ -88,6 +87,7 @@
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 20px;
+    overflow-y: auto;
     // overflow: scroll;
     @include for-size(tablet-landscape-up) {
         padding: 20px 30px;
@@ -278,18 +278,18 @@
 }
 
 .button-is-active {
-  background-color: $accent-color;
-  border: none;
-  color: $button-color;
+    background-color: $accent-color;
+    border: none;
+    color: $button-color;
 }
 
-.details-inf-list > li {
-  margin-bottom: 5px;
-  height: 32px;
-  @include for-size(desktop) {
-    height: 16px;
-    margin-bottom: 10px;
-  }
+.details-inf-list>li {
+    margin-bottom: 5px;
+    height: 32px;
+    @include for-size(desktop) {
+        height: 16px;
+        margin-bottom: 10px;
+    }
 }
 
 .details-inf-list>li {
@@ -314,12 +314,14 @@
     padding: 2px;
     fill: $button-color;
 }
+
 .button-close {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  background-color: $accent-color;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: $accent-color;
 }
+
 .button-close {
     position: absolute;
     right: 5px;

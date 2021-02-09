@@ -54,6 +54,9 @@
     display: none;
   }
 }
+.icon-logo {
+  vertical-align: unset;
+}
 .text-logo {
   margin-left: 12px;
   font-weight: 500;
@@ -61,6 +64,9 @@
   line-height: 1.166;
 
   color: $primary-white-color;
+}
+.link-logo:hover {
+  text-decoration: none;
 }
 .link-library {
   font-weight: 500;
@@ -79,6 +85,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.navigation {
+  margin: auto;
 }
 .header-list {
   display: flex;

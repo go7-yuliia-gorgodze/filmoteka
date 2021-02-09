@@ -12,7 +12,6 @@ function Carousel(
 
   const frame = document.querySelector(frameSelector);
   const slides = document.querySelectorAll(slidesSelector);
-  console.log(frame, slides);
 
   const slidesNumber = slides.length;
   const leftButton = document.querySelector(btnLeftSelector);
