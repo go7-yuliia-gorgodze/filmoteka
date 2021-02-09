@@ -125,12 +125,12 @@ function scrollToSectionHomePage() {
   function handleTabletChange(e) {
     if (e.matches) {
       window.scrollTo({
-        top: 300,
+        top: 240,
         behavior: 'smooth',
       });
     } else {
       window.scrollTo({
-        top: 740,
+        top: 670,
         behavior: 'smooth',
       });
     }
