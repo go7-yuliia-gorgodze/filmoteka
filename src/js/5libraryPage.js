@@ -95,8 +95,11 @@ function openLibraryMovieDetails(event) {
     let id = event.target.dataset.id;
     activateDetailsPage(id, true);
     toggleButtonWatcher(id);
-  }
-}
+    // console.log('myLibraryLink ', myLibraryLink.classList.contains('current'));
+    // console.log('watchedButton ', watchedButton.classList.contains('button-active'));
+    // console.log('queueButton ', queueButton.classList.contains('button-active'));
+  };
+};
 
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
   libraryListener();

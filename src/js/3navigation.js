@@ -13,6 +13,8 @@ function myLibraryLinkClick() {
   libraryGallery.addEventListener('click', openLibraryMovieDetails);
 }
 
+
+
 homePageLink.addEventListener('click', activeHomePage);
 homePageLogo.addEventListener('click', activeHomePage);
 
@@ -28,7 +30,9 @@ function activeHomePage() {
   header.classList.remove('my-library-header');
   myLibraryHeaderDiv.classList.add('hidden');
   localStorage.setItem('activePage', 'activeHomePage');
-}
+  movieGallery.addEventListener('click', onFilmCardClickHandler);
+  libraryGallery.removeEventListener('click', openLibraryMovieDetails);
+};
 
 function activeLibraryPage() {
   myLibraryLink.classList.add('current');
@@ -41,6 +45,8 @@ function activeLibraryPage() {
   myLibraryHeaderDiv.classList.remove('hidden');
   headerError.innerHTML = '';
   localStorage.setItem('activePage', 'activeLibraryPage');
+  libraryGallery.addEventListener('click', openLibraryMovieDetails);
+  movieGallery.removeEventListener('click', onFilmCardClickHandler);
 }
 
 if (localStorage.getItem('activePage') === 'activeLibraryPage') {
