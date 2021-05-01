@@ -67,21 +67,24 @@ button:focus {
 
 .main-container {
   width: 320px;
-  padding: 0 15px;
+  padding-right: 15px;
+  padding-left: 15px;
   margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .main-container {
     width: 768px;
-    padding: 0 75px;
+    padding-right: 75px;
+    padding-left: 75px;
   }
 }
 
 @media (min-width: 1024px) {
   .main-container {
     width: 1024px;
-    padding: 0 71px;
+    padding-right: 71px;
+    padding-left: 71px;
   }
 }
 
@@ -638,7 +641,8 @@ h6 {
     padding-left: 75px;
     padding-right: 75px;
     padding-top: 20px;
-    padding-bottom: 60px;
+    padding-bottom: 0;
+    margin-bottom: 90px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -653,7 +657,6 @@ h6 {
 
 @media (min-width: 1024px) {
   .main__filmList {
-    padding-bottom: 60px;
     padding-top: 20px;
     padding-right: 71px;
     padding-left: 71px;
@@ -669,6 +672,7 @@ h6 {
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 60px;
   }
 }
 
@@ -955,6 +959,10 @@ h6 {
   color: #ffffff;
 }
 
+.link-logo:hover {
+  text-decoration: none;
+}
+
 .link-library {
   font-weight: 500;
   font-size: 12px;
@@ -979,6 +987,10 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.navigation {
+  margin: auto;
 }
 
 .header-list {
@@ -1077,9 +1089,23 @@ h6 {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 .footer-text-wrapper {
@@ -1690,6 +1716,38 @@ h6 {
   }
 }
 
+.btn-delete {
+  position: absolute;
+  top: 10px;
+  right: 9px;
+  fill: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 40px;
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(135, 76, 37, 0.6);
+          box-shadow: 5px 5px 5px -5px rgba(135, 76, 37, 0.6);
+  -webkit-transition: 250ms linear;
+  transition: 250ms linear;
+  -webkit-transform: translateX(130%);
+          transform: translateX(130%);
+}
+
+.btn-delete:hover {
+  background-color: #FF6B09;
+  cursor: pointer !important;
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+}
+
+.main__movieItem:hover .btn-delete {
+  -webkit-transform: translateX(-5%);
+          transform: translateX(-5%);
+}
+
+.my-library-page {
+  padding-bottom: 10px;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -2061,7 +2119,7 @@ h6 {
 }
 
 .pagination__button {
-  padding-top: 12px;
+  padding-top: 7px;
   min-width: 40px;
   height: 40px;
   font-weight: 500;
@@ -2072,6 +2130,10 @@ h6 {
 
 .pagination__button_disabled {
   pointer-events: none;
+}
+
+.pagination__button_is-hidden {
+  display: none;
 }
 
 .pagination__button svg {
@@ -2085,6 +2147,11 @@ h6 {
 
 .pagination__button:nth-child(5) {
   background-color: #FF6B09;
+}
+
+.pagination__button:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 @media (min-width: 1024px) {
@@ -2106,8 +2173,8 @@ h6 {
   text-align: center;
   border-radius: 4px;
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 12px;
+  right: 12px;
   -webkit-transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
   transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, -webkit-transform 0.5s;
   transition: background-color 0.3s, opacity 0.5s, visibility 0.5s, transform 0.5s;
@@ -2115,6 +2182,13 @@ h6 {
   opacity: 0;
   visibility: hidden;
   z-index: 1000;
+}
+
+@media screen and (min-width: 440px) {
+  #to-top-button {
+    bottom: 30px;
+    right: 30px;
+  }
 }
 
 #to-top-button::after {
@@ -2170,6 +2244,7 @@ h6 {
 
 .button_form:not(:last-child) {
   margin-right: 10px;
+  margin-left: auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -2306,6 +2381,7 @@ h6 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  color: #000000;
 }
 
 .registration.hidden {
@@ -2356,6 +2432,7 @@ h6 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  color: #000000;
 }
 
 .logIn.hidden {
@@ -2658,6 +2735,7 @@ h6 {
 
 .slider {
   position: relative;
+  pointer-events: none;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;

@@ -45,7 +45,7 @@
 
 .btn-delete:hover {
   background-color: $accent-color;
-  // fill: white
+  cursor: pointer !important;
   transform: scale(1.04);
 }
 
