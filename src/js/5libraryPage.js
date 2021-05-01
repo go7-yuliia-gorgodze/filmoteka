@@ -122,9 +122,6 @@ function deleteFromCard(e) {
     e.target.nodeName === 'svg' ||
     e.target.nodeName === 'BUTTON'
   ) {
-    console.log('check');
-    // if (deleteFromCardBtn) {
-    // console.log(e.target.nodeName);
     if (e.target.parentNode.nodeName === 'BUTTON') {
       element = e.target.parentNode.parentNode;
     } else if (e.target.nodeName === 'use') {
@@ -139,8 +136,6 @@ function deleteFromCard(e) {
   }
 
   let id = element.querySelector('img').dataset.id;
-
-  console.log(id);
 
   if (
     myLibraryLink.classList.contains('current') &&
