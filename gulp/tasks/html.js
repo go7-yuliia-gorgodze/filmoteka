@@ -21,6 +21,5 @@ const html = () => {
     .pipe(mode.production(cachebust(cachebustConfig)))
     .pipe(gulp.dest(paths.build.html));
 };
-//change
 
 module.exports = html;
